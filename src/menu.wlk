@@ -20,49 +20,49 @@ object menu{
 		game.removeVisual(self)
 	}
 	
-	method accion(accion){
+	method accion(accion,lista){
 		// aparecer
 		if(accion == "remover")	{
-			self.seleccionado().forEach({ 
+			lista.forEach({ 
 				objeto => 
-				if(game.getObjectsIn(objeto).size() > 0){
-					const posic = game.getObjectsIn(objeto).last()
+				if(game.getObjectsIn(objeto).filter({ filtro => filtro.tipo() == "Seleccion" }).size() > 0){
+					const posic = game.getObjectsIn(objeto).filter({ filtro => filtro.tipo() == "Seleccion" }).last()
 					game.removeVisual(posic)
 				}
 			})
 			self.cerrar()
 		}
 		if(accion == "plantar") {
-			self.accion("remover")
-			self.seleccionado().forEach({ 
+			self.accion("remover", self.seleccionado())
+			lista.forEach({ 
 				objeto => 
 				game.addVisualIn(new Arboleda(), objeto)
 			})
 		}
 		if(accion == "talar") {
-			self.accion("remover")
-			self.seleccionado().forEach({ 
+			self.accion("remover", self.seleccionado())
+			lista.forEach({ 
 				objeto => 
 				game.addVisualIn(new Talada(), objeto)
 			})
 		}
 		if(accion == "colocarPiedra") {
-			self.accion("remover")
-			self.seleccionado().forEach({ 
+			self.accion("remover", self.seleccionado())
+			lista.forEach({ 
 				objeto => 
 				game.addVisualIn(new Piedras(), objeto)
 			})
 		}
 		if(accion == "minar") {
-			self.accion("remover")
-			self.seleccionado().forEach({ 
+			self.accion("remover", self.seleccionado())
+			lista.forEach({ 
 				objeto => 
 				game.addVisualIn(new Minado(), objeto)
 			})
 		}
 		if(accion == "pesca") {
-			self.accion("remover")
-			self.seleccionado().forEach({ 
+			self.accion("remover", self.seleccionado())
+			lista.forEach({ 
 				objeto => 
 				game.addVisualIn(new Pesca(), objeto)
 			})

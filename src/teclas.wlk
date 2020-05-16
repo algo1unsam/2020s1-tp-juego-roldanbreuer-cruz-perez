@@ -7,23 +7,23 @@ import menu.*
 object teclas{
 	method q() {
 		if(menu.visible() == "postSeleccion"){
-			menu.accion("talar")
+			menu.accion("talar", menu.seleccionado())
 		}
 	}
 	method w() { self.error(menu.seleccionado().toString()) }
 	method e(){
 		if(menu.visible() == "postSeleccion"){
-			menu.accion("plantar")
+			menu.accion("plantar", menu.seleccionado())
 		}
 	}
 	method r(){
 		if(menu.visible() == "postSeleccion"){
-			menu.accion("remover")
+			menu.accion("remover", menu.seleccionado())
 		}
 	}
 	method a(){
 		if(menu.visible() == "postSeleccion"){
-			menu.accion("pesca")
+			menu.accion("pesca", menu.seleccionado())
 		}
 	}
 	method s(){
@@ -33,12 +33,12 @@ object teclas{
 	}
 	method d(){
 		if(menu.visible() == "postSeleccion"){
-			menu.accion("colocarPiedra")
+			menu.accion("colocarPiedra", menu.seleccionado())
 		}
 	}
 	method f(){
 		if(menu.visible() == "postSeleccion"){
-			menu.accion("minar")
+			menu.accion("minar", menu.seleccionado())
 		}
 	}
 		

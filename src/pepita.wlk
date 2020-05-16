@@ -5,12 +5,14 @@ import teclas.*
 //aqui se encuentra nuestro cursor y su configuracion
 class Seleccion{
 	var property position
+	var property tipo = "Seleccion"
 	method image() = "assets/cursor.png"	
 }
 
 object cursor {
 	var property seleccionInicio = []
 	var property position = game.at(1,1)
+	var property tipo = "Cursor"
 	method seleccion() {
 		if (seleccionInicio.size() == 0){
 			seleccionInicio.add(self.position())
