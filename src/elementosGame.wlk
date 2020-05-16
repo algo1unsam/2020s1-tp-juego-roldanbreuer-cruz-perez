@@ -30,3 +30,24 @@ class Pesca{
 	var property tipo = "Pesca"
 	method image() = "assets/pesca.png"
 }
+object hud{
+	var property position = game.at(0,0)
+	var property tipo = "hud"
+	method image() = "assets/hud.png"
+}
+object botonTalar{
+	var property tipo = "boton"
+	method image() = "assets/botonTalar.png"
+}
+object botonMinar{
+	var property tipo = "boton"
+	method image() = "assets/botonMinar.png"
+}
+object botonDetener{
+	var property tipo = "boton"
+	method image() = "assets/botonDetener.png"
+}
+object botonCancelar{
+	var property tipo = "boton"
+	method image() = "assets/botonCancelar.png"
+}

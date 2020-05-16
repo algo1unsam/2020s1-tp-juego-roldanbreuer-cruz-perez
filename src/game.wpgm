@@ -11,14 +11,19 @@ program game {
 	game.boardGround("assets/Mapa.png")
 	game.cellSize(35)
 	game.title("Juego Base")
+	//game.addVisualIn(menu, game.at(12,6))
 	game.addVisual(cursor)
+	game.addVisual(hud)
 	keyboard.up().onPressDo { cursor.mover(cursor.position().up(1)) }
 	keyboard.down().onPressDo { cursor.mover(cursor.position().down(1)) }
 	keyboard.left().onPressDo { cursor.mover(cursor.position().left(1)) }
 	keyboard.right().onPressDo { cursor.mover(cursor.position().right(1)) }
 	keyboard.enter().onPressDo { enter.apretar() }
-	keyboard.backspace().onPressDo { menu.cerrar() }
-	keyboard.m().onPressDo { menu.aparecer("tecla") }
+	keyboard.backspace().onPressDo { 
+		menu.cerrar() 
+		menu.remover("Seleccion", menu.seleccionado())
+	}
+	keyboard.m().onPressDo { teclas.m() }
 	keyboard.q().onPressDo { teclas.q() }
 	keyboard.w().onPressDo { teclas.w() }
 	keyboard.e().onPressDo { teclas.e() }
@@ -27,6 +32,8 @@ program game {
 	keyboard.s().onPressDo { teclas.s() }
 	keyboard.d().onPressDo { teclas.d() }
 	keyboard.f().onPressDo { teclas.f() }
+	keyboard.p().onPressDo { game.say(cursor, cursor.position().toString()) }
+	menu.accion("plantar", arboledaNO.area())
 	game.start()
 	
 }

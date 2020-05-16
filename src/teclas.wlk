@@ -10,16 +10,20 @@ object teclas{
 			menu.accion("talar", menu.seleccionado())
 		}
 	}
-	method w() { self.error(menu.seleccionado().toString()) }
+	method w() { 
+		if(menu.visible() == "tecla"){
+			menu.remover("talar", [cursor.position()])
+			menu.remover("minar", [cursor.position()])
+			menu.remover("pesca", [cursor.position()])
+		}
+	}
 	method e(){
 		if(menu.visible() == "postSeleccion"){
 			menu.accion("plantar", menu.seleccionado())
 		}
 	}
 	method r(){
-		if(menu.visible() == "postSeleccion"){
-			menu.accion("remover", menu.seleccionado())
-		}
+
 	}
 	method a(){
 		if(menu.visible() == "postSeleccion"){
@@ -35,13 +39,20 @@ object teclas{
 		if(menu.visible() == "postSeleccion"){
 			menu.accion("colocarPiedra", menu.seleccionado())
 		}
+		if(menu.visible() == "tecla"){
+			menu.accion("colocarPiedra", [cursor.position()])
+		}
 	}
 	method f(){
 		if(menu.visible() == "postSeleccion"){
 			menu.accion("minar", menu.seleccionado())
 		}
 	}
-		
+	method m(){
+		if(menu.visible() == null){
+			menu.aparecer("tecla")
+		}
+	}	
 	
 }
 object enter{
