@@ -17,9 +17,22 @@ program game {
 	keyboard.left().onPressDo { cursor.mover(cursor.position().left(1)) }
 	keyboard.right().onPressDo { cursor.mover(cursor.position().right(1)) }
 	
-	keyboard.s().onPressDo { cursor.seleccion() }
+	
 	keyboard.enter().onPressDo { enter.apretar() }
 	
+	keyboard.backspace().onPressDo { menu.cerrar() }
+	
+	keyboard.m().onPressDo { menu.aparecer("tecla") }
+	
+	keyboard.q().onPressDo { teclas.q() }
+	keyboard.w().onPressDo { teclas.w() }
+	keyboard.e().onPressDo { teclas.e() }
+	keyboard.r().onPressDo { teclas.r() }
+	keyboard.a().onPressDo { teclas.a() }
+	keyboard.s().onPressDo { teclas.s() }
+	keyboard.d().onPressDo { teclas.d() }
+	keyboard.f().onPressDo { teclas.f() }
+		
 	game.start()
 	
 	
