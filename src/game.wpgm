@@ -1,29 +1,24 @@
 import wollok.game.*
 import pepita.*
-
+import elementosGame.*
+import menu.*
+import teclas.*
+//aqui solo configuracion de teclas y game
+//solo para comodidad del desarrollo del juego
 program game {
 	game.height(20)
 	game.width(37)
 	game.boardGround("assets/Mapa.png")
 	game.cellSize(35)
-	
-	
-	
 	game.title("Juego Base")
 	game.addVisual(cursor)
-	
 	keyboard.up().onPressDo { cursor.mover(cursor.position().up(1)) }
 	keyboard.down().onPressDo { cursor.mover(cursor.position().down(1)) }
 	keyboard.left().onPressDo { cursor.mover(cursor.position().left(1)) }
 	keyboard.right().onPressDo { cursor.mover(cursor.position().right(1)) }
-	
-	
 	keyboard.enter().onPressDo { enter.apretar() }
-	
 	keyboard.backspace().onPressDo { menu.cerrar() }
-	
 	keyboard.m().onPressDo { menu.aparecer("tecla") }
-	
 	keyboard.q().onPressDo { teclas.q() }
 	keyboard.w().onPressDo { teclas.w() }
 	keyboard.e().onPressDo { teclas.e() }
@@ -32,10 +27,6 @@ program game {
 	keyboard.s().onPressDo { teclas.s() }
 	keyboard.d().onPressDo { teclas.d() }
 	keyboard.f().onPressDo { teclas.f() }
-		
 	game.start()
-	
-	
-	
 	
 }
