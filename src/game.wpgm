@@ -10,8 +10,8 @@ program game {
 	game.width(37)
 	game.boardGround("assets/Mapa.png")
 	game.cellSize(35)
-	game.title("Juego Base")
-	//game.addVisualIn(menu, game.at(12,6))
+	game.title("Aldeanos")
+	//game.addVisualIn(menu, game.at(12,5))
 	game.addVisual(cursor)
 	game.addVisual(hud)
 	keyboard.up().onPressDo { cursor.mover(cursor.position().up(1)) }
@@ -19,10 +19,7 @@ program game {
 	keyboard.left().onPressDo { cursor.mover(cursor.position().left(1)) }
 	keyboard.right().onPressDo { cursor.mover(cursor.position().right(1)) }
 	keyboard.enter().onPressDo { enter.apretar() }
-	keyboard.backspace().onPressDo { 
-		menu.cerrar() 
-		menu.remover("Seleccion", menu.seleccionado())
-	}
+	keyboard.backspace().onPressDo { teclas.bkps() }
 	keyboard.m().onPressDo { teclas.m() }
 	keyboard.q().onPressDo { teclas.q() }
 	keyboard.w().onPressDo { teclas.w() }
@@ -33,6 +30,7 @@ program game {
 	keyboard.d().onPressDo { teclas.d() }
 	keyboard.f().onPressDo { teclas.f() }
 	keyboard.p().onPressDo { game.say(cursor, cursor.position().toString()) }
+	keyboard.minusKey().onPressDo { teclas.menos() }
 	menu.accion("plantar", arboledaNO.area())
 	game.start()
 	

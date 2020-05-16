@@ -7,27 +7,48 @@ import menu.*
 object teclas{
 	method q() {
 		if(menu.visible() == "postSeleccion"){
-			menu.accion("talar", menu.seleccionado())
+			menu.accion("plantar", menu.seleccionado())
+		}
+		if(menu.visible() == "tecla"){
+			menu.accion("plantar", [cursor.position()])
 		}
 	}
 	method w() { 
+		if(menu.visible() == "postSeleccion"){
+			menu.remover("Seleccion", menu.seleccionado())
+			menu.remover("Talada", menu.seleccionado())
+			menu.remover("Minado", menu.seleccionado())
+			menu.remover("Pesca", menu.seleccionado())
+		}
 		if(menu.visible() == "tecla"){
-			menu.remover("talar", [cursor.position()])
-			menu.remover("minar", [cursor.position()])
-			menu.remover("pesca", [cursor.position()])
+			menu.remover("Talada", [cursor.position()])
+			menu.remover("Minado", [cursor.position()])
+			menu.remover("Pesca", [cursor.position()])
 		}
 	}
 	method e(){
 		if(menu.visible() == "postSeleccion"){
-			menu.accion("plantar", menu.seleccionado())
+			menu.accion("minar", menu.seleccionado())
+		}
+		if(menu.visible() == "tecla"){
+			menu.accion("minar", [cursor.position()])
 		}
 	}
 	method r(){
-
+		if(menu.visible() == "postSeleccion"){
+			menu.accion("talar", menu.seleccionado())
+		}
+		if(menu.visible() == "tecla"){
+			menu.accion("talar", [cursor.position()])
+		}
 	}
 	method a(){
 		if(menu.visible() == "postSeleccion"){
-			menu.accion("pesca", menu.seleccionado())
+			menu.accion("colocarPiedra", menu.seleccionado())
+		}
+		
+		if(menu.visible() == "tecla"){
+			menu.accion("colocarPiedra", [cursor.position()])
 		}
 	}
 	method s(){
@@ -37,23 +58,30 @@ object teclas{
 	}
 	method d(){
 		if(menu.visible() == "postSeleccion"){
-			menu.accion("colocarPiedra", menu.seleccionado())
+			menu.accion("pesca", menu.seleccionado())
 		}
 		if(menu.visible() == "tecla"){
-			menu.accion("colocarPiedra", [cursor.position()])
+			menu.accion("pesca", [cursor.position()])
 		}
 	}
 	method f(){
-		if(menu.visible() == "postSeleccion"){
-			menu.accion("minar", menu.seleccionado())
-		}
+		
 	}
 	method m(){
 		if(menu.visible() == null){
 			menu.aparecer("tecla")
 		}
 	}	
-	
+	method menos(){
+		if(menu.visible() != null){
+			game.stop()
+		}
+	} 
+	method bkps(){
+		menu.cerrar() 
+		if(menu.seleccionado().size() > 0)	menu.remover("Seleccion", menu.seleccionado())
+		
+	}
 }
 object enter{
 	method apretar(){

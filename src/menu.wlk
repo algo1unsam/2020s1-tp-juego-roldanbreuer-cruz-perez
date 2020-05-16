@@ -6,27 +6,46 @@ import teclas.*
 //en este archivo se encuentran solamente los elementos que componen el menu
 object menu{
 	var property visible
-	var property seleccionado
+	var property seleccionado = []
 	
 	method image() = "assets/menu.png"
 	
 	method aparecer(motivo){
 		visible = motivo
-		game.addVisualIn(self, game.at(12,6))
-		game.addVisualIn(botonTalar, game.at(13,12))
-		game.addVisualIn(botonMinar, game.at(16,12))
-		game.addVisualIn(botonDetener, game.at(19,12))
-		game.addVisualIn(botonCancelar, game.at(22,12))
-		
+		if(motivo == "postSeleccion" or motivo == "tecla" ){
+			game.addVisualIn(self, game.at(12,5))
+			game.addVisualIn(tituloAcciones, game.at(13,13))
+			game.addVisualIn(botonTalar, game.at(13,11))
+			game.addVisualIn(botonMinar, game.at(16,11))
+			game.addVisualIn(botonDetener, game.at(19,11))
+			game.addVisualIn(botonCancelar, game.at(13,6))
+			game.addVisualIn(botonSalir, game.at(21,6))
+		}
+		if(motivo == "construccion"){
+			game.addVisualIn(self, game.at(12,5))
+			game.addVisualIn(tituloConstrucciones, game.at(13,13))
+			game.addVisualIn(botonCancelar, game.at(13,6))
+			game.addVisualIn(botonSalir, game.at(21,6))
+		}
 	}
 	
 	method cerrar(){
+		if(visible == "postSeleccion" or visible == "tecla" ){
+			game.removeVisual(self)
+			game.removeVisual(tituloAcciones)
+			game.removeVisual(botonTalar)
+			game.removeVisual(botonMinar)
+			game.removeVisual(botonDetener)
+			game.removeVisual(botonCancelar)
+			game.removeVisual(botonSalir)
+		}
+		if(visible == "construccion"){
+			game.removeVisual(self)
+			game.removeVisual(tituloConstrucciones)
+			game.removeVisual(botonCancelar)
+			game.removeVisual(botonSalir)
+		}
 		visible = null
-		game.removeVisual(self)
-		game.removeVisual(botonTalar)
-		game.removeVisual(botonMinar)
-		game.removeVisual(botonDetener)
-		game.removeVisual(botonCancelar)
 	}
 	
 	
@@ -34,7 +53,7 @@ object menu{
 		lista.forEach({ 
 			objeto => 
 			if(game.getObjectsIn(objeto).filter({ filtro => filtro.tipo() == tipo }).size() > 0){
-				const posic = game.getObjectsIn(objeto).filter({ filtro => filtro.tipo() == "Seleccion" }).last()
+				const posic = game.getObjectsIn(objeto).filter({ filtro => filtro.tipo() == tipo }).last()
 				game.removeVisual(posic)
 			}
 		})
