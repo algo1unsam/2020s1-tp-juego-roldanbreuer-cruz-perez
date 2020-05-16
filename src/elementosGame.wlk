@@ -73,3 +73,6 @@ game.at(0,14),game.at(1,14),game.at(2,14),game.at(3,14),game.at(4,14),game.at(5,
 game.at(0,13),game.at(1,13),game.at(2,13),game.at(3,13),game.at(4,13),game.at(5,13),
 game.at(0,18),game.at(1,18),game.at(2,18),game.at(3,18)]
 }
+object piedras{
+	const property area = [game.at(26,8),game.at(27,8),game.at(31,16),game.at(22,18)]
+}

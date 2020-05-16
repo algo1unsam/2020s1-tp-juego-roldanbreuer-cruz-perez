@@ -67,6 +67,19 @@ object teclas{
 	method f(){
 		
 	}
+	method t(){
+		if(menu.visible() == null){
+			const listaPos = game.getObjectsIn(cursor.position())
+			if(listaPos.filter({ objeto => objeto.tipo() == "Arboleda" }).size() > 0 and 
+				listaPos.filter({ objeto => objeto.tipo() == "Talada" }).size() == 0){
+				menu.accion("talar", [cursor.position()])
+			}
+			if(listaPos.filter({ objeto => objeto.tipo() == "Piedras" }).size() > 0 and 
+				listaPos.filter({ objeto => objeto.tipo() == "Minado" }).size() == 0){
+				menu.accion("minar", [cursor.position()])
+			}
+		}
+	}
 	method m(){
 		if(menu.visible() == null){
 			menu.aparecer("tecla")

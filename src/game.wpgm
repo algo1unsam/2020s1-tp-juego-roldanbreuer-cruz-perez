@@ -29,9 +29,11 @@ program game {
 	keyboard.s().onPressDo { teclas.s() }
 	keyboard.d().onPressDo { teclas.d() }
 	keyboard.f().onPressDo { teclas.f() }
+	keyboard.t().onPressDo { teclas.t() }
 	keyboard.p().onPressDo { game.say(cursor, cursor.position().toString()) }
 	keyboard.minusKey().onPressDo { teclas.menos() }
 	menu.accion("plantar", arboledaNO.area())
+	menu.accion("colocarPiedra", piedras.area())
 	game.start()
 	
 }
