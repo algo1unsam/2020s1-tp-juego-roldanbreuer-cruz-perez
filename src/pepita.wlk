@@ -23,18 +23,18 @@ object cursor {
 
 
 	method seleccion() {
-		if (seleccionInicio == null){
+		if (seleccionInicio.size() == 0){
 			seleccionInicio.add(self.position())
 		}else{
 			game.addVisualIn(new Seleccion(), position)
-			seleccionInicio = null
+			seleccionInicio.clear()
 		}
 		
 	}
 
 
 	method mover(posicionNueva){
-		if (seleccionInicio == null){
+		if (seleccionInicio.size() == 0){
 			self.position(posicionNueva)
 		}else{
 			seleccionInicio.add(self.position())
@@ -52,7 +52,7 @@ object cursor {
 
 object enter{
 	method apretar(){
-		if(cursor.seleccionInicio() != null){
+		if(cursor.seleccionInicio().size() != 0){
 			cursor.seleccion()
 		}
 	}
