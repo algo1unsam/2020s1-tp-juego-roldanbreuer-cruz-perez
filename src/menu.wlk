@@ -7,7 +7,11 @@ import teclas.*
 object menu{
 	var property visible
 	var property seleccionado = []
-	
+	var property cantidadArbolesPlantados=0
+	var property cantRecursos=0
+	const recursoMadera=50
+	const recursoPiedra=75
+	const recursoPez=25
 	method image() = "assets/menu.png"
 	
 	method aparecer(motivo){
@@ -68,6 +72,7 @@ object menu{
 				objeto => 
 				game.addVisualIn(new Arboleda(), objeto)
 			})
+		
 		}
 		if(accion == "talar") {
 			self.remover("Seleccion", lista)
@@ -75,6 +80,11 @@ object menu{
 				objeto => 
 				game.addVisualIn(new Talada(), objeto)
 			})
+			cantidadArbolesPlantados=lista.sum({objeto => game.getObjectsIn(objeto).filter({ filtro => filtro.tipo() == "Arboleda" }).size()})
+			cantRecursos += cantidadArbolesPlantados*recursoMadera
+			game.say(cursor, "recursos sumados: " + self.cantRecursos().toString())
+			
+		
 		}
 		if(accion == "colocarPiedra") {
 			self.remover("Seleccion", lista)
