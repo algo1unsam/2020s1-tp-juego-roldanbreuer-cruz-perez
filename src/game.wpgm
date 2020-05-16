@@ -2,7 +2,27 @@ import wollok.game.*
 import pepita.*
 
 program game {
+	game.height(20)
+	game.width(37)
+	game.boardGround("assets/Mapa.png")
+	game.cellSize(35)
+	
+	
+	
 	game.title("Juego Base")
-	game.addVisual(pepita)
+	game.addVisual(cursor)
+	
+	keyboard.up().onPressDo { cursor.mover(cursor.position().up(1)) }
+	keyboard.down().onPressDo { cursor.mover(cursor.position().down(1)) }
+	keyboard.left().onPressDo { cursor.mover(cursor.position().left(1)) }
+	keyboard.right().onPressDo { cursor.mover(cursor.position().right(1)) }
+	
+	keyboard.s().onPressDo { cursor.seleccion() }
+	keyboard.enter().onPressDo { enter.apretar() }
+	
 	game.start()
+	
+	
+	
+	
 }
