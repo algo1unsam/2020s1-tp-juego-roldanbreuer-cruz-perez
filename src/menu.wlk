@@ -173,7 +173,7 @@ object menu{
 			const costoPiedra = 50
 			const ticksConstruccion = 10
 			
-			if(costoMadera < cantRecursoMadera and costoPiedra < cantRecursoPiedra and cantAldeanoDisponible > 0){
+			if(costoMadera <= cantRecursoMadera and costoPiedra <= cantRecursoPiedra and cantAldeanoDisponible > 0){
 				lista.forEach({ 
 					objeto => 
 					game.addVisualIn(new Almacen(), objeto)
@@ -190,7 +190,7 @@ object menu{
 			const costoPiedra = 0
 			const ticksConstruccion = 20
 			
-			if(costoMadera < cantRecursoMadera and costoPiedra < cantRecursoPiedra and cantAldeanoDisponible > 0){
+			if(costoMadera <= cantRecursoMadera and costoPiedra <= cantRecursoPiedra and cantAldeanoDisponible > 0){
 				lista.forEach({ 
 					objeto => 
 					game.addVisualIn(new CasaC(), objeto)
@@ -207,7 +207,7 @@ object menu{
 			const costoPiedra = 100
 			const ticksConstruccion = 50
 			
-			if(costoMadera < cantRecursoMadera and costoPiedra < cantRecursoPiedra and cantAldeanoDisponible > 0){
+			if(costoMadera <= cantRecursoMadera and costoPiedra <= cantRecursoPiedra and cantAldeanoDisponible > 0){
 				lista.forEach({ 
 					objeto => 
 					game.addVisualIn(new CasaG(), objeto)

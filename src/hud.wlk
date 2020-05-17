@@ -458,18 +458,18 @@ object poblacionCientosMiles{
 //// ----------------- Hud Aldeanos
 
 object aldDispUnidad{
-	var property position = game.at(14,19)
+	var property position = game.at(2,3)
 	
 	method image(){
-		const stringNumero = menu.cantPoblacion().toString()
+		const stringNumero = menu.cantAldeanoDisponible().toString()
 		return unidades.imagen(stringNumero.reverse().charAt(0))
 	}
 }
 object aldDispDecena{
-	var property position = game.at(14,19)
+	var property position = game.at(2,3)
 	
 	method image(){
-		const stringNumero = menu.cantPoblacion().toString()
+		const stringNumero = menu.cantAldeanoDisponible().toString()
 		var valor = null
 		if(stringNumero.length() > 1){
 			valor = stringNumero.reverse().drop(1).charAt(0)
@@ -478,10 +478,10 @@ object aldDispDecena{
 	}
 }
 object aldDispCientos{
-	var property position = game.at(14,19)
+	var property position = game.at(2,3)
 	
 	method image(){
-		const stringNumero = menu.cantPoblacion().toString()
+		const stringNumero = menu.cantAldeanoDisponible().toString()
 		var valor = null
 		if(stringNumero.length() > 2){
 			valor = stringNumero.reverse().drop(2).charAt(0)
@@ -491,18 +491,18 @@ object aldDispCientos{
 } 
 
 object taladorUnidad{
-	var property position = game.at(14,19)
+	var property position = game.at(2,2)
 	
 	method image(){
-		const stringNumero = menu.cantPoblacion().toString()
+		const stringNumero = menu.cantAldeanoTalador().toString()
 		return unidades.imagen(stringNumero.reverse().charAt(0))
 	}
 }
 object taladorDecena{
-	var property position = game.at(14,19)
+	var property position = game.at(2,2)
 	
 	method image(){
-		const stringNumero = menu.cantPoblacion().toString()
+		const stringNumero = menu.cantAldeanoTalador().toString()
 		var valor = null
 		if(stringNumero.length() > 1){
 			valor = stringNumero.reverse().drop(1).charAt(0)
@@ -511,10 +511,10 @@ object taladorDecena{
 	}
 }
 object taladorCientos{
-	var property position = game.at(14,19)
+	var property position = game.at(2,2)
 	
 	method image(){
-		const stringNumero = menu.cantPoblacion().toString()
+		const stringNumero = menu.cantAldeanoTalador().toString()
 		var valor = null
 		if(stringNumero.length() > 2){
 			valor = stringNumero.reverse().drop(2).charAt(0)
@@ -524,18 +524,18 @@ object taladorCientos{
 } 
 
 object mineroUnidad{
-	var property position = game.at(14,19)
+	var property position = game.at(2,1)
 	
 	method image(){
-		const stringNumero = menu.cantPoblacion().toString()
+		const stringNumero = menu.cantAldeanoMinero().toString()
 		return unidades.imagen(stringNumero.reverse().charAt(0))
 	}
 }
 object mineroDecena{
-	var property position = game.at(14,19)
+	var property position = game.at(2,1)
 	
 	method image(){
-		const stringNumero = menu.cantPoblacion().toString()
+		const stringNumero = menu.cantAldeanoMinero().toString()
 		var valor = null
 		if(stringNumero.length() > 1){
 			valor = stringNumero.reverse().drop(1).charAt(0)
@@ -544,10 +544,10 @@ object mineroDecena{
 	}
 }
 object mineroCientos{
-	var property position = game.at(14,19)
+	var property position = game.at(2,1)
 	
 	method image(){
-		const stringNumero = menu.cantPoblacion().toString()
+		const stringNumero = menu.cantAldeanoMinero().toString()
 		var valor = null
 		if(stringNumero.length() > 2){
 			valor = stringNumero.reverse().drop(2).charAt(0)
@@ -557,18 +557,18 @@ object mineroCientos{
 } 
 
 object constructorUnidad{
-	var property position = game.at(14,19)
+	var property position = game.at(2,0)
 	
 	method image(){
-		const stringNumero = menu.cantPoblacion().toString()
+		const stringNumero = menu.cantAldeanoConstructor().toString()
 		return unidades.imagen(stringNumero.reverse().charAt(0))
 	}
 }
 object constructorDecena{
-	var property position = game.at(14,19)
+	var property position = game.at(2,0)
 	
 	method image(){
-		const stringNumero = menu.cantPoblacion().toString()
+		const stringNumero = menu.cantAldeanoConstructor().toString()
 		var valor = null
 		if(stringNumero.length() > 1){
 			valor = stringNumero.reverse().drop(1).charAt(0)
@@ -577,10 +577,10 @@ object constructorDecena{
 	}
 }
 object constructorCientos{
-	var property position = game.at(14,19)
+	var property position = game.at(2,0)
 	
 	method image(){
-		const stringNumero = menu.cantPoblacion().toString()
+		const stringNumero = menu.cantAldeanoConstructor().toString()
 		var valor = null
 		if(stringNumero.length() > 2){
 			valor = stringNumero.reverse().drop(2).charAt(0)
@@ -590,18 +590,18 @@ object constructorCientos{
 } 
 
 object granjeroUnidad{
-	var property position = game.at(14,19)
+	var property position = game.at(5,3)
 	
 	method image(){
-		const stringNumero = menu.cantPoblacion().toString()
+		const stringNumero = menu.cantAldeanoGranjero().toString()
 		return unidades.imagen(stringNumero.reverse().charAt(0))
 	}
 }
 object granjeroDecena{
-	var property position = game.at(14,19)
+	var property position = game.at(5,3)
 	
 	method image(){
-		const stringNumero = menu.cantPoblacion().toString()
+		const stringNumero = menu.cantAldeanoGranjero().toString()
 		var valor = null
 		if(stringNumero.length() > 1){
 			valor = stringNumero.reverse().drop(1).charAt(0)
@@ -610,10 +610,10 @@ object granjeroDecena{
 	}
 }
 object granjeroCientos{
-	var property position = game.at(14,19)
+	var property position = game.at(5,3)
 	
 	method image(){
-		const stringNumero = menu.cantPoblacion().toString()
+		const stringNumero = menu.cantAldeanoGranjero().toString()
 		var valor = null
 		if(stringNumero.length() > 2){
 			valor = stringNumero.reverse().drop(2).charAt(0)
@@ -623,18 +623,18 @@ object granjeroCientos{
 } 
 
 object agricultorUnidad{
-	var property position = game.at(14,19)
+	var property position = game.at(5,2)
 	
 	method image(){
-		const stringNumero = menu.cantPoblacion().toString()
+		const stringNumero = menu.cantAldeanoAgricultor().toString()
 		return unidades.imagen(stringNumero.reverse().charAt(0))
 	}
 }
 object agricultorDecena{
-	var property position = game.at(14,19)
+	var property position = game.at(5,2)
 	
 	method image(){
-		const stringNumero = menu.cantPoblacion().toString()
+		const stringNumero = menu.cantAldeanoAgricultor().toString()
 		var valor = null
 		if(stringNumero.length() > 1){
 			valor = stringNumero.reverse().drop(1).charAt(0)
@@ -643,10 +643,10 @@ object agricultorDecena{
 	}
 }
 object agricultorCientos{
-	var property position = game.at(14,19)
+	var property position = game.at(5,2)
 	
 	method image(){
-		const stringNumero = menu.cantPoblacion().toString()
+		const stringNumero = menu.cantAldeanoAgricultor().toString()
 		var valor = null
 		if(stringNumero.length() > 2){
 			valor = stringNumero.reverse().drop(2).charAt(0)
@@ -657,18 +657,18 @@ object agricultorCientos{
 
 
 object pescadorUnidad{
-	var property position = game.at(14,19)
+	var property position = game.at(5,1)
 	
 	method image(){
-		const stringNumero = menu.cantPoblacion().toString()
+		const stringNumero = menu.cantAldeanoPescador().toString()
 		return unidades.imagen(stringNumero.reverse().charAt(0))
 	}
 }
 object pescadorDecena{
-	var property position = game.at(14,19)
+	var property position = game.at(5,1)
 	
 	method image(){
-		const stringNumero = menu.cantPoblacion().toString()
+		const stringNumero = menu.cantAldeanoPescador().toString()
 		var valor = null
 		if(stringNumero.length() > 1){
 			valor = stringNumero.reverse().drop(1).charAt(0)
@@ -677,10 +677,10 @@ object pescadorDecena{
 	}
 }
 object pescadorCientos{
-	var property position = game.at(14,19)
+	var property position = game.at(5,1)
 	
 	method image(){
-		const stringNumero = menu.cantPoblacion().toString()
+		const stringNumero = menu.cantAldeanoPescador().toString()
 		var valor = null
 		if(stringNumero.length() > 2){
 			valor = stringNumero.reverse().drop(2).charAt(0)
@@ -690,18 +690,18 @@ object pescadorCientos{
 } 
 
 object cazadorUnidad{
-	var property position = game.at(14,19)
+	var property position = game.at(5,0)
 	
 	method image(){
-		const stringNumero = menu.cantPoblacion().toString()
+		const stringNumero = menu.cantAldeanoCazador().toString()
 		return unidades.imagen(stringNumero.reverse().charAt(0))
 	}
 }
 object cazadorDecena{
-	var property position = game.at(14,19)
+	var property position = game.at(5,0)
 	
 	method image(){
-		const stringNumero = menu.cantPoblacion().toString()
+		const stringNumero = menu.cantAldeanoCazador().toString()
 		var valor = null
 		if(stringNumero.length() > 1){
 			valor = stringNumero.reverse().drop(1).charAt(0)
@@ -710,10 +710,10 @@ object cazadorDecena{
 	}
 }
 object cazadorCientos{
-	var property position = game.at(14,19)
+	var property position = game.at(5,0)
 	
 	method image(){
-		const stringNumero = menu.cantPoblacion().toString()
+		const stringNumero = menu.cantAldeanoCazador().toString()
 		var valor = null
 		if(stringNumero.length() > 2){
 			valor = stringNumero.reverse().drop(2).charAt(0)
@@ -721,3 +721,63 @@ object cazadorCientos{
 		return cientos.imagen(valor)
 	}
 } 
+
+object cargaHud{
+	method cargar(){
+	game.addVisual(alimentoUnidad)
+	game.addVisual(alimentoDecena)
+	game.addVisual(alimentoCientos)
+	game.addVisual(alimentoMiles)
+	game.addVisual(alimentoDecenaMiles)
+	game.addVisual(alimentoCientosMiles)
+	game.addVisual(maderaUnidad)
+	game.addVisual(maderaDecena)
+	game.addVisual(maderaCientos)
+	game.addVisual(maderaMiles)
+	game.addVisual(maderaDecenaMiles)
+	game.addVisual(maderaCientosMiles)
+	game.addVisual(piedraUnidad)
+	game.addVisual(piedraDecena)
+	game.addVisual(piedraCientos)
+	game.addVisual(piedraMiles)
+	game.addVisual(piedraDecenaMiles)
+	game.addVisual(piedraCientosMiles)
+	game.addVisual(aldeanosUnidad)
+	game.addVisual(aldeanosDecena)
+	game.addVisual(aldeanosCientos)
+	game.addVisual(aldeanosMiles)
+	game.addVisual(aldeanosDecenaMiles)
+	game.addVisual(aldeanosCientosMiles)
+	game.addVisual(poblacionUnidad)
+	game.addVisual(poblacionDecena)
+	game.addVisual(poblacionCientos)
+	game.addVisual(poblacionMiles)
+	game.addVisual(poblacionDecenaMiles)
+	game.addVisual(poblacionCientosMiles)
+	///---Aldeanos
+	game.addVisual(aldDispUnidad)
+	game.addVisual(aldDispDecena)
+	game.addVisual(aldDispCientos)
+	game.addVisual(taladorUnidad)
+	game.addVisual(taladorDecena)
+	game.addVisual(taladorCientos)
+	game.addVisual(mineroUnidad)
+	game.addVisual(mineroDecena)
+	game.addVisual(mineroCientos)
+	game.addVisual(constructorUnidad)
+	game.addVisual(constructorDecena)
+	game.addVisual(constructorCientos)
+	game.addVisual(granjeroUnidad)
+	game.addVisual(granjeroDecena)
+	game.addVisual(granjeroCientos)
+	game.addVisual(agricultorUnidad)
+	game.addVisual(agricultorDecena)
+	game.addVisual(agricultorCientos)
+	game.addVisual(pescadorUnidad)
+	game.addVisual(pescadorDecena)
+	game.addVisual(pescadorCientos)
+	game.addVisual(cazadorUnidad)
+	game.addVisual(cazadorDecena)
+	game.addVisual(cazadorCientos)
+	}
+}
