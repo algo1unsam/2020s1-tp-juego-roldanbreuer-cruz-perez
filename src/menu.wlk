@@ -9,8 +9,7 @@ import teclas.*
 object menu{
 	var property visible
 	var property seleccionado = []
-	const listaPosicion = game.getObjectsIn(cursor.position())
-	
+		
 	var property cantRecursoMadera=0
 	var property cantRecursoPiedra=0
 	var property cantRecursoAlimento=0
@@ -129,19 +128,24 @@ object menu{
 		//listaPos.filter({ objeto => objeto.tipo() == "Arboleda" })
 		if(accion == "talar") {
 			recurso = 50
-			if(cantAldeanoDisponible > 0){
-			cantAldeanoDisponible -= 1
-			cantAldeanoTalador += 1
+			
+			
 			cantArbolesPlantados =lista.sum({objeto => game.getObjectsIn(objeto).filter({ filtro => filtro.tipo() == "Arboleda" }).size()})
 			cantRecursoMadera += resource.calculo(cantArbolesPlantados, recurso)
 			self.remover("Seleccion", lista)
-				lista.forEach({ 
+			lista.forEach({ 
 				objeto => 
-				game.addVisualIn(new Talada(), objeto)
-				game.say(cursor,"recursos sumados "+ cantRecursoMadera.toString())
-				})
+				const listaPos = game.getObjectsIn(objeto)
+				if(listaPos.filter({ tipo => tipo.tipo() == "Arboleda" }).size() > 0 and cantAldeanoDisponible > 0) {
+					game.addVisualIn(new Talada(), objeto)
+					cantAldeanoDisponible -= 1
+					cantAldeanoTalador += 1
+				}else if(cantAldeanoDisponible == 0){
+					cursor.error("No hay aldeanos disponibles.")
+				}
+			})
 		}
-		}
+		
 		
 		if(accion == "colocarPiedra") {
 			
@@ -151,37 +155,50 @@ object menu{
 				game.addVisualIn(new Piedras(), objeto)
 			})
 		}
-		
-		if(accion == "minar") {
-			recurso = 75
-			if(cantAldeanoDisponible>0){
-			cantAldeanoDisponible -= 1
-			cantAldeanoMinero += 1
+		if(accion == "colocarLago") {
+			
 			self.remover("Seleccion", lista)
 			lista.forEach({ 
 				objeto => 
-				game.addVisualIn(new Minado(), objeto)
+				game.addVisualIn(new Lago(), objeto)
 			})
+		}
+		
+		if(accion == "minar") {
+			recurso = 75
 			cantidadPiedrasMinadas=lista.sum({objeto => game.getObjectsIn(objeto).filter({ filtro => filtro.tipo() == "Piedras" }).size()})
 			cantRecursoPiedra += resource.calculo(cantidadPiedrasMinadas, recurso)
-			game.say(cursor,"recursos sumados "+ cantRecursoPiedra.toString())
-		}
+			self.remover("Seleccion", lista)
+			lista.forEach({ 
+				objeto => 
+				const listaPos = game.getObjectsIn(objeto)
+				if(listaPos.filter({ tipo => tipo.tipo() == "Piedras" }).size() > 0 and cantAldeanoDisponible > 0){ 
+					game.addVisualIn(new Minado(), objeto)
+					cantAldeanoDisponible -= 1
+					cantAldeanoMinero += 1
+				}else if(cantAldeanoDisponible == 0){
+					cursor.error("No hay aldeanos disponibles.")
+				}
+			})
 		}
 		if(accion == "pesca") {
-			if(cantAldeanoDisponible>0){
-			cantAldeanoDisponible -= 1
-			cantAldeanoPescador += 1
 			recurso=25
 			self.remover("Seleccion", lista)
 			lista.forEach({ 
 				objeto => 
-				game.addVisualIn(new Pesca(), objeto)
+				const listaPos = game.getObjectsIn(objeto)
+				if(listaPos.filter({ tipo => tipo.tipo() == "Agua" }).size() > 0 and cantAldeanoDisponible > 0){
+					 game.addVisualIn(new Pesca(), objeto)
+					 cantAldeanoDisponible -= 1
+					cantAldeanoPescador += 1
+				}else if(cantAldeanoDisponible == 0){
+					cursor.error("No hay aldeanos disponibles.")
+				}
 			})
-			cantidadPesca=lista.sum({objeto => game.getObjectsIn(objeto).filter({ filtro => filtro.tipo() == "Pesca" }).size()})
+			cantidadPesca=lista.sum({objeto => game.getObjectsIn(objeto).filter({ filtro => filtro.tipo() == "Agua" }).size()})
 			cantRecursoAlimento += resource.calculo(cantidadPesca, recurso)
-			game.say(cursor,"recursos sumados "+ cantRecursoAlimento.toString())
 		}
-		}
+		
 		if(accion == "Almacen") {
 			const costoMadera = 0
 			const costoPiedra = 50

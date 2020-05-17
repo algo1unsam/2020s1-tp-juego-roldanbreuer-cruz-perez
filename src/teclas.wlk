@@ -5,7 +5,6 @@ import menu.*
 //solo para comodidad del desarrollo del juego
 //en este archivo solo se encuentra la configuracion de las teclas
 object teclas{
-const listaPos = game.getObjectsIn(cursor.position())
 	method q() {
 		if(menu.visible() == "postSeleccion"){
 			menu.accion("plantar", menu.seleccionado())
@@ -45,14 +44,14 @@ const listaPos = game.getObjectsIn(cursor.position())
 		}
 	}
 	method r(){
-	
+		
 		if(menu.visible() == "postSeleccion"){
 			menu.accion("talar", menu.seleccionado())
 		}
 		if(menu.visible() == "tecla"){
 			menu.accion("talar", [cursor.position()])
 		}
-		}
+	}
 	method a(){
 		if(menu.visible() == "postSeleccion"){
 			menu.accion("colocarPiedra", menu.seleccionado())
@@ -80,10 +79,15 @@ const listaPos = game.getObjectsIn(cursor.position())
 	}
 	method c(){
 		if(menu.visible() == null and cursor.seleccionInicio().size() == 0){
-			menu.aparecer("construccion")
+			if(game.getObjectsIn(cursor.position()).size() == 1){
+				menu.aparecer("construccion")
+			}else{
+				cursor.error("No se puede construir ahi.")
+			}
 		}
 	}
 	method t(){
+		const listaPos = game.getObjectsIn(cursor.position())
 		if(menu.visible() == null){
 			if(listaPos.filter({ objeto => objeto.tipo() == "Arboleda" }).size() > 0 and 
 				listaPos.filter({ objeto => objeto.tipo() == "Talada" }).size() == 0){
@@ -97,7 +101,7 @@ const listaPos = game.getObjectsIn(cursor.position())
 	
 		}
 	method o(){
-		menu.informacionRecursos()
+		
 	}
 	
 	method m(){

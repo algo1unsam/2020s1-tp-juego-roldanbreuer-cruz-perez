@@ -44,6 +44,7 @@ program game {
 	keyboard.minusKey().onPressDo { teclas.menos() }
 	menu.accion("plantar", arboledaNO.area())
 	menu.accion("colocarPiedra", piedras.area())
+	menu.accion("colocarLago", agua.area())
 	cargaHud.cargar()
 	game.start()
 	

@@ -26,12 +26,14 @@ object cursor {
 		}
 	}
 	method mover(posicionNueva){
-		if (seleccionInicio.size() == 0){
-			self.position(posicionNueva)
-		}else{
-			self.position(posicionNueva)
-			seleccionInicio.add(position)
-			game.addVisualIn(new Seleccion(), position)
+		if(menu.visible() == null ){
+			if (seleccionInicio.size() == 0){
+				self.position(posicionNueva)
+			}else{
+				self.position(posicionNueva)
+				seleccionInicio.add(position)
+				game.addVisualIn(new Seleccion(), position)
+			}
 		}
 	}
 	
