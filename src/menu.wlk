@@ -14,8 +14,10 @@ object menu{
 	var property cantRecursoMadera=0
 	var property cantRecursoPiedra=0
 	var property cantRecursoAlimento=0
-	var property cantAldeanos = 0
+	var property cantAldeanos = 5
 	var property cantPoblacion = 10
+	
+	var property cantAldeanoDisponible = 5
 	
 	var property cantArbolesPlantados=0
 	var property cantidadPiedrasMinadas=0
@@ -156,24 +158,51 @@ object menu{
 			game.say(cursor,"recursos sumados "+ cantRecursoAlimento.toString())
 		}
 		if(accion == "Almacen") {
-			lista.forEach({ 
-				objeto => 
-				game.addVisualIn(new Almacen(), objeto)
-			})
+			const costoMadera = 0
+			const costoPiedra = 50
+			const ticksConstruccion = 10
+			
+			if(costoMadera < cantRecursoMadera and costoPiedra < cantRecursoPiedra and cantAldeanoDisponible > 0){
+				lista.forEach({ 
+					objeto => 
+					game.addVisualIn(new Almacen(), objeto)
+				})
+				cantRecursoMadera -= costoMadera
+				cantRecursoPiedra -= costoPiedra
+				cantAldeanoDisponible -= 1
+			}
 			if(self.visible() != null) self.cerrar()
 		}
 		if(accion == "CasaC") {
-			lista.forEach({ 
-				objeto => 
-				game.addVisualIn(new CasaC(), objeto)
-			})
+			const costoMadera = 100
+			const costoPiedra = 0
+			const ticksConstruccion = 20
+			
+			if(costoMadera < cantRecursoMadera and costoPiedra < cantRecursoPiedra and cantAldeanoDisponible > 0){
+				lista.forEach({ 
+					objeto => 
+					game.addVisualIn(new CasaC(), objeto)
+				})
+				cantRecursoMadera -= costoMadera
+				cantRecursoPiedra -= costoPiedra
+				cantAldeanoDisponible -= 1
+			}
 			if(self.visible() != null) self.cerrar()
 		}
 		if(accion == "CasaG") {
-			lista.forEach({ 
-				objeto => 
-				game.addVisualIn(new CasaG(), objeto)
-			})
+			const costoMadera = 200
+			const costoPiedra = 100
+			const ticksConstruccion = 50
+			
+			if(costoMadera < cantRecursoMadera and costoPiedra < cantRecursoPiedra and cantAldeanoDisponible > 0){
+				lista.forEach({ 
+					objeto => 
+					game.addVisualIn(new CasaG(), objeto)
+				})
+				cantRecursoMadera -= costoMadera
+				cantRecursoPiedra -= costoPiedra
+				cantAldeanoDisponible -= 1
+			}
 			if(self.visible() != null) self.cerrar()
 		}
 	}
