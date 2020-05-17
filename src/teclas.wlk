@@ -93,7 +93,12 @@ object teclas{
 				menu.accion("minar", [cursor.position()])
 			}
 		}
+	
+		}
+	method o(){
+		menu.informacionRecursos()
 	}
+	
 	method m(){
 		if(menu.visible() == null){
 			menu.aparecer("tecla")

@@ -3,6 +3,7 @@ import pepita.*
 //en este archivo solo se van a encontrar los elementos que interactuen con los aldeanos(arboledas
 //casas, pesca etc..)
 //solo para comodidad del desarrollo del juego
+	
 class Arboleda{
 	var property position
 	var property tipo = "Arboleda"
@@ -12,6 +13,7 @@ class Talada{
 	var property position
 	var property tipo = "Talada"
 	method image() = "assets/talando.png"
+	method calcularRecursos(){}
 }
 
 class Piedras{
@@ -29,6 +31,11 @@ class Pesca{
 	var property position
 	var property tipo = "Pesca"
 	method image() = "assets/pesca.png"
+}
+object resource{
+	method calculo(cantidad,recursos){
+		return cantidad*recursos}
+	
 }
 object hud{
 	var property position = game.at(0,0)

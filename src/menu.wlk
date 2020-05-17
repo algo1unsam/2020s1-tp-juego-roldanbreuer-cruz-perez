@@ -7,13 +7,18 @@ import teclas.*
 object menu{
 	var property visible
 	var property seleccionado = []
-	var property cantidadArbolesPlantados=0
-	var property cantRecursos=0
-	const recursoMadera=50
-	const recursoPiedra=75
-	const recursoPez=25
-	method image() = "assets/menu.png"
+	var cantRecursoMadera=0
+	var cantRecursoPiedra=0
+	var cantRecursoAlimento=0
+	var cantArbolesPlantados=0
+	var cantidadPiedrasMinadas=0
+	var cantidadPesca=0
 	
+	var recurso=0
+	method image() = "assets/menu.png"
+	method informacionRecursos(){
+		game.say(cursor,"Madera: " + cantRecursoMadera.toString() + " Piedra: " + cantRecursoPiedra.toString() + " Alimento: " + cantRecursoAlimento.toString())
+	}
 	method aparecer(motivo){
 		visible = motivo
 		if(motivo == "postSeleccion" or motivo == "tecla" ){
@@ -81,16 +86,17 @@ object menu{
 		
 		}
 		if(accion == "talar") {
+			recurso = 50
+			cantArbolesPlantados =lista.sum({objeto => game.getObjectsIn(objeto).filter({ filtro => filtro.tipo() == "Arboleda" }).size()})
+			cantRecursoMadera += resource.calculo(cantArbolesPlantados, recurso)
+			game.say(cursor,"recursos sumados "+ cantRecursoMadera.toString())
 			self.remover("Seleccion", lista)
 			lista.forEach({ 
 				objeto => 
 				game.addVisualIn(new Talada(), objeto)
 			})
-			cantidadArbolesPlantados=lista.sum({objeto => game.getObjectsIn(objeto).filter({ filtro => filtro.tipo() == "Arboleda" }).size()})
-			cantRecursos += cantidadArbolesPlantados*recursoMadera
-			game.say(cursor, "recursos sumados: " + self.cantRecursos().toString())
 			
-		
+			
 		}
 		if(accion == "colocarPiedra") {
 			self.remover("Seleccion", lista)
@@ -100,18 +106,26 @@ object menu{
 			})
 		}
 		if(accion == "minar") {
+			recurso = 75
 			self.remover("Seleccion", lista)
 			lista.forEach({ 
 				objeto => 
 				game.addVisualIn(new Minado(), objeto)
 			})
+			cantidadPiedrasMinadas=lista.sum({objeto => game.getObjectsIn(objeto).filter({ filtro => filtro.tipo() == "Piedras" }).size()})
+			cantRecursoPiedra += resource.calculo(cantidadPiedrasMinadas, recurso)
+			game.say(cursor,"recursos sumados "+ cantRecursoPiedra.toString())
 		}
 		if(accion == "pesca") {
+			recurso=25
 			self.remover("Seleccion", lista)
 			lista.forEach({ 
 				objeto => 
 				game.addVisualIn(new Pesca(), objeto)
 			})
+			cantidadPesca=lista.sum({objeto => game.getObjectsIn(objeto).filter({ filtro => filtro.tipo() == "Pesca" }).size()})
+			cantRecursoAlimento += resource.calculo(cantidadPesca, recurso)
+			game.say(cursor,"recursos sumados "+ cantRecursoAlimento.toString())
 		}
 		if(accion == "Almacen") {
 			lista.forEach({ 
