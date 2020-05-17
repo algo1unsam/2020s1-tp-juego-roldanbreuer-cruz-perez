@@ -9,7 +9,7 @@ import teclas.*
 object menu{
 	var property visible
 	var property seleccionado = []
-	
+	const listaPosicion = game.getObjectsIn(cursor.position())
 	
 	var property cantRecursoMadera=0
 	var property cantRecursoPiedra=0
@@ -126,28 +126,37 @@ object menu{
 			})
 		
 		}
+		//listaPos.filter({ objeto => objeto.tipo() == "Arboleda" })
 		if(accion == "talar") {
 			recurso = 50
+			if(cantAldeanoDisponible > 0){
+			cantAldeanoDisponible -= 1
+			cantAldeanoTalador += 1
 			cantArbolesPlantados =lista.sum({objeto => game.getObjectsIn(objeto).filter({ filtro => filtro.tipo() == "Arboleda" }).size()})
 			cantRecursoMadera += resource.calculo(cantArbolesPlantados, recurso)
-			game.say(cursor,"recursos sumados "+ cantRecursoMadera.toString())
 			self.remover("Seleccion", lista)
-			lista.forEach({ 
+				lista.forEach({ 
 				objeto => 
 				game.addVisualIn(new Talada(), objeto)
-			})
-			
-			
+				game.say(cursor,"recursos sumados "+ cantRecursoMadera.toString())
+				})
 		}
+		}
+		
 		if(accion == "colocarPiedra") {
+			
 			self.remover("Seleccion", lista)
 			lista.forEach({ 
 				objeto => 
 				game.addVisualIn(new Piedras(), objeto)
 			})
 		}
+		
 		if(accion == "minar") {
 			recurso = 75
+			if(cantAldeanoDisponible>0){
+			cantAldeanoDisponible -= 1
+			cantAldeanoMinero += 1
 			self.remover("Seleccion", lista)
 			lista.forEach({ 
 				objeto => 
@@ -157,7 +166,11 @@ object menu{
 			cantRecursoPiedra += resource.calculo(cantidadPiedrasMinadas, recurso)
 			game.say(cursor,"recursos sumados "+ cantRecursoPiedra.toString())
 		}
+		}
 		if(accion == "pesca") {
+			if(cantAldeanoDisponible>0){
+			cantAldeanoDisponible -= 1
+			cantAldeanoPescador += 1
 			recurso=25
 			self.remover("Seleccion", lista)
 			lista.forEach({ 
@@ -167,6 +180,7 @@ object menu{
 			cantidadPesca=lista.sum({objeto => game.getObjectsIn(objeto).filter({ filtro => filtro.tipo() == "Pesca" }).size()})
 			cantRecursoAlimento += resource.calculo(cantidadPesca, recurso)
 			game.say(cursor,"recursos sumados "+ cantRecursoAlimento.toString())
+		}
 		}
 		if(accion == "Almacen") {
 			const costoMadera = 0

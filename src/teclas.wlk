@@ -5,6 +5,7 @@ import menu.*
 //solo para comodidad del desarrollo del juego
 //en este archivo solo se encuentra la configuracion de las teclas
 object teclas{
+const listaPos = game.getObjectsIn(cursor.position())
 	method q() {
 		if(menu.visible() == "postSeleccion"){
 			menu.accion("plantar", menu.seleccionado())
@@ -44,13 +45,14 @@ object teclas{
 		}
 	}
 	method r(){
+	
 		if(menu.visible() == "postSeleccion"){
 			menu.accion("talar", menu.seleccionado())
 		}
 		if(menu.visible() == "tecla"){
 			menu.accion("talar", [cursor.position()])
 		}
-	}
+		}
 	method a(){
 		if(menu.visible() == "postSeleccion"){
 			menu.accion("colocarPiedra", menu.seleccionado())
@@ -83,7 +85,6 @@ object teclas{
 	}
 	method t(){
 		if(menu.visible() == null){
-			const listaPos = game.getObjectsIn(cursor.position())
 			if(listaPos.filter({ objeto => objeto.tipo() == "Arboleda" }).size() > 0 and 
 				listaPos.filter({ objeto => objeto.tipo() == "Talada" }).size() == 0){
 				menu.accion("talar", [cursor.position()])
