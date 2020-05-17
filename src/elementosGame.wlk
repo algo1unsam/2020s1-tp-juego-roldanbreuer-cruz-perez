@@ -37,11 +37,6 @@ object resource{
 		return cantidad*recursos}
 	
 }
-object hud{
-	var property position = game.at(0,0)
-	var property tipo = "hud"
-	method image() = "assets/hud.png"
-}
 object botonTalar{
 	var property tipo = "boton"
 	method image() = "assets/botonTalar.png"

@@ -4,17 +4,45 @@ import elementosGame.*
 import teclas.*
 //solo para comodidad del desarrollo del juego
 //en este archivo se encuentran solamente los elementos que componen el menu
+
+
 object menu{
 	var property visible
 	var property seleccionado = []
-	var cantRecursoMadera=0
-	var cantRecursoPiedra=0
-	var cantRecursoAlimento=0
-	var cantArbolesPlantados=0
-	var cantidadPiedrasMinadas=0
-	var cantidadPesca=0
 	
+	
+	var property cantRecursoMadera=0
+	var property cantRecursoPiedra=0
+	var property cantRecursoAlimento=0
+	var property cantAldeanos = 0
+	var property cantPoblacion = 10
+	
+	var property cantArbolesPlantados=0
+	var property cantidadPiedrasMinadas=0
+	var property cantidadPesca=0
 	var recurso=0
+		
+	method sumAliU(){
+		cantRecursoAlimento += 1
+	}
+	method sumAliD(){
+		cantRecursoAlimento += 10
+	}
+	method sumAliC(){
+		cantRecursoAlimento += 100
+	}
+	method sumAliM(){
+		cantRecursoAlimento += 1000
+	}
+	method sumAliDM(){
+		cantRecursoAlimento += 10000
+	}
+	method sumAliCM(){
+		cantRecursoAlimento += 100000
+	}
+	
+	
+
 	method image() = "assets/menu.png"
 	method informacionRecursos(){
 		game.say(cursor,"Madera: " + cantRecursoMadera.toString() + " Piedra: " + cantRecursoPiedra.toString() + " Alimento: " + cantRecursoAlimento.toString())

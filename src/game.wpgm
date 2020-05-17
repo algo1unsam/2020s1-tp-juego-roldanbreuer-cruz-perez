@@ -3,6 +3,7 @@ import pepita.*
 import elementosGame.*
 import menu.*
 import teclas.*
+import hud.*
 //aqui solo configuracion de teclas y game
 //solo para comodidad del desarrollo del juego
 program game {
@@ -13,7 +14,7 @@ program game {
 	game.title("Aldeanos")
 	//game.addVisualIn(menu, game.at(12,5))
 	game.addVisual(cursor)
-	game.addVisual(hud)
+	game.addVisual(hud)	
 	keyboard.up().onPressDo { cursor.mover(cursor.position().up(1)) }
 	keyboard.down().onPressDo { cursor.mover(cursor.position().down(1)) }
 	keyboard.left().onPressDo { cursor.mover(cursor.position().left(1)) }
@@ -33,9 +34,45 @@ program game {
 	keyboard.c().onPressDo { teclas.c() }
 	keyboard.p().onPressDo { game.say(cursor, cursor.position().toString()) }
 	keyboard.o().onPressDo { teclas.o() }
+	keyboard.num1().onPressDo { menu.sumAliU() }
+	keyboard.num2().onPressDo { menu.sumAliD() }
+	keyboard.num3().onPressDo { menu.sumAliC() }
+	keyboard.num4().onPressDo { menu.sumAliM() }
+	keyboard.num5().onPressDo { menu.sumAliDM() }
+	keyboard.num6().onPressDo { menu.sumAliCM() }
 	keyboard.minusKey().onPressDo { teclas.menos() }
 	menu.accion("plantar", arboledaNO.area())
 	menu.accion("colocarPiedra", piedras.area())
+	game.addVisual(alimentoUnidad)
+	game.addVisual(alimentoDecena)
+	game.addVisual(alimentoCientos)
+	game.addVisual(alimentoMiles)
+	game.addVisual(alimentoDecenaMiles)
+	game.addVisual(alimentoCientosMiles)
+	game.addVisual(maderaUnidad)
+	game.addVisual(maderaDecena)
+	game.addVisual(maderaCientos)
+	game.addVisual(maderaMiles)
+	game.addVisual(maderaDecenaMiles)
+	game.addVisual(maderaCientosMiles)
+	game.addVisual(piedraUnidad)
+	game.addVisual(piedraDecena)
+	game.addVisual(piedraCientos)
+	game.addVisual(piedraMiles)
+	game.addVisual(piedraDecenaMiles)
+	game.addVisual(piedraCientosMiles)
+	game.addVisual(aldeanosUnidad)
+	game.addVisual(aldeanosDecena)
+	game.addVisual(aldeanosCientos)
+	game.addVisual(aldeanosMiles)
+	game.addVisual(aldeanosDecenaMiles)
+	game.addVisual(aldeanosCientosMiles)
+	game.addVisual(poblacionUnidad)
+	game.addVisual(poblacionDecena)
+	game.addVisual(poblacionCientos)
+	game.addVisual(poblacionMiles)
+	game.addVisual(poblacionDecenaMiles)
+	game.addVisual(poblacionCientosMiles)
 	game.start()
 	
 }
