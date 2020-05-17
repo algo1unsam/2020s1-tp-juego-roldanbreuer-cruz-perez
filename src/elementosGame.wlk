@@ -32,6 +32,11 @@ class Pesca{
 	var property tipo = "Pesca"
 	method image() = "assets/pesca.png"
 }
+class Lago{
+	var property position
+	var property tipo="Agua"
+	method image()= "vacio35.png"
+}
 object resource{
 	method calculo(cantidad,recursos){
 		return cantidad*recursos}
@@ -249,7 +254,15 @@ class CeroCeroCero{
 	method image() = "assets/0__.png"
 }
 
-
+object agua{
+	const property area=[
+					  game.at(23,7),game.at(24,7),game.at(25,7),game.at(26,7),
+		game.at(22,6),game.at(23,6),game.at(24,6),game.at(25,6),game.at(26,6),
+		game.at(22,5),game.at(23,5),game.at(24,5),game.at(25,5),game.at(26,5),
+		game.at(22,4),game.at(23,4),game.at(24,4),game.at(25,4),game.at(26,4),
+		              game.at(23,3),game.at(24,3),game.at(25,3)
+]
+}
 
 object arboledaNO{
 	const property area = [
