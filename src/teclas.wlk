@@ -101,7 +101,7 @@ object teclas{
 	
 		}
 	method o(){
-		
+		game.onTick(10000,"updateTimer",{ => game.say(cursor, "Diez Segundos") })
 	}
 	
 	method m(){
