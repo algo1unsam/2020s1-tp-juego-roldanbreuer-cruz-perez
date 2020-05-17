@@ -98,6 +98,162 @@ class Almacen{
 	method image() = "assets/almacen35.png"
 }
 
+//----------- NUMEROS
+
+class Uno{
+	var property position
+	var property tipo = "numero"
+	method image() = "assets/1.png"
+}
+class Dos{
+	var property position
+	var property tipo = "numero"
+	method image() = "assets/2.png"
+}
+class Tres{
+	var property position
+	var property tipo = "numero"
+	method image() = "assets/3.png"
+}
+class Cuatro{
+	var property position
+	var property tipo = "numero"
+	method image() = "assets/4.png"
+}
+class Cinco{
+	var property position
+	var property tipo = "numero"
+	method image() = "assets/5.png"
+}
+class Seis{
+	var property position
+	var property tipo = "numero"
+	method image() = "assets/6.png"
+}
+class Siete{
+	var property position
+	var property tipo = "numero"
+	method image() = "assets/7.png"
+}
+class Ocho{
+	var property position
+	var property tipo = "numero"
+	method image() = "assets/8.png"
+}
+class Nueve{
+	var property position
+	var property tipo = "numero"
+	method image() = "assets/9.png"
+}
+class Cero{
+	var property position
+	var property tipo = "numero"
+	method image() = "assets/0.png"
+}
+
+
+class Diez{
+	var property position
+	var property tipo = "numero"
+	method image() = "assets/1_.png"
+}
+class Veinte{
+	var property position
+	var property tipo = "numero"
+	method image() = "assets/2_.png"
+}
+class Treinta{
+	var property position
+	var property tipo = "numero"
+	method image() = "assets/3_.png"
+}
+class Cuarenta{
+	var property position
+	var property tipo = "numero"
+	method image() = "assets/4_.png"
+}
+class Cincuenta{
+	var property position
+	var property tipo = "numero"
+	method image() = "assets/5_.png"
+}
+class Sesenta{
+	var property position
+	var property tipo = "numero"
+	method image() = "assets/6_.png"
+}
+class Setenta{
+	var property position
+	var property tipo = "numero"
+	method image() = "assets/7_.png"
+}
+class Ochenta{
+	var property position
+	var property tipo = "numero"
+	method image() = "assets/8_.png"
+}
+class Noventa{
+	var property position
+	var property tipo = "numero"
+	method image() = "assets/9_.png"
+}
+class CeroCero{
+	var property position
+	var property tipo = "numero"
+	method image() = "assets/0_.png"
+}
+
+class Cien{
+	var property position
+	var property tipo = "numero"
+	method image() = "assets/1__.png"
+}
+class Doscientos{
+	var property position
+	var property tipo = "numero"
+	method image() = "assets/2__.png"
+}
+class Trescientos{
+	var property position
+	var property tipo = "numero"
+	method image() = "assets/3__.png"
+}
+class Cuatrocientos{
+	var property position
+	var property tipo = "numero"
+	method image() = "assets/4__.png"
+}
+class Quinientos{
+	var property position
+	var property tipo = "numero"
+	method image() = "assets/5__.png"
+}
+class Seiscientos{
+	var property position
+	var property tipo = "numero"
+	method image() = "assets/6__.png"
+}
+class Setecientos{
+	var property position
+	var property tipo = "numero"
+	method image() = "assets/7__.png"
+}
+class Ochocientos{
+	var property position
+	var property tipo = "numero"
+	method image() = "assets/8__.png"
+}
+class Novecientos{
+	var property position
+	var property tipo = "numero"
+	method image() = "assets/9__.png"
+}
+class CeroCeroCero{
+	var property position
+	var property tipo = "numero"
+	method image() = "assets/0__.png"
+}
+
 
 
 object arboledaNO{
