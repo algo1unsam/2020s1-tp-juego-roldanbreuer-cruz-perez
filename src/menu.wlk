@@ -28,6 +28,9 @@ object menu{
 		if(motivo == "construccion"){
 			game.addVisualIn(self, game.at(12,5))
 			game.addVisualIn(tituloConstrucciones, game.at(13,13))
+			game.addVisualIn(botonAlmacen, game.at(13,10))
+			game.addVisualIn(botonCasaC, game.at(16,10))
+			game.addVisualIn(botonCasaG, game.at(19,10))
 			game.addVisualIn(botonCancelar, game.at(13,6))
 			game.addVisualIn(botonSalir, game.at(21,6))
 		}
@@ -46,6 +49,9 @@ object menu{
 		if(visible == "construccion"){
 			game.removeVisual(self)
 			game.removeVisual(tituloConstrucciones)
+			game.removeVisual(botonAlmacen)
+			game.removeVisual(botonCasaC)
+			game.removeVisual(botonCasaG)
 			game.removeVisual(botonCancelar)
 			game.removeVisual(botonSalir)
 		}
@@ -106,6 +112,27 @@ object menu{
 				objeto => 
 				game.addVisualIn(new Pesca(), objeto)
 			})
+		}
+		if(accion == "Almacen") {
+			lista.forEach({ 
+				objeto => 
+				game.addVisualIn(new Almacen(), objeto)
+			})
+			if(self.visible() != null) self.cerrar()
+		}
+		if(accion == "CasaC") {
+			lista.forEach({ 
+				objeto => 
+				game.addVisualIn(new CasaC(), objeto)
+			})
+			if(self.visible() != null) self.cerrar()
+		}
+		if(accion == "CasaG") {
+			lista.forEach({ 
+				objeto => 
+				game.addVisualIn(new CasaG(), objeto)
+			})
+			if(self.visible() != null) self.cerrar()
 		}
 	}
 	

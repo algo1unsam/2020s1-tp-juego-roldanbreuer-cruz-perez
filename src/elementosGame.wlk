@@ -63,6 +63,36 @@ object tituloConstrucciones{
 	var property tipo = "boton"
 	method image() = "assets/menuTituloConstrucciones.png"
 }
+object botonAlmacen{
+	var property tipo = "boton"
+	method image() = "assets/botonAlmacen.png"
+}
+object botonCasaC{
+	var property tipo = "boton"
+	method image() = "assets/botonCasaC.png"
+}
+object botonCasaG{
+	var property tipo = "boton"
+	method image() = "assets/botonCasaG.png"
+}
+class CasaC{
+	var property position
+	var property tipo = "construccion"
+	method image() = "assets/casa1-35.png"
+}
+class CasaG{
+	var property position
+	var property tipo = "construccion"
+	method image() = "assets/casa2-35.png"
+}
+class Almacen{
+	var property position
+	var property tipo = "construccion"
+	method image() = "assets/almacen35.png"
+}
+
+
+
 object arboledaNO{
 	const property area = [
 game.at(0,18),game.at(1,18),game.at(2,18),game.at(3,18),game.at(4,18),game.at(5,18),game.at(6,18),game.at(7,18),game.at(8,18),game.at(9,18),

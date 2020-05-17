@@ -12,6 +12,9 @@ object teclas{
 		if(menu.visible() == "tecla"){
 			menu.accion("plantar", [cursor.position()])
 		}
+		if(menu.visible() == "construccion"){
+			menu.accion("Almacen", [cursor.position()])
+		}
 	}
 	method w() { 
 		if(menu.visible() == "postSeleccion"){
@@ -25,6 +28,9 @@ object teclas{
 			menu.remover("Minado", [cursor.position()])
 			menu.remover("Pesca", [cursor.position()])
 		}
+		if(menu.visible() == "construccion"){
+			menu.accion("CasaC", [cursor.position()])
+		}
 	}
 	method e(){
 		if(menu.visible() == "postSeleccion"){
@@ -32,6 +38,9 @@ object teclas{
 		}
 		if(menu.visible() == "tecla"){
 			menu.accion("minar", [cursor.position()])
+		}
+		if(menu.visible() == "construccion"){
+			menu.accion("CasaG", [cursor.position()])
 		}
 	}
 	method r(){
@@ -66,6 +75,11 @@ object teclas{
 	}
 	method f(){
 		
+	}
+	method c(){
+		if(menu.visible() == null and cursor.seleccionInicio().size() == 0){
+			menu.aparecer("construccion")
+		}
 	}
 	method t(){
 		if(menu.visible() == null){
