@@ -108,6 +108,18 @@ object menu{
 		lista.forEach({ 
 			objeto => 
 			if(game.getObjectsIn(objeto).filter({ filtro => filtro.tipo() == tipo }).size() > 0){
+				if(tipo == "Talada"){
+					cantAldeanoTalador -= 1
+					cantAldeanoDisponible += 1
+				}
+				if(tipo == "Minado"){
+					cantAldeanoTalador -= 1
+					cantAldeanoDisponible += 1
+				}
+				if(tipo == "Pesca"){
+					cantAldeanoTalador -= 1
+					cantAldeanoDisponible += 1
+				}
 				const posic = game.getObjectsIn(objeto).filter({ filtro => filtro.tipo() == tipo }).last()
 				game.removeVisual(posic)
 			}
