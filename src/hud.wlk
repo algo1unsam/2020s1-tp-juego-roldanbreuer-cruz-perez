@@ -454,3 +454,270 @@ object poblacionCientosMiles{
 		return cientos.imagen(valor)
 	}
 }
+
+//// ----------------- Hud Aldeanos
+
+object aldDispUnidad{
+	var property position = game.at(14,19)
+	
+	method image(){
+		const stringNumero = menu.cantPoblacion().toString()
+		return unidades.imagen(stringNumero.reverse().charAt(0))
+	}
+}
+object aldDispDecena{
+	var property position = game.at(14,19)
+	
+	method image(){
+		const stringNumero = menu.cantPoblacion().toString()
+		var valor = null
+		if(stringNumero.length() > 1){
+			valor = stringNumero.reverse().drop(1).charAt(0)
+		}
+		return decenas.imagen(valor)
+	}
+}
+object aldDispCientos{
+	var property position = game.at(14,19)
+	
+	method image(){
+		const stringNumero = menu.cantPoblacion().toString()
+		var valor = null
+		if(stringNumero.length() > 2){
+			valor = stringNumero.reverse().drop(2).charAt(0)
+		}
+		return cientos.imagen(valor)
+	}
+} 
+
+object taladorUnidad{
+	var property position = game.at(14,19)
+	
+	method image(){
+		const stringNumero = menu.cantPoblacion().toString()
+		return unidades.imagen(stringNumero.reverse().charAt(0))
+	}
+}
+object taladorDecena{
+	var property position = game.at(14,19)
+	
+	method image(){
+		const stringNumero = menu.cantPoblacion().toString()
+		var valor = null
+		if(stringNumero.length() > 1){
+			valor = stringNumero.reverse().drop(1).charAt(0)
+		}
+		return decenas.imagen(valor)
+	}
+}
+object taladorCientos{
+	var property position = game.at(14,19)
+	
+	method image(){
+		const stringNumero = menu.cantPoblacion().toString()
+		var valor = null
+		if(stringNumero.length() > 2){
+			valor = stringNumero.reverse().drop(2).charAt(0)
+		}
+		return cientos.imagen(valor)
+	}
+} 
+
+object mineroUnidad{
+	var property position = game.at(14,19)
+	
+	method image(){
+		const stringNumero = menu.cantPoblacion().toString()
+		return unidades.imagen(stringNumero.reverse().charAt(0))
+	}
+}
+object mineroDecena{
+	var property position = game.at(14,19)
+	
+	method image(){
+		const stringNumero = menu.cantPoblacion().toString()
+		var valor = null
+		if(stringNumero.length() > 1){
+			valor = stringNumero.reverse().drop(1).charAt(0)
+		}
+		return decenas.imagen(valor)
+	}
+}
+object mineroCientos{
+	var property position = game.at(14,19)
+	
+	method image(){
+		const stringNumero = menu.cantPoblacion().toString()
+		var valor = null
+		if(stringNumero.length() > 2){
+			valor = stringNumero.reverse().drop(2).charAt(0)
+		}
+		return cientos.imagen(valor)
+	}
+} 
+
+object constructorUnidad{
+	var property position = game.at(14,19)
+	
+	method image(){
+		const stringNumero = menu.cantPoblacion().toString()
+		return unidades.imagen(stringNumero.reverse().charAt(0))
+	}
+}
+object constructorDecena{
+	var property position = game.at(14,19)
+	
+	method image(){
+		const stringNumero = menu.cantPoblacion().toString()
+		var valor = null
+		if(stringNumero.length() > 1){
+			valor = stringNumero.reverse().drop(1).charAt(0)
+		}
+		return decenas.imagen(valor)
+	}
+}
+object constructorCientos{
+	var property position = game.at(14,19)
+	
+	method image(){
+		const stringNumero = menu.cantPoblacion().toString()
+		var valor = null
+		if(stringNumero.length() > 2){
+			valor = stringNumero.reverse().drop(2).charAt(0)
+		}
+		return cientos.imagen(valor)
+	}
+} 
+
+object granjeroUnidad{
+	var property position = game.at(14,19)
+	
+	method image(){
+		const stringNumero = menu.cantPoblacion().toString()
+		return unidades.imagen(stringNumero.reverse().charAt(0))
+	}
+}
+object granjeroDecena{
+	var property position = game.at(14,19)
+	
+	method image(){
+		const stringNumero = menu.cantPoblacion().toString()
+		var valor = null
+		if(stringNumero.length() > 1){
+			valor = stringNumero.reverse().drop(1).charAt(0)
+		}
+		return decenas.imagen(valor)
+	}
+}
+object granjeroCientos{
+	var property position = game.at(14,19)
+	
+	method image(){
+		const stringNumero = menu.cantPoblacion().toString()
+		var valor = null
+		if(stringNumero.length() > 2){
+			valor = stringNumero.reverse().drop(2).charAt(0)
+		}
+		return cientos.imagen(valor)
+	}
+} 
+
+object agricultorUnidad{
+	var property position = game.at(14,19)
+	
+	method image(){
+		const stringNumero = menu.cantPoblacion().toString()
+		return unidades.imagen(stringNumero.reverse().charAt(0))
+	}
+}
+object agricultorDecena{
+	var property position = game.at(14,19)
+	
+	method image(){
+		const stringNumero = menu.cantPoblacion().toString()
+		var valor = null
+		if(stringNumero.length() > 1){
+			valor = stringNumero.reverse().drop(1).charAt(0)
+		}
+		return decenas.imagen(valor)
+	}
+}
+object agricultorCientos{
+	var property position = game.at(14,19)
+	
+	method image(){
+		const stringNumero = menu.cantPoblacion().toString()
+		var valor = null
+		if(stringNumero.length() > 2){
+			valor = stringNumero.reverse().drop(2).charAt(0)
+		}
+		return cientos.imagen(valor)
+	}
+} 
+
+
+object pescadorUnidad{
+	var property position = game.at(14,19)
+	
+	method image(){
+		const stringNumero = menu.cantPoblacion().toString()
+		return unidades.imagen(stringNumero.reverse().charAt(0))
+	}
+}
+object pescadorDecena{
+	var property position = game.at(14,19)
+	
+	method image(){
+		const stringNumero = menu.cantPoblacion().toString()
+		var valor = null
+		if(stringNumero.length() > 1){
+			valor = stringNumero.reverse().drop(1).charAt(0)
+		}
+		return decenas.imagen(valor)
+	}
+}
+object pescadorCientos{
+	var property position = game.at(14,19)
+	
+	method image(){
+		const stringNumero = menu.cantPoblacion().toString()
+		var valor = null
+		if(stringNumero.length() > 2){
+			valor = stringNumero.reverse().drop(2).charAt(0)
+		}
+		return cientos.imagen(valor)
+	}
+} 
+
+object cazadorUnidad{
+	var property position = game.at(14,19)
+	
+	method image(){
+		const stringNumero = menu.cantPoblacion().toString()
+		return unidades.imagen(stringNumero.reverse().charAt(0))
+	}
+}
+object cazadorDecena{
+	var property position = game.at(14,19)
+	
+	method image(){
+		const stringNumero = menu.cantPoblacion().toString()
+		var valor = null
+		if(stringNumero.length() > 1){
+			valor = stringNumero.reverse().drop(1).charAt(0)
+		}
+		return decenas.imagen(valor)
+	}
+}
+object cazadorCientos{
+	var property position = game.at(14,19)
+	
+	method image(){
+		const stringNumero = menu.cantPoblacion().toString()
+		var valor = null
+		if(stringNumero.length() > 2){
+			valor = stringNumero.reverse().drop(2).charAt(0)
+		}
+		return cientos.imagen(valor)
+	}
+} 

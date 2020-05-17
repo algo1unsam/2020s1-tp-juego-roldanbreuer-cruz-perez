@@ -18,6 +18,13 @@ object menu{
 	var property cantPoblacion = 10
 	
 	var property cantAldeanoDisponible = 5
+	var property cantAldeanoTalador = 0
+	var property cantAldeanoMinero = 0
+	var property cantAldeanoConstructor = 0
+	var property cantAldeanoGranjero = 0
+	var property cantAldeanoAgricultor = 0
+	var property cantAldeanoPescador = 0
+	var property cantAldeanoCazador = 0
 	
 	var property cantArbolesPlantados=0
 	var property cantidadPiedrasMinadas=0
@@ -41,6 +48,10 @@ object menu{
 	}
 	method sumAliCM(){
 		cantRecursoAlimento += 100000
+	}
+	method sumAldeano(){
+		cantAldeanos += 1
+		cantAldeanoDisponible += 1
 	}
 	
 	
@@ -170,6 +181,7 @@ object menu{
 				cantRecursoMadera -= costoMadera
 				cantRecursoPiedra -= costoPiedra
 				cantAldeanoDisponible -= 1
+				cantAldeanoConstructor += 1
 			}
 			if(self.visible() != null) self.cerrar()
 		}
@@ -186,6 +198,7 @@ object menu{
 				cantRecursoMadera -= costoMadera
 				cantRecursoPiedra -= costoPiedra
 				cantAldeanoDisponible -= 1
+				cantAldeanoConstructor += 1
 			}
 			if(self.visible() != null) self.cerrar()
 		}
@@ -202,6 +215,7 @@ object menu{
 				cantRecursoMadera -= costoMadera
 				cantRecursoPiedra -= costoPiedra
 				cantAldeanoDisponible -= 1
+				cantAldeanoConstructor += 1
 			}
 			if(self.visible() != null) self.cerrar()
 		}
