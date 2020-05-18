@@ -142,8 +142,6 @@ object timerDecenaMinutos{
 		var valor = null
 		if(stringNumero.length() > 1){
 			valor = stringNumero.reverse().drop(1).charAt(0)
-		}else{
-			valor = "0"
 		}
 		return decenas.imagen(valor)
 	}
@@ -840,8 +838,6 @@ object agricultorCientos{
 		return cientos.imagen(valor)
 	}
 } 
-
-
 object pescadorUnidad{
 	var property tipo = "numerosHUD"
 	var property position = game.at(5,1)
@@ -980,5 +976,8 @@ object cargaHud{
 	//TIMER
 	game.addVisual(timerUnidad)
 	game.addVisual(timerDecena)
+	game.addVisual(timerUnidadMinutos)
+	game.addVisual(timerDecenaMinutos)
+	game.addVisual(timerCentenaMinutos)
 	}
 }
