@@ -348,7 +348,7 @@ object menu{
 							self.terminarConstruccion("Construccion"+objeto.toString())
 						}
 					})
-				}
+				})
 				cantAldeanoDisponible -= 1
 				cantAldeanoConstructor += 1
 				
