@@ -270,7 +270,8 @@ class CeroCero{
 class Cien{
 	var property position
 	var property tipo = "numero"
-	method image() = "assets/1__.png"
+	method image() 
+	= "assets/1__.png"
 }
 class Doscientos{
 	var property position

@@ -125,6 +125,42 @@ object timerDecena{
 	}
 }
 
+object timerUnidadMinutos{
+	var property tipo= "numerosHUD"
+	var property position= game.at(35,19)
+	method image(){
+		const stringNumero= timer.minutos().toString()
+		return unidades.imagen(stringNumero.reverse().charAt(0))
+	}
+}
+object timerDecenaMinutos{
+	var property tipo = "numerosHUD"
+	var property position = game.at(35,19)
+	
+	method image(){
+		const stringNumero = timer.minutos().toString()
+		var valor = null
+		if(stringNumero.length() > 1){
+			valor = stringNumero.reverse().drop(1).charAt(0)
+		}else{
+			valor = "0"
+		}
+		return decenas.imagen(valor)
+	}
+}
+object timerCentenaMinutos{
+	var property tipo = "numerosHUD"
+	var property position = game.at(35,19)
+	
+	method image(){
+		const stringNumero = timer.minutos().toString()
+		var valor = null
+		if(stringNumero.length() > 2){
+			valor = stringNumero.reverse().drop(2).charAt(0)
+		}
+		return cientos.imagen(valor)
+	}
+}
 ////// ------------------------------------- ALMACEN HUD
 
 object almacenUnidad{
