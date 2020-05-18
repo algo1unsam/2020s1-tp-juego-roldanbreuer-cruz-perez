@@ -3,7 +3,7 @@ import cursor.*
 import menu.*
 //en este archivo solo se van a encontrar los elementos que interactuen con los aldeanos(arboledas
 //casas, pesca etc..)
-//solo para comodidad del desarrollo del juego
+
 
 object centralErrores{
 	var property position

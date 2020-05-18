@@ -1,6 +1,7 @@
 import wollok.game.*
 import cursor.*
 import hud.*
+import menu.*
 object timer{
 	var property segundos=0
 	var property minutos=0
@@ -13,10 +14,17 @@ object timer{
 			}
 		if(acumuladorTiempo == 59){
 			minutos+=1
+			menu.Alimentar()
 			segundos=0
 			acumuladorTiempo=0
 		}
+		if(acumuladorTiempo%5==0){
+			menu.Nacimiento()
+		}
+		
 	}
 }
+
+
 ///esto es al pedo para que me tome el commit
 object wollokDejameCommitear{}
