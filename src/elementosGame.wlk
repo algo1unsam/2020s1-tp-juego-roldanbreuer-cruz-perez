@@ -1,5 +1,6 @@
 import wollok.game.*
 import cursor.*
+import menu.*
 //en este archivo solo se van a encontrar los elementos que interactuen con los aldeanos(arboledas
 //casas, pesca etc..)
 //solo para comodidad del desarrollo del juego
@@ -38,6 +39,21 @@ class BarraRecoleccion{
 		else if(progreso == 4){ return "assets/barraRecurso40.png" }
 		else if(progreso == 5){ return "assets/barraRecurso20.png" }
 		else{ return "assets/barraRecurso00.png" }
+	}
+}
+class BarraAlmacen{
+	var property position
+	var property tipo = "Barra"
+	
+	method image(){
+		const recursos = [menu.cantRecursoMadera(), menu.cantRecursoPiedra(), menu.cantRecursoAlimento()]
+		const porcentaje = (recursos*100)/menu.maxAlmacen()
+		if(porcentaje < 20 and porcentaje >= 0){return "assets/barraAlmacen00.png" }
+		else if(porcentaje < 40 and porcentaje >= 20){ return "assets/barraAlmacen20.png" }
+		else if(porcentaje < 60 and porcentaje >= 40){ return "assets/barraAlmacen40.png" }
+		else if(porcentaje < 80 and porcentaje >= 60){ return "assets/barraAlmacen60.png" }
+		else if(porcentaje < 100 and porcentaje >= 80){ return "assets/barraAlmacen80.png" }
+		else{ return "assets/barraAlmacen100.png" }
 	}
 }
 

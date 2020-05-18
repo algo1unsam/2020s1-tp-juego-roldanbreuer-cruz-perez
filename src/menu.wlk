@@ -10,11 +10,12 @@ object menu{
 	var property visible
 	var property seleccionado = []
 		
-	var property cantRecursoMadera=0
-	var property cantRecursoPiedra=0
+	var property cantRecursoMadera=100
+	var property cantRecursoPiedra=50
 	var property cantRecursoAlimento=0
 	var property cantAldeanos = 5
 	var property cantPoblacion = 5
+	var property maxAlmacen = 100
 	
 	var property cantAldeanoDisponible = 5
 	var property cantAldeanoTalador = 0
@@ -277,7 +278,9 @@ object menu{
 						if( barra.progreso() >= 6 ){
 							cantAldeanoDisponible += 1
 							cantAldeanoConstructor -= 1
+							maxAlmacen += 50
 							game.removeVisual(barra)
+							game.addVisualIn(new BarraAlmacen(), objeto)
 							self.terminarConstruccion("Construccion Almacen"+objeto.toString())
 						}
 					})
