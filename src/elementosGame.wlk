@@ -5,6 +5,12 @@ import menu.*
 //casas, pesca etc..)
 //solo para comodidad del desarrollo del juego
 
+object centralErrores{
+	var property position
+	var property tipo = "Errores"
+	method image() = "assets/vacio35.png"
+}
+
 class BarraConstruccion{
 	var property position
 	var property tipo = "Barra"

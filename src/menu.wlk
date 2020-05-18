@@ -154,6 +154,7 @@ object menu{
 			self.remover("Seleccion", lista)
 			lista.forEach({ 
 				objeto => 
+				cursor.accesoAlLugar(objeto)
 				const listaPos = game.getObjectsIn(objeto)
 				if(listaPos.filter({ tipo => tipo.tipo() == "Arboleda" }).size() > 0 and cantAldeanoDisponible > 0) {
 					game.addVisualIn(new Talada(), objeto)
@@ -181,7 +182,7 @@ object menu{
 					cantAldeanoDisponible -= 1
 					cantAldeanoTalador += 1
 				}else if(cantAldeanoDisponible == 0){
-					cursor.error("No hay aldeanos disponibles.")
+					centralErrores.error("No hay aldeanos disponibles.")
 				}
 			})
 		}
@@ -211,6 +212,7 @@ object menu{
 			self.remover("Seleccion", lista)
 			lista.forEach({ 
 				objeto => 
+				cursor.accesoAlLugar(objeto)
 				const listaPos = game.getObjectsIn(objeto)
 				if(listaPos.filter({ tipo => tipo.tipo() == "Piedras" }).size() > 0 and cantAldeanoDisponible > 0){ 
 					game.addVisualIn(new Minado(), objeto)
@@ -238,7 +240,7 @@ object menu{
 					cantAldeanoDisponible -= 1
 					cantAldeanoMinero += 1
 				}else if(cantAldeanoDisponible == 0){
-					cursor.error("No hay aldeanos disponibles.")
+					centralErrores.error("No hay aldeanos disponibles.")
 				}
 			})
 		}
@@ -248,6 +250,7 @@ object menu{
 			self.remover("Seleccion", lista)
 			lista.forEach({ 
 				objeto => 
+				cursor.accesoAlLugar(objeto)
 				const listaPos = game.getObjectsIn(objeto)
 				if(listaPos.filter({ tipo => tipo.tipo() == "Agua" }).size() > 0 and cantAldeanoDisponible > 0){
 					game.addVisualIn(new Pesca(), objeto)
@@ -272,7 +275,7 @@ object menu{
 					cantAldeanoDisponible -= 1
 					cantAldeanoPescador += 1
 				}else if(cantAldeanoDisponible == 0){
-					cursor.error("No hay aldeanos disponibles.")
+					centralErrores.error("No hay aldeanos disponibles.")
 				}
 			})
 		}

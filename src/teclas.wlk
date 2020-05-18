@@ -83,7 +83,7 @@ object teclas{
 			if(game.getObjectsIn(cursor.position()).size() == 1){
 				menu.aparecer("construccion")
 			}else{
-				cursor.error("No se puede construir ahi.")
+				centralErrores.error("No se puede construir ahi.")
 			}
 		}
 	}

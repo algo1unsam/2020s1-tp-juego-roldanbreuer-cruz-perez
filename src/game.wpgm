@@ -48,7 +48,7 @@ program game {
 	menu.accion("colocarLago", agua.area())
 	cargaHud.cargar()
 	timer.inicio()
+	game.addVisualIn(centralErrores, game.at(31,0))
+	game.errorReporter(centralErrores)
 	game.start()
-	
-	
 }
