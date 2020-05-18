@@ -162,8 +162,13 @@ object menu{
 					}
 					game.onTick((ticksRecurso/5)*1000,"Recoleccion Madera"+objeto.toString(), {
 						const barra = game.getObjectsIn(objeto).find({ filtro => filtro.tipo() == "Barra" })
-						barra.suma()
-						cantRecursoMadera += (recurso/5)
+						if((cantRecursoMadera + (recurso/5)) <= maxAlmacen){
+							barra.suma()
+							cantRecursoMadera += (recurso/5)
+						}else{
+							self.remover("Talada",[objeto])
+							barra.error("Se lleno el almacen.")
+						}
 						if( barra.progreso() >= 6 ){
 							cantAldeanoDisponible += 1
 							cantAldeanoTalador -= 1
@@ -214,8 +219,13 @@ object menu{
 					}
 					game.onTick((ticksRecurso/5)*1000,"Recoleccion Piedra"+objeto.toString(), {
 						const barra = game.getObjectsIn(objeto).find({ filtro => filtro.tipo() == "Barra" })
-						barra.suma()
-						cantRecursoPiedra += (recurso/5)
+						if((cantRecursoPiedra + (recurso/5)) <= maxAlmacen){
+							barra.suma()
+							cantRecursoPiedra += (recurso/5)
+						}else{
+							self.remover("Minado",[objeto])
+							barra.error("Se lleno el almacen.")
+						}
 						if( barra.progreso() >= 6 ){
 							cantAldeanoDisponible += 1
 							cantAldeanoMinero -= 1
@@ -244,8 +254,13 @@ object menu{
 					game.addVisualIn(new BarraRecoleccion(), objeto)
 					game.onTick((ticksRecurso/5)*1000,"Recoleccion Pesca"+objeto.toString(), {
 						const barra = game.getObjectsIn(objeto).find({ filtro => filtro.tipo() == "Barra" })
-						barra.suma()
-						cantRecursoAlimento += (recurso/5)
+						if((cantRecursoAlimento + (recurso/5)) <= maxAlmacen){
+							barra.suma()
+							cantRecursoAlimento += (recurso/5)
+						}else{
+							self.remover("Pescar",[objeto])
+							barra.error("Se lleno el almacen.")
+						}
 						if( barra.progreso() >= 6 ){
 							cantAldeanoDisponible += 1
 							cantAldeanoPescador -= 1

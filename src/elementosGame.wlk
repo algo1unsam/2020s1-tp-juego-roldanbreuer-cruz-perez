@@ -47,7 +47,7 @@ class BarraAlmacen{
 	
 	method image(){
 		const recursos = [menu.cantRecursoMadera(), menu.cantRecursoPiedra(), menu.cantRecursoAlimento()]
-		const porcentaje = (recursos*100)/menu.maxAlmacen()
+		const porcentaje = ( recursos.max() * 100)/menu.maxAlmacen()
 		if(porcentaje < 20 and porcentaje >= 0){return "assets/barraAlmacen00.png" }
 		else if(porcentaje < 40 and porcentaje >= 20){ return "assets/barraAlmacen20.png" }
 		else if(porcentaje < 60 and porcentaje >= 40){ return "assets/barraAlmacen40.png" }

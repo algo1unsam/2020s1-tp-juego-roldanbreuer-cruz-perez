@@ -123,6 +123,77 @@ object timerDecena{
 	}
 }
 
+////// ------------------------------------- ALMACEN HUD
+
+object almacenUnidad{
+	var property position = game.at(17,19)
+	
+	method image(){
+		const stringNumero = menu.maxAlmacen().toString()
+		return unidades.imagen(stringNumero.reverse().charAt(0))
+	}
+}
+object almacenDecena{
+	var property position = game.at(17,19)
+	
+	method image(){
+		const stringNumero = menu.maxAlmacen().toString()
+		var valor = null
+		if(stringNumero.length() > 1){
+			valor = stringNumero.reverse().drop(1).charAt(0)
+		}
+		return decenas.imagen(valor)
+	}
+}
+object almacenCientos{
+	var property position = game.at(17,19)
+	
+	method image(){
+		const stringNumero = menu.maxAlmacen().toString()
+		var valor = null
+		if(stringNumero.length() > 2){
+			valor = stringNumero.reverse().drop(2).charAt(0)
+		}
+		return cientos.imagen(valor)
+	}
+} 
+object almacenMiles{
+	var property position = game.at(16,19)
+	
+	method image(){
+		const stringNumero = menu.maxAlmacen().toString()
+		var valor = null
+		if(stringNumero.length() > 3){
+			valor = stringNumero.reverse().drop(3).charAt(0)
+		}
+		return unidades.imagen(valor)
+	}
+}
+object almacenDecenaMiles{
+	var property position = game.at(16,19)
+	
+	method image(){
+		const stringNumero = menu.maxAlmacen().toString()
+		var valor = null
+		if(stringNumero.length() > 4){
+			valor = stringNumero.reverse().drop(4).charAt(0)
+		}
+		return decenas.imagen(valor)
+	}
+}
+object almacenCientosMiles{
+	var property position = game.at(16,19)
+	
+	method image(){
+		const stringNumero = menu.maxAlmacen().toString()
+		var valor = null
+		if(stringNumero.length() > 5){
+			valor = stringNumero.reverse().drop(5).charAt(0)
+		}
+		return cientos.imagen(valor)
+	}
+}
+
 ////// ------------------------------------- ALIMENTO HUD
 
 object alimentoUnidad{
@@ -747,6 +818,12 @@ object cazadorCientos{
 
 object cargaHud{
 	method cargar(){
+	game.addVisual(almacenUnidad)
+	game.addVisual(almacenDecena)
+	game.addVisual(almacenCientos)
+	game.addVisual(almacenMiles)
+	game.addVisual(almacenDecenaMiles)
+	game.addVisual(almacenCientosMiles)	
 	game.addVisual(alimentoUnidad)
 	game.addVisual(alimentoDecena)
 	game.addVisual(alimentoCientos)
