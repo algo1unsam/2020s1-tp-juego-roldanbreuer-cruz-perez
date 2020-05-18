@@ -293,11 +293,12 @@ class CeroCeroCero{
 
 object agua{
 	const property area=[
-					  game.at(23,7),game.at(24,7),game.at(25,7),game.at(26,7),
+			          game.at(23,8),game.at(24,8),game.at(25,80),		
+		game.at(22,7),game.at(23,7),game.at(24,7),game.at(25,7),game.at(26,7),
 		game.at(22,6),game.at(23,6),game.at(24,6),game.at(25,6),game.at(26,6),
 		game.at(22,5),game.at(23,5),game.at(24,5),game.at(25,5),game.at(26,5),
 		game.at(22,4),game.at(23,4),game.at(24,4),game.at(25,4),game.at(26,4),
-		              game.at(23,3),game.at(24,3),game.at(25,3)
+		game.at(22,4),game.at(23,3),game.at(24,3),game.at(25,3)
 ]
 }
 
