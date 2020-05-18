@@ -1,5 +1,5 @@
 import wollok.game.*
-import pepita.*
+import cursor.*
 import elementosGame.*
 import menu.*
 import teclas.*

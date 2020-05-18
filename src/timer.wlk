@@ -1,5 +1,5 @@
 import wollok.game.*
-import pepita.*
+import cursor.*
 import hud.*
 object timer{
 	var segundos=0

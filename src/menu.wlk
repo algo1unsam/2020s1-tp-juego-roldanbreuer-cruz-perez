@@ -1,5 +1,5 @@
 import wollok.game.*
-import pepita.*
+import cursor.*
 import elementosGame.*
 import teclas.*
 //solo para comodidad del desarrollo del juego
@@ -14,7 +14,7 @@ object menu{
 	var property cantRecursoPiedra=0
 	var property cantRecursoAlimento=0
 	var property cantAldeanos = 5
-	var property cantPoblacion = 10
+	var property cantPoblacion = 5
 	
 	var property cantAldeanoDisponible = 5
 	var property cantAldeanoTalador = 0
@@ -28,7 +28,7 @@ object menu{
 	var property cantArbolesPlantados=0
 	var property cantidadPiedrasMinadas=0
 	var property cantidadPesca=0
-	var recurso=0
+
 		
 	method sumAliU(){
 		cantRecursoAlimento += 1
@@ -111,14 +111,18 @@ object menu{
 				if(tipo == "Talada"){
 					cantAldeanoTalador -= 1
 					cantAldeanoDisponible += 1
+					self.terminarConstruccion("Recoleccion Madera"+objeto.toString())
 				}
 				if(tipo == "Minado"){
 					cantAldeanoMinero -= 1
 					cantAldeanoDisponible += 1
+					self.terminarConstruccion("Recoleccion Piedra"+objeto.toString())
 				}
 				if(tipo == "Pesca"){
 					cantAldeanoPescador -= 1
 					cantAldeanoDisponible += 1
+					game.removeVisual(game.getObjectsIn(objeto).find({ filtro => filtro.tipo() == "Barra" }))
+					self.terminarConstruccion("Recoleccion Pesca"+objeto.toString())
 				}
 				const posic = game.getObjectsIn(objeto).filter({ filtro => filtro.tipo() == tipo }).last()
 				game.removeVisual(posic)
@@ -143,17 +147,31 @@ object menu{
 		}
 		//listaPos.filter({ objeto => objeto.tipo() == "Arboleda" })
 		if(accion == "talar") {
-			recurso = 50
-			
-			
-			cantArbolesPlantados =lista.sum({objeto => game.getObjectsIn(objeto).filter({ filtro => filtro.tipo() == "Arboleda" }).size()})
-			cantRecursoMadera += resource.calculo(cantArbolesPlantados, recurso)
+			const recurso = 50
+			const ticksRecurso = 60
+						
 			self.remover("Seleccion", lista)
 			lista.forEach({ 
 				objeto => 
 				const listaPos = game.getObjectsIn(objeto)
 				if(listaPos.filter({ tipo => tipo.tipo() == "Arboleda" }).size() > 0 and cantAldeanoDisponible > 0) {
 					game.addVisualIn(new Talada(), objeto)
+					if(game.getObjectsIn(objeto).filter({ filtro => filtro.tipo() == "Barra" }).size() == 0){
+						game.addVisualIn(new BarraRecoleccion(), objeto)
+					}
+					game.onTick((ticksRecurso/5)*1000,"Recoleccion Madera"+objeto.toString(), {
+						const barra = game.getObjectsIn(objeto).find({ filtro => filtro.tipo() == "Barra" })
+						barra.suma()
+						cantRecursoMadera += (recurso/5)
+						if( barra.progreso() >= 6 ){
+							cantAldeanoDisponible += 1
+							cantAldeanoTalador -= 1
+							game.removeVisual(barra)
+							game.removeVisual(game.getObjectsIn(objeto).find({ filtro => filtro.tipo() == "Arboleda" }))
+							game.removeVisual(game.getObjectsIn(objeto).find({ filtro => filtro.tipo() == "Talada" }))
+							self.terminarConstruccion("Recoleccion Madera"+objeto.toString())
+						}
+					})
 					cantAldeanoDisponible -= 1
 					cantAldeanoTalador += 1
 				}else if(cantAldeanoDisponible == 0){
@@ -181,15 +199,31 @@ object menu{
 		}
 		
 		if(accion == "minar") {
-			recurso = 75
-			cantidadPiedrasMinadas=lista.sum({objeto => game.getObjectsIn(objeto).filter({ filtro => filtro.tipo() == "Piedras" }).size()})
-			cantRecursoPiedra += resource.calculo(cantidadPiedrasMinadas, recurso)
+			const recurso = 75
+			const ticksRecurso = 120
+
 			self.remover("Seleccion", lista)
 			lista.forEach({ 
 				objeto => 
 				const listaPos = game.getObjectsIn(objeto)
 				if(listaPos.filter({ tipo => tipo.tipo() == "Piedras" }).size() > 0 and cantAldeanoDisponible > 0){ 
 					game.addVisualIn(new Minado(), objeto)
+					if(game.getObjectsIn(objeto).filter({ filtro => filtro.tipo() == "Barra" }).size() == 0){
+						game.addVisualIn(new BarraRecoleccion(), objeto)
+					}
+					game.onTick((ticksRecurso/5)*1000,"Recoleccion Piedra"+objeto.toString(), {
+						const barra = game.getObjectsIn(objeto).find({ filtro => filtro.tipo() == "Barra" })
+						barra.suma()
+						cantRecursoPiedra += (recurso/5)
+						if( barra.progreso() >= 6 ){
+							cantAldeanoDisponible += 1
+							cantAldeanoMinero -= 1
+							game.removeVisual(barra)
+							game.removeVisual(game.getObjectsIn(objeto).find({ filtro => filtro.tipo() == "Piedras" }))
+							game.removeVisual(game.getObjectsIn(objeto).find({ filtro => filtro.tipo() == "Minado" }))
+							self.terminarConstruccion("Recoleccion Piedra"+objeto.toString())
+						}
+					})
 					cantAldeanoDisponible -= 1
 					cantAldeanoMinero += 1
 				}else if(cantAldeanoDisponible == 0){
@@ -198,21 +232,33 @@ object menu{
 			})
 		}
 		if(accion == "pesca") {
-			recurso=25
+			const recurso=25
+			const ticksRecurso = 60
 			self.remover("Seleccion", lista)
 			lista.forEach({ 
 				objeto => 
 				const listaPos = game.getObjectsIn(objeto)
 				if(listaPos.filter({ tipo => tipo.tipo() == "Agua" }).size() > 0 and cantAldeanoDisponible > 0){
-					 game.addVisualIn(new Pesca(), objeto)
-					 cantAldeanoDisponible -= 1
+					game.addVisualIn(new Pesca(), objeto)
+					game.addVisualIn(new BarraRecoleccion(), objeto)
+					game.onTick((ticksRecurso/5)*1000,"Recoleccion Pesca"+objeto.toString(), {
+						const barra = game.getObjectsIn(objeto).find({ filtro => filtro.tipo() == "Barra" })
+						barra.suma()
+						cantRecursoAlimento += (recurso/5)
+						if( barra.progreso() >= 6 ){
+							cantAldeanoDisponible += 1
+							cantAldeanoPescador -= 1
+							game.removeVisual(barra)
+							game.removeVisual(game.getObjectsIn(objeto).find({ filtro => filtro.tipo() == "Pesca" }))
+							self.terminarConstruccion("Recoleccion Pesca"+objeto.toString())
+						}
+					})
+					cantAldeanoDisponible -= 1
 					cantAldeanoPescador += 1
 				}else if(cantAldeanoDisponible == 0){
 					cursor.error("No hay aldeanos disponibles.")
 				}
 			})
-			cantidadPesca=lista.sum({objeto => game.getObjectsIn(objeto).filter({ filtro => filtro.tipo() == "Agua" }).size()})
-			cantRecursoAlimento += resource.calculo(cantidadPesca, recurso)
 		}
 		
 		if(accion == "Almacen") {
@@ -260,6 +306,7 @@ object menu{
 						if( barra.progreso() >= 6 ){
 							cantAldeanoDisponible += 1
 							cantAldeanoConstructor -= 1
+							cantPoblacion += 1
 							game.removeVisual(barra)
 							self.terminarConstruccion("Construccion CasaC"+objeto.toString())
 						}
@@ -289,6 +336,7 @@ object menu{
 						if( barra.progreso() >= 6 ){
 							cantAldeanoDisponible += 1
 							cantAldeanoConstructor -= 1
+							cantPoblacion += 3
 							game.removeVisual(barra)
 							self.terminarConstruccion("Construccion CasaG"+objeto.toString())
 						}

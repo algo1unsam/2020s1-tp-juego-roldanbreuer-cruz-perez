@@ -1,5 +1,5 @@
 import wollok.game.*
-import pepita.*
+import cursor.*
 import elementosGame.*
 import menu.*
 import timer.*
@@ -99,8 +99,8 @@ object teclas{
 				menu.accion("minar", [cursor.position()])
 			}
 		}
+	}
 	
-		}
 	method o(){
 		game.say(cursor, timer.segundos().toString())
 	}

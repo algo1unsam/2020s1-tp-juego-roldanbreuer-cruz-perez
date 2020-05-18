@@ -1,5 +1,5 @@
 import wollok.game.*
-import pepita.*
+import cursor.*
 //en este archivo solo se van a encontrar los elementos que interactuen con los aldeanos(arboledas
 //casas, pesca etc..)
 //solo para comodidad del desarrollo del juego
@@ -20,6 +20,24 @@ class BarraConstruccion{
 		else if(progreso == 4){ return "assets/barraConst60.png" }
 		else if(progreso == 5){ return "assets/barraConst80.png" }
 		else{ return "assets/barraConst100.png" }
+	}
+}
+class BarraRecoleccion{
+	var property position
+	var property tipo = "Barra"
+	var property progreso = 1
+	
+	method suma(){
+		progreso += 1
+	}
+	
+	method image(){
+		if(progreso == 1){ return "assets/barraRecurso100.png" }
+		else if(progreso == 2){ return "assets/barraRecurso80.png" }
+		else if(progreso == 3){ return "assets/barraRecurso60.png" }
+		else if(progreso == 4){ return "assets/barraRecurso40.png" }
+		else if(progreso == 5){ return "assets/barraRecurso20.png" }
+		else{ return "assets/barraRecurso00.png" }
 	}
 }
 
