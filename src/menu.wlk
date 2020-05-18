@@ -219,6 +219,7 @@ object menu{
 				cursor.accesoAlLugar(objeto)
 				const listaPos = game.getObjectsIn(objeto)
 				if(listaPos.filter({ tipo => tipo.tipo() == "Arboleda" }).size() > 0 and cantAldeanoDisponible > 0) {
+					game.sound("talar.ogg")
 					game.addVisualIn(new Talada(position = objeto), objeto)
 					if(game.getObjectsIn(objeto).filter({ filtro => filtro.tipo() == "Barra" }).size() == 0){
 						game.addVisualIn(new BarraRecoleccion(), objeto)
@@ -278,6 +279,7 @@ object menu{
 				const listaPos = game.getObjectsIn(objeto)
 				if(listaPos.filter({ tipo => tipo.tipo() == "Piedras" }).size() > 0 and cantAldeanoDisponible > 0){ 
 					game.addVisualIn(new Minado(position = objeto), objeto)
+					game.sound("minar.ogg")
 					if(game.getObjectsIn(objeto).filter({ filtro => filtro.tipo() == "Barra" }).size() == 0){
 						game.addVisualIn(new BarraRecoleccion(), objeto)
 					}

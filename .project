@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><projectDescription>
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
 	<name>empty-game</name>
-	<comment/>
+	<comment></comment>
 	<projects>
 	</projects>
 	<buildSpec>
@@ -31,4 +32,16 @@
 		<nature>org.eclipse.xtext.ui.shared.xtextNature</nature>
 		<nature>org.uqbar.project.wollok.wollokNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>assets/minar.ogg</name>
+			<type>1</type>
+			<location>C:/Users/ferna/Downloads/eb00293.ogg</location>
+		</link>
+		<link>
+			<name>assets/talar.ogg</name>
+			<type>1</type>
+			<location>C:/Users/ferna/Downloads/eb00296.ogg</location>
+		</link>
+	</linkedResources>
 </projectDescription>
