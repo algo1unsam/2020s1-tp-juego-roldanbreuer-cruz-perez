@@ -2,6 +2,7 @@ import wollok.game.*
 import pepita.*
 import elementosGame.*
 import menu.*
+import timer.*
 //solo para comodidad del desarrollo del juego
 //en este archivo solo se encuentra la configuracion de las teclas
 object teclas{
@@ -101,7 +102,7 @@ object teclas{
 	
 		}
 	method o(){
-		game.onTick(10000,"updateTimer",{ => game.say(cursor, "Diez Segundos") })
+		game.say(cursor, timer.segundos().toString())
 	}
 	
 	method m(){

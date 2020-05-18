@@ -3,6 +3,7 @@ import pepita.*
 import elementosGame.*
 import menu.*
 import teclas.*
+import timer.*
 
 object hud{
 	var property position = game.at(0,0)
@@ -99,6 +100,21 @@ object cientos{
 		}
 	}
 }
+//////---------------------------------------TIMER HUD
+object timerUnidad{
+	var property position= game.at(36,19)
+	method image(){
+		const stringNumero= timer.segundos().toString()
+		return unidades.imagen(stringNumero.reverse().charAt(0))
+	}
+}
+/*object timerDecenaHud{
+	var property position= game.at(35,19)
+	method image(){
+		const stringNumero= timer.minutos().toString()
+		return decenas.imagen(stringNumero.reverse().charAt(0))
+	}
+}*/
 
 ////// ------------------------------------- ALIMENTO HUD
 
@@ -779,5 +795,7 @@ object cargaHud{
 	game.addVisual(cazadorUnidad)
 	game.addVisual(cazadorDecena)
 	game.addVisual(cazadorCientos)
+	//TIMER
+	game.addVisual(timerUnidad)
 	}
 }
