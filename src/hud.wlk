@@ -108,13 +108,20 @@ object timerUnidad{
 		return unidades.imagen(stringNumero.reverse().charAt(0))
 	}
 }
-/*object timerDecenaHud{
-	var property position= game.at(35,19)
+object timerDecena{
+	var property position = game.at(36,19)
+	
 	method image(){
-		const stringNumero= timer.minutos().toString()
-		return decenas.imagen(stringNumero.reverse().charAt(0))
+		const stringNumero = timer.segundos().toString()
+		var valor = null
+		if(stringNumero.length() > 1){
+			valor = stringNumero.reverse().drop(1).charAt(0)
+		}else{
+			valor = "0"
+		}
+		return decenas.imagen(valor)
 	}
-}*/
+}
 
 ////// ------------------------------------- ALIMENTO HUD
 
@@ -797,5 +804,6 @@ object cargaHud{
 	game.addVisual(cazadorCientos)
 	//TIMER
 	game.addVisual(timerUnidad)
+	game.addVisual(timerDecena)
 	}
 }

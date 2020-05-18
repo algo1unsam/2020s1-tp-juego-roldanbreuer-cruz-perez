@@ -47,6 +47,8 @@ program game {
 	menu.accion("colocarPiedra", piedras.area())
 	menu.accion("colocarLago", agua.area())
 	cargaHud.cargar()
+	timer.inicio()
 	game.start()
+	
 	
 }
