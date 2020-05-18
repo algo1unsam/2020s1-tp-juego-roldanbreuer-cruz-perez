@@ -3,7 +3,26 @@ import pepita.*
 //en este archivo solo se van a encontrar los elementos que interactuen con los aldeanos(arboledas
 //casas, pesca etc..)
 //solo para comodidad del desarrollo del juego
+
+class BarraConstruccion{
+	var property position
+	var property tipo = "Barra"
+	var property progreso = 1
 	
+	method suma(){
+		progreso += 1
+	}
+	
+	method image(){
+		if(progreso == 1){ return "assets/barraConst00.png" }
+		else if(progreso == 2){ return "assets/barraConst20.png" }
+		else if(progreso == 3){ return "assets/barraConst40.png" }
+		else if(progreso == 4){ return "assets/barraConst60.png" }
+		else if(progreso == 5){ return "assets/barraConst80.png" }
+		else{ return "assets/barraConst100.png" }
+	}
+}
+
 class Arboleda{
 	var property position
 	var property tipo = "Arboleda"
@@ -265,15 +284,38 @@ object agua{
 }
 
 object arboledaNO{
-	const property area = [
-game.at(0,18),game.at(1,18),game.at(2,18),game.at(3,18),game.at(4,18),game.at(5,18),game.at(6,18),game.at(7,18),game.at(8,18),game.at(9,18),
-game.at(0,17),game.at(1,17),game.at(2,17),game.at(3,17),game.at(4,17),game.at(5,17),game.at(6,17),game.at(7,17),game.at(8,17),game.at(9,17),
-game.at(0,16),game.at(1,16),game.at(2,16),game.at(3,16),game.at(4,16),game.at(5,16),game.at(6,16),game.at(7,16),game.at(8,16),game.at(9,16),
-game.at(0,15),game.at(1,15),game.at(2,15),game.at(3,15),game.at(4,15),game.at(5,15),game.at(6,15),game.at(7,15),game.at(8,15),game.at(9,15),
-game.at(0,14),game.at(1,14),game.at(2,14),game.at(3,14),game.at(4,14),game.at(5,14),game.at(6,14),game.at(7,14),
-game.at(0,13),game.at(1,13),game.at(2,13),game.at(3,13),game.at(4,13),game.at(5,13),
-game.at(0,18),game.at(1,18),game.at(2,18),game.at(3,18)]
+	const property area = [game.at(0,18),game.at(1,18),game.at(2,18),game.at(3,18),game.at(4,18),game.at(5,18),game.at(6,18),game.at(7,18),game.at(8,18),game.at(9,18),game.at(10,18),game.at(11,18),game.at(12,18),game.at(13,18),game.at(14,18),game.at(15,18),game.at(16,18),game.at(17,18),game.at(18,18),game.at(19,18),game.at(20,18),game.at(21,18),game.at(25,18),game.at(26,18),game.at(27,18),game.at(28,18),game.at(29,18),game.at(30,18),game.at(31,18),game.at(32,18),game.at(33,18),game.at(34,18),game.at(35,18),game.at(36,18),
+game.at(0,17),game.at(1,17),game.at(2,17),game.at(3,17),game.at(4,17),game.at(5,17),game.at(6,17),game.at(7,17),game.at(8,17),game.at(9,17),game.at(10,17),game.at(11,17),game.at(12,17),game.at(13,17),game.at(14,17),game.at(15,17),game.at(16,17),game.at(17,17),game.at(18,17),game.at(19,17),game.at(20,17),game.at(21,17),game.at(22,17),game.at(25,17),game.at(26,17),game.at(27,17),game.at(28,17),game.at(29,17),game.at(30,17),game.at(31,17),game.at(32,17),game.at(33,17),game.at(34,17),game.at(35,17),game.at(36,17),
+game.at(0,16),game.at(1,16),game.at(2,16),game.at(3,16),game.at(4,16),game.at(5,16),game.at(6,16),game.at(7,16),game.at(8,16),game.at(9,16),game.at(10,16),game.at(11,16),game.at(12,16),game.at(13,16),game.at(14,16),game.at(15,16),game.at(16,16),game.at(17,16),game.at(18,16),game.at(19,16),game.at(20,16),game.at(21,16),game.at(22,16),game.at(23,16),game.at(24,16),game.at(25,16),game.at(26,16),game.at(27,16),game.at(28,16),game.at(29,16),game.at(30,16),game.at(34,16),game.at(35,16),game.at(36,16),
+game.at(0,15),game.at(1,15),game.at(2,15),game.at(3,15),game.at(4,15),game.at(5,15),game.at(6,15),game.at(7,15),game.at(8,15),game.at(9,15),game.at(10,15),game.at(11,15),game.at(12,15),game.at(13,15),game.at(14,15),game.at(15,15),game.at(16,15),game.at(17,15),game.at(18,15),game.at(19,15),game.at(20,15),game.at(21,15),game.at(22,15),game.at(23,15),game.at(24,15),game.at(25,15),game.at(26,15),game.at(27,15),game.at(28,15),game.at(29,15),game.at(30,15),game.at(34,15),game.at(35,15),game.at(36,15),
+game.at(0,14),game.at(1,14),game.at(2,14),game.at(3,14),game.at(4,14),game.at(5,14),game.at(6,14),game.at(7,14),game.at(8,14),game.at(9,14),game.at(10,14),game.at(11,14),game.at(12,14),game.at(13,14),game.at(14,14),game.at(15,14),game.at(16,14),game.at(17,14),game.at(18,14),game.at(19,14),game.at(20,14),game.at(21,14),game.at(22,14),game.at(23,14),game.at(24,14),game.at(25,14),game.at(26,14),game.at(27,14),game.at(28,14),game.at(29,14),game.at(30,14),game.at(31,14),game.at(32,14),game.at(33,14),game.at(34,14),game.at(35,14),game.at(36,14),
+game.at(0,13),game.at(1,13),game.at(2,13),game.at(3,13),game.at(4,13),game.at(5,13),game.at(6,13),game.at(7,13),game.at(8,13),game.at(9,13),game.at(10,13),game.at(11,13),game.at(12,13),game.at(13,13),game.at(14,13),game.at(15,13),game.at(16,13),game.at(17,13),game.at(18,13),game.at(19,13),game.at(20,13),game.at(21,13),game.at(22,13),game.at(23,13),game.at(24,13),game.at(25,13),game.at(26,13),game.at(27,13),game.at(28,13),game.at(29,13),game.at(30,13),game.at(31,13),game.at(32,13),game.at(33,13),game.at(34,13),game.at(35,13),game.at(36,13),
+game.at(0,12),game.at(1,12),game.at(2,12),game.at(3,12),game.at(4,12),game.at(5,12),game.at(6,12),game.at(7,12),game.at(8,12),game.at(9,12),game.at(17,12),game.at(18,12),game.at(19,12),game.at(20,12),game.at(21,12),game.at(22,12),game.at(23,12),game.at(24,12),game.at(25,12),game.at(26,12),game.at(27,12),game.at(28,12),game.at(29,12),game.at(30,12),game.at(31,12),game.at(32,12),game.at(33,12),game.at(34,12),game.at(35,12),game.at(36,12),
+game.at(19,11),game.at(20,11),game.at(21,11),game.at(22,11),game.at(23,11),game.at(24,11),game.at(25,11),game.at(26,11),game.at(27,11),game.at(28,11),game.at(29,11),game.at(30,11),game.at(31,11),game.at(32,11),game.at(33,11),game.at(34,11),game.at(35,11),game.at(36,11),
+game.at(19,10),game.at(20,10),game.at(21,10),game.at(22,10),game.at(23,10),game.at(24,10),game.at(25,10),game.at(26,10),game.at(27,10),game.at(28,10),game.at(29,10),game.at(30,10),game.at(31,10),game.at(32,10),game.at(33,10),game.at(34,10),game.at(35,10),game.at(36,10),
+game.at(0,9),game.at(1,9),game.at(2,9),game.at(3,9),game.at(4,9),game.at(5,9),game.at(6,9),game.at(7,9),game.at(8,9),game.at(9,9),game.at(10,9),game.at(11,9),game.at(12,9),game.at(13,9),game.at(14,9),game.at(15,9),game.at(16,9),game.at(20,9),game.at(21,9),game.at(22,9),game.at(23,9),game.at(24,9),game.at(27,9),game.at(28,9),game.at(29,9),game.at(30,9),game.at(31,9),game.at(32,9),game.at(33,9),game.at(34,9),game.at(35,9),game.at(36,9),
+game.at(0,8),game.at(1,8),game.at(2,8),game.at(3,8),game.at(4,8),game.at(5,8),game.at(6,8),game.at(7,8),game.at(8,8),game.at(9,8),game.at(10,8),game.at(11,8),game.at(12,8),game.at(13,8),game.at(14,8),game.at(15,8),game.at(16,8),game.at(17,8),game.at(21,8),game.at(22,8),game.at(28,8),game.at(29,8),game.at(30,8),game.at(31,8),game.at(32,8),game.at(33,8),game.at(34,8),game.at(35,8),game.at(36,8),
+game.at(0,7),game.at(1,7),game.at(2,7),game.at(3,7),game.at(4,7),game.at(5,7),game.at(6,7),game.at(7,7),game.at(8,7),game.at(9,7),game.at(10,7),game.at(11,7),game.at(12,7),game.at(13,7),game.at(14,7),game.at(15,7),game.at(16,7),game.at(17,7),game.at(28,7),game.at(29,7),game.at(30,7),game.at(31,7),game.at(32,7),game.at(33,7),game.at(34,7),game.at(35,7),game.at(36,7),
+game.at(0,6),game.at(1,6),game.at(2,6),game.at(3,6),game.at(4,6),game.at(5,6),game.at(6,6),game.at(7,6),game.at(8,6),game.at(9,6),game.at(10,6),game.at(11,6),game.at(12,6),game.at(13,6),game.at(14,6),game.at(15,6),game.at(16,6),game.at(17,6),game.at(18,6),game.at(27,6),game.at(28,6),game.at(29,6),game.at(30,6),game.at(31,6),game.at(32,6),game.at(33,6),game.at(34,6),game.at(35,6),game.at(36,6),
+game.at(0,5),game.at(1,5),game.at(2,5),game.at(3,5),game.at(4,5),game.at(5,5),game.at(6,5),game.at(7,5),game.at(8,5),game.at(9,5),game.at(10,5),game.at(11,5),game.at(12,5),game.at(13,5),game.at(14,5),game.at(15,5),game.at(16,5),game.at(17,5),game.at(18,5),game.at(19,5),game.at(20,5),game.at(21,5),game.at(27,5),game.at(28,5),game.at(29,5),game.at(30,5),game.at(31,5),game.at(32,5),game.at(33,5),game.at(34,5),game.at(35,5),game.at(36,5),
+game.at(0,4),game.at(1,4),game.at(2,4),game.at(3,4),game.at(4,4),game.at(5,4),game.at(6,4),game.at(7,4),game.at(8,4),game.at(9,4),game.at(10,4),game.at(11,4),game.at(12,4),game.at(13,4),game.at(14,4),game.at(15,4),game.at(16,4),game.at(17,4),game.at(18,4),game.at(19,4),game.at(20,4),game.at(27,4),game.at(28,4),game.at(29,4),game.at(30,4),game.at(31,4),game.at(32,4),game.at(33,4),game.at(34,4),game.at(35,4),game.at(36,4),
+game.at(6,3),game.at(7,3),game.at(8,3),game.at(9,3),game.at(10,3),game.at(11,3),game.at(12,3),game.at(13,3),game.at(14,3),game.at(15,3),game.at(16,3),game.at(17,3),game.at(18,3),game.at(19,3),game.at(20,3),game.at(21,3),game.at(27,3),game.at(28,3),game.at(29,3),game.at(30,3),
+game.at(6,2),game.at(7,2),game.at(8,2),game.at(9,2),game.at(10,2),game.at(11,2),game.at(12,2),game.at(13,2),game.at(14,2),game.at(15,2),game.at(16,2),game.at(17,2),game.at(18,2),game.at(19,2),game.at(20,2),game.at(21,2),game.at(24,2),game.at(25,2),game.at(26,2),game.at(27,2),game.at(28,2),game.at(29,2),game.at(30,2),
+game.at(6,1),game.at(9,1),game.at(10,1),game.at(11,1),game.at(12,1),game.at(13,1),game.at(14,1),game.at(15,1),game.at(16,1),game.at(17,1),game.at(18,1),game.at(19,1),game.at(20,1),game.at(21,1),game.at(22,1),game.at(23,1),game.at(24,1),game.at(25,1),game.at(26,1),game.at(27,1),game.at(28,1),game.at(29,1),game.at(30,1),
+game.at(6,0),game.at(10,0),game.at(11,0),game.at(12,0),game.at(13,0),game.at(14,0),game.at(15,0),game.at(16,0),game.at(17,0),game.at(18,0),game.at(19,0),game.at(20,0),game.at(21,0),game.at(22,0),game.at(23,0),game.at(24,0),game.at(25,0),game.at(26,0),game.at(27,0),game.at(28,0),game.at(29,0),game.at(30,0)
+
+]
 }
 object piedras{
-	const property area = [game.at(26,8),game.at(27,8),game.at(31,16),game.at(22,18)]
+	const property area = [game.at(22,18),game.at(23,18),game.at(24,18),
+game.at(23,17),game.at(24,17),
+game.at(31,16),game.at(32,16),game.at(33,16),
+game.at(31,15),game.at(32,15),game.at(33,15),
+game.at(25,9),game.at(26,9),
+game.at(26,8),game.at(27,8),
+game.at(27,7),
+game.at(26,3),
+game.at(22,2),game.at(23,2),
+game.at(7,1),game.at(8,1),
+game.at(7,0),game.at(8,0),game.at(9,0)]
 }

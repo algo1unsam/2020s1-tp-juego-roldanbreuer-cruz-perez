@@ -113,11 +113,11 @@ object menu{
 					cantAldeanoDisponible += 1
 				}
 				if(tipo == "Minado"){
-					cantAldeanoTalador -= 1
+					cantAldeanoMinero -= 1
 					cantAldeanoDisponible += 1
 				}
 				if(tipo == "Pesca"){
-					cantAldeanoTalador -= 1
+					cantAldeanoPescador -= 1
 					cantAldeanoDisponible += 1
 				}
 				const posic = game.getObjectsIn(objeto).filter({ filtro => filtro.tipo() == tipo }).last()
@@ -125,6 +125,10 @@ object menu{
 			}
 		})
 		if(self.visible() != null) self.cerrar()
+	}
+	
+	method terminarConstruccion(nombre){
+		game.removeTickEvent(nombre)
 	}
 	
 	method accion(accion,lista){
@@ -220,11 +224,23 @@ object menu{
 				lista.forEach({ 
 					objeto => 
 					game.addVisualIn(new Almacen(), objeto)
+					game.addVisualIn(new BarraConstruccion(), objeto)
+					game.onTick((ticksConstruccion/5)*1000,"Construccion Almacen"+objeto.toString(), {
+						const barra = game.getObjectsIn(objeto).find({ filtro => filtro.tipo() == "Barra" })
+						barra.suma()
+						if( barra.progreso() >= 6 ){
+							cantAldeanoDisponible += 1
+							cantAldeanoConstructor -= 1
+							game.removeVisual(barra)
+							self.terminarConstruccion("Construccion Almacen"+objeto.toString())
+						}
+					})
 				})
 				cantRecursoMadera -= costoMadera
 				cantRecursoPiedra -= costoPiedra
 				cantAldeanoDisponible -= 1
 				cantAldeanoConstructor += 1
+				
 			}
 			if(self.visible() != null) self.cerrar()
 		}
@@ -237,11 +253,23 @@ object menu{
 				lista.forEach({ 
 					objeto => 
 					game.addVisualIn(new CasaC(), objeto)
+					game.addVisualIn(new BarraConstruccion(), objeto)
+					game.onTick((ticksConstruccion/5)*1000,"Construccion CasaC"+objeto.toString(), {
+						const barra = game.getObjectsIn(objeto).find({ filtro => filtro.tipo() == "Barra" })
+						barra.suma()
+						if( barra.progreso() >= 6 ){
+							cantAldeanoDisponible += 1
+							cantAldeanoConstructor -= 1
+							game.removeVisual(barra)
+							self.terminarConstruccion("Construccion CasaC"+objeto.toString())
+						}
+					})
 				})
 				cantRecursoMadera -= costoMadera
 				cantRecursoPiedra -= costoPiedra
 				cantAldeanoDisponible -= 1
 				cantAldeanoConstructor += 1
+				
 			}
 			if(self.visible() != null) self.cerrar()
 		}
@@ -254,6 +282,17 @@ object menu{
 				lista.forEach({ 
 					objeto => 
 					game.addVisualIn(new CasaG(), objeto)
+					game.addVisualIn(new BarraConstruccion(), objeto)
+					game.onTick((ticksConstruccion/5)*1000,"Construccion CasaG"+objeto.toString(), {
+						const barra = game.getObjectsIn(objeto).find({ filtro => filtro.tipo() == "Barra" })
+						barra.suma()
+						if( barra.progreso() >= 6 ){
+							cantAldeanoDisponible += 1
+							cantAldeanoConstructor -= 1
+							game.removeVisual(barra)
+							self.terminarConstruccion("Construccion CasaG"+objeto.toString())
+						}
+					})
 				})
 				cantRecursoMadera -= costoMadera
 				cantRecursoPiedra -= costoPiedra
