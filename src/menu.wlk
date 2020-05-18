@@ -118,7 +118,7 @@ object menu{
 			if(cantAldeanos == 0){
 				game.clear()
 				game.addVisualIn(self, game.at(12,5))
-				game.addVisualIn(gameover, game.at(12,11))
+				game.addVisualIn(gameover, game.at(13,10))
 			}
 			centralErrores.error("Ha muerto un aldeano "+sujetoAMorir.tipo())
 		}else{
@@ -127,7 +127,7 @@ object menu{
 			if(cantAldeanos == 0){
 				game.clear()
 				game.addVisualIn(self, game.at(12,5))
-				game.addVisualIn(gameover, game.at(17,6))
+				game.addVisualIn(gameover, game.at(13,10))
 			}
 			centralErrores.error("Ha muerto un aldeano disponible")
 		}
