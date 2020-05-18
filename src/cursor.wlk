@@ -36,7 +36,6 @@ object cursor {
 				if (seleccionInicio.size() == 0){
 					self.position(posicionNueva)
 				}else{
-					self.accesoAlLugar(posicionNueva)
 					self.position(posicionNueva)
 					seleccionInicio.add(position)
 					game.addVisualIn(new Seleccion(), position)

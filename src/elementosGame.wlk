@@ -74,6 +74,12 @@ class Talada{
 	method image() = "assets/talando.png"
 	method calcularRecursos(){}
 }
+class Construir{
+	var property position
+	var property tipo = "Construir"
+	method image() = "assets/construir.png"
+}
+
 
 class Piedras{
 	var property position
@@ -138,17 +144,17 @@ object botonCasaG{
 }
 class CasaC{
 	var property position
-	var property tipo = "construccion"
+	var property tipo = "casac"
 	method image() = "assets/casa1-35.png"
 }
 class CasaG{
 	var property position
-	var property tipo = "construccion"
+	var property tipo = "casag"
 	method image() = "assets/casa2-35.png"
 }
 class Almacen{
 	var property position
-	var property tipo = "construccion"
+	var property tipo = "almacen"
 	method image() = "assets/almacen35.png"
 }
 

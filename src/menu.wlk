@@ -69,7 +69,7 @@ object menu{
 			game.addVisualIn(botonMinar, game.at(16,11))
 			game.addVisualIn(botonDetener, game.at(19,11))
 			game.addVisualIn(botonCancelar, game.at(13,6))
-			game.addVisualIn(botonSalir, game.at(21,6))
+			game.addVisualIn(botonSalir, game.at(20,6))
 		}
 		if(motivo == "construccion"){
 			game.addVisualIn(self, game.at(12,5))
@@ -78,7 +78,7 @@ object menu{
 			game.addVisualIn(botonCasaC, game.at(16,10))
 			game.addVisualIn(botonCasaG, game.at(19,10))
 			game.addVisualIn(botonCancelar, game.at(13,6))
-			game.addVisualIn(botonSalir, game.at(21,6))
+			game.addVisualIn(botonSalir, game.at(20,6))
 		}
 	}
 	
@@ -124,6 +124,12 @@ object menu{
 					cantAldeanoDisponible += 1
 					game.removeVisual(game.getObjectsIn(objeto).find({ filtro => filtro.tipo() == "Barra" }))
 					self.terminarConstruccion("Recoleccion Pesca"+objeto.toString())
+				}
+				if(tipo == "Construir"){
+					cantAldeanoDisponible += 1
+					cantAldeanoConstructor -= 1
+					self.terminarConstruccion("Construccion"+objeto.toString())
+					
 				}
 				const posic = game.getObjectsIn(objeto).filter({ filtro => filtro.tipo() == tipo }).last()
 				game.removeVisual(posic)
@@ -285,12 +291,17 @@ object menu{
 			const costoPiedra = 50
 			const ticksConstruccion = 10
 			
-			if(costoMadera <= cantRecursoMadera and costoPiedra <= cantRecursoPiedra and cantAldeanoDisponible > 0){
+			if((costoMadera <= cantRecursoMadera and costoPiedra <= cantRecursoPiedra and cantAldeanoDisponible > 0) or game.getObjectsIn(cursor.position()).filter({ filtro => filtro.tipo() == "Barra" }).size() > 0){
 				lista.forEach({ 
 					objeto => 
-					game.addVisualIn(new Almacen(), objeto)
-					game.addVisualIn(new BarraConstruccion(), objeto)
-					game.onTick((ticksConstruccion/5)*1000,"Construccion Almacen"+objeto.toString(), {
+					game.addVisualIn(new Construir(), objeto)
+					if(game.getObjectsIn(objeto).filter({ filtro => filtro.tipo() == "Barra" }).size() == 0){
+						game.addVisualIn(new BarraConstruccion(), objeto)
+						game.addVisualIn(new Almacen(), objeto)
+						cantRecursoMadera -= costoMadera
+						cantRecursoPiedra -= costoPiedra
+					}
+					game.onTick((ticksConstruccion/5)*1000,"Construccion"+objeto.toString(), {
 						const barra = game.getObjectsIn(objeto).find({ filtro => filtro.tipo() == "Barra" })
 						barra.suma()
 						if( barra.progreso() >= 6 ){
@@ -299,12 +310,11 @@ object menu{
 							maxAlmacen += 50
 							game.removeVisual(barra)
 							game.addVisualIn(new BarraAlmacen(), objeto)
-							self.terminarConstruccion("Construccion Almacen"+objeto.toString())
+							game.removeVisual(game.getObjectsIn(objeto).find({ filtro => filtro.tipo() == "Construir" }))
+							self.terminarConstruccion("Construccion"+objeto.toString())
 						}
 					})
 				})
-				cantRecursoMadera -= costoMadera
-				cantRecursoPiedra -= costoPiedra
 				cantAldeanoDisponible -= 1
 				cantAldeanoConstructor += 1
 				
@@ -316,12 +326,17 @@ object menu{
 			const costoPiedra = 0
 			const ticksConstruccion = 20
 			
-			if(costoMadera <= cantRecursoMadera and costoPiedra <= cantRecursoPiedra and cantAldeanoDisponible > 0){
+			if((costoMadera <= cantRecursoMadera and costoPiedra <= cantRecursoPiedra and cantAldeanoDisponible > 0) or game.getObjectsIn(cursor.position()).filter({ filtro => filtro.tipo() == "Barra" }).size() > 0){
 				lista.forEach({ 
 					objeto => 
-					game.addVisualIn(new CasaC(), objeto)
-					game.addVisualIn(new BarraConstruccion(), objeto)
-					game.onTick((ticksConstruccion/5)*1000,"Construccion CasaC"+objeto.toString(), {
+					game.addVisualIn(new Construir(), objeto)
+					if(game.getObjectsIn(objeto).filter({ filtro => filtro.tipo() == "Barra" }).size() == 0){
+						game.addVisualIn(new BarraConstruccion(), objeto)
+						game.addVisualIn(new CasaC(), objeto)
+						cantRecursoMadera -= costoMadera
+						cantRecursoPiedra -= costoPiedra
+					}
+					game.onTick((ticksConstruccion/5)*1000,"Construccion"+objeto.toString(), {
 						const barra = game.getObjectsIn(objeto).find({ filtro => filtro.tipo() == "Barra" })
 						barra.suma()
 						if( barra.progreso() >= 6 ){
@@ -329,12 +344,11 @@ object menu{
 							cantAldeanoConstructor -= 1
 							cantPoblacion += 1
 							game.removeVisual(barra)
-							self.terminarConstruccion("Construccion CasaC"+objeto.toString())
+							game.removeVisual(game.getObjectsIn(objeto).find({ filtro => filtro.tipo() == "Construir" }))
+							self.terminarConstruccion("Construccion"+objeto.toString())
 						}
 					})
-				})
-				cantRecursoMadera -= costoMadera
-				cantRecursoPiedra -= costoPiedra
+				}
 				cantAldeanoDisponible -= 1
 				cantAldeanoConstructor += 1
 				
@@ -346,12 +360,17 @@ object menu{
 			const costoPiedra = 100
 			const ticksConstruccion = 50
 			
-			if(costoMadera <= cantRecursoMadera and costoPiedra <= cantRecursoPiedra and cantAldeanoDisponible > 0){
+			if((costoMadera <= cantRecursoMadera and costoPiedra <= cantRecursoPiedra and cantAldeanoDisponible > 0) or game.getObjectsIn(cursor.position()).filter({ filtro => filtro.tipo() == "Barra" }).size() > 0){
 				lista.forEach({ 
 					objeto => 
-					game.addVisualIn(new CasaG(), objeto)
-					game.addVisualIn(new BarraConstruccion(), objeto)
-					game.onTick((ticksConstruccion/5)*1000,"Construccion CasaG"+objeto.toString(), {
+					game.addVisualIn(new Construir(), objeto)
+					if(game.getObjectsIn(objeto).filter({ filtro => filtro.tipo() == "Barra" }).size() == 0){
+						game.addVisualIn(new CasaG(), objeto)
+						game.addVisualIn(new BarraConstruccion(), objeto)
+						cantRecursoMadera -= costoMadera
+						cantRecursoPiedra -= costoPiedra
+					}
+					game.onTick((ticksConstruccion/5)*1000,"Construccion"+objeto.toString(), {
 						const barra = game.getObjectsIn(objeto).find({ filtro => filtro.tipo() == "Barra" })
 						barra.suma()
 						if( barra.progreso() >= 6 ){
@@ -359,12 +378,11 @@ object menu{
 							cantAldeanoConstructor -= 1
 							cantPoblacion += 3
 							game.removeVisual(barra)
-							self.terminarConstruccion("Construccion CasaG"+objeto.toString())
+							game.removeVisual(game.getObjectsIn(objeto).find({ filtro => filtro.tipo() == "Construir" }))
+							self.terminarConstruccion("Construccion"+objeto.toString())
 						}
 					})
 				})
-				cantRecursoMadera -= costoMadera
-				cantRecursoPiedra -= costoPiedra
 				cantAldeanoDisponible -= 1
 				cantAldeanoConstructor += 1
 			}

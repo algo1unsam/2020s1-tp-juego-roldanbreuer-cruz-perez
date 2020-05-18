@@ -23,11 +23,13 @@ object teclas{
 			menu.remover("Talada", menu.seleccionado())
 			menu.remover("Minado", menu.seleccionado())
 			menu.remover("Pesca", menu.seleccionado())
+			menu.remover("Construir", menu.seleccionado())
 		}
-		if(menu.visible() == "tecla"){
+		if(menu.visible() == "tecla" or menu.visible() == null){
 			menu.remover("Talada", [cursor.position()])
 			menu.remover("Minado", [cursor.position()])
 			menu.remover("Pesca", [cursor.position()])
+			menu.remover("Construir", [cursor.position()])
 		}
 		if(menu.visible() == "construccion"){
 			menu.accion("CasaC", [cursor.position()])
@@ -97,6 +99,18 @@ object teclas{
 			if(listaPos.filter({ objeto => objeto.tipo() == "Piedras" }).size() > 0 and 
 				listaPos.filter({ objeto => objeto.tipo() == "Minado" }).size() == 0){
 				menu.accion("minar", [cursor.position()])
+			}
+			if(listaPos.filter({ objeto => objeto.tipo() == "casac" }).size() > 0 and 
+				listaPos.filter({ objeto => objeto.tipo() == "Barra" }).size() > 0){
+				menu.accion("CasaC", [cursor.position()])
+			}
+			if(listaPos.filter({ objeto => objeto.tipo() == "casag" }).size() > 0 and 
+				listaPos.filter({ objeto => objeto.tipo() == "Barra" }).size() > 0){
+				menu.accion("CasaG", [cursor.position()])
+			}
+			if(listaPos.filter({ objeto => objeto.tipo() == "almacen" }).size() > 0 and 
+				listaPos.filter({ objeto => objeto.tipo() == "Barra" }).size() > 0){
+				menu.accion("Almacen", [cursor.position()])
 			}
 		}
 	}
