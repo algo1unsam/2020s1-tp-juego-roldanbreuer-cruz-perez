@@ -74,11 +74,6 @@ class Lago{
 	var property tipo="Agua"
 	method image()= "vacio35.png"
 }
-object resource{
-	method calculo(cantidad,recursos){
-		return cantidad*recursos}
-	
-}
 object botonTalar{
 	var property tipo = "boton"
 	method image() = "assets/botonTalar.png"
