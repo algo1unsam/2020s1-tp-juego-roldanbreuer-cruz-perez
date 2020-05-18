@@ -20,16 +20,16 @@ object teclas{
 	method w() { 
 		if(menu.visible() == "postSeleccion"){
 			menu.remover("Seleccion", menu.seleccionado())
-			menu.remover("Talada", menu.seleccionado())
-			menu.remover("Minado", menu.seleccionado())
-			menu.remover("Pesca", menu.seleccionado())
-			menu.remover("Construir", menu.seleccionado())
+			menu.remover("Talador", menu.seleccionado())
+			menu.remover("Minero", menu.seleccionado())
+			menu.remover("Pescador", menu.seleccionado())
+			menu.remover("Constructor", menu.seleccionado())
 		}
 		if(menu.visible() == "tecla" or menu.visible() == null){
-			menu.remover("Talada", [cursor.position()])
-			menu.remover("Minado", [cursor.position()])
-			menu.remover("Pesca", [cursor.position()])
-			menu.remover("Construir", [cursor.position()])
+			menu.remover("Talador", [cursor.position()])
+			menu.remover("Minero", [cursor.position()])
+			menu.remover("Pescador", [cursor.position()])
+			menu.remover("Constructor", [cursor.position()])
 		}
 		if(menu.visible() == "construccion"){
 			menu.accion("CasaC", [cursor.position()])
@@ -80,6 +80,9 @@ object teclas{
 	method f(){
 		
 	}
+	method k(){
+		menu.killRandom()
+	}
 	method c(){
 		if(menu.visible() == null and cursor.seleccionInicio().size() == 0){
 			if(game.getObjectsIn(cursor.position()).size() == 1){
@@ -93,11 +96,11 @@ object teclas{
 		const listaPos = game.getObjectsIn(cursor.position())
 		if(menu.visible() == null){
 			if(listaPos.filter({ objeto => objeto.tipo() == "Arboleda" }).size() > 0 and 
-				listaPos.filter({ objeto => objeto.tipo() == "Talada" }).size() == 0){
+				listaPos.filter({ objeto => objeto.tipo() == "Talador" }).size() == 0){
 				menu.accion("talar", [cursor.position()])
 			}
 			if(listaPos.filter({ objeto => objeto.tipo() == "Piedras" }).size() > 0 and 
-				listaPos.filter({ objeto => objeto.tipo() == "Minado" }).size() == 0){
+				listaPos.filter({ objeto => objeto.tipo() == "Minero" }).size() == 0){
 				menu.accion("minar", [cursor.position()])
 			}
 			if(listaPos.filter({ objeto => objeto.tipo() == "casac" }).size() > 0 and 

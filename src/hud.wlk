@@ -102,6 +102,7 @@ object cientos{
 }
 //////---------------------------------------TIMER HUD
 object timerUnidad{
+	var property tipo = "numerosHUD"
 	var property position= game.at(36,19)
 	method image(){
 		const stringNumero= timer.segundos().toString()
@@ -109,6 +110,7 @@ object timerUnidad{
 	}
 }
 object timerDecena{
+	var property tipo = "numerosHUD"
 	var property position = game.at(36,19)
 	
 	method image(){
@@ -126,6 +128,7 @@ object timerDecena{
 ////// ------------------------------------- ALMACEN HUD
 
 object almacenUnidad{
+	var property tipo = "numerosHUD"
 	var property position = game.at(17,19)
 	
 	method image(){
@@ -134,6 +137,7 @@ object almacenUnidad{
 	}
 }
 object almacenDecena{
+	var property tipo = "numerosHUD"
 	var property position = game.at(17,19)
 	
 	method image(){
@@ -146,6 +150,7 @@ object almacenDecena{
 	}
 }
 object almacenCientos{
+	var property tipo = "numerosHUD"
 	var property position = game.at(17,19)
 	
 	method image(){
@@ -158,6 +163,7 @@ object almacenCientos{
 	}
 } 
 object almacenMiles{
+	var property tipo = "numerosHUD"
 	var property position = game.at(16,19)
 	
 	method image(){
@@ -170,6 +176,7 @@ object almacenMiles{
 	}
 }
 object almacenDecenaMiles{
+	var property tipo = "numerosHUD"
 	var property position = game.at(16,19)
 	
 	method image(){
@@ -182,6 +189,7 @@ object almacenDecenaMiles{
 	}
 }
 object almacenCientosMiles{
+	var property tipo = "numerosHUD"
 	var property position = game.at(16,19)
 	
 	method image(){
@@ -197,6 +205,7 @@ object almacenCientosMiles{
 ////// ------------------------------------- ALIMENTO HUD
 
 object alimentoUnidad{
+	var property tipo = "numerosHUD"
 	var property position = game.at(2,19)
 	
 	method image(){
@@ -205,6 +214,7 @@ object alimentoUnidad{
 	}
 }
 object alimentoDecena{
+	var property tipo = "numerosHUD"
 	var property position = game.at(2,19)
 	
 	method image(){
@@ -217,6 +227,7 @@ object alimentoDecena{
 	}
 }
 object alimentoCientos{
+	var property tipo = "numerosHUD"
 	var property position = game.at(2,19)
 	
 	method image(){
@@ -229,6 +240,7 @@ object alimentoCientos{
 	}
 } 
 object alimentoMiles{
+	var property tipo = "numerosHUD"
 	var property position = game.at(1,19)
 	
 	method image(){
@@ -241,6 +253,7 @@ object alimentoMiles{
 	}
 }
 object alimentoDecenaMiles{
+	var property tipo = "numerosHUD"
 	var property position = game.at(1,19)
 	
 	method image(){
@@ -253,6 +266,7 @@ object alimentoDecenaMiles{
 	}
 }
 object alimentoCientosMiles{
+	var property tipo = "numerosHUD"
 	var property position = game.at(1,19)
 	
 	method image(){
@@ -268,6 +282,7 @@ object alimentoCientosMiles{
 ////// ------------------------------------- MADERA HUD
 
 object maderaUnidad{
+	var property tipo = "numerosHUD"
 	var property position = game.at(5,19)
 	
 	method image(){
@@ -276,6 +291,7 @@ object maderaUnidad{
 	}
 }
 object maderaDecena{
+	var property tipo = "numerosHUD"
 	var property position = game.at(5,19)
 	
 	method image(){
@@ -288,6 +304,7 @@ object maderaDecena{
 	}
 }
 object maderaCientos{
+	var property tipo = "numerosHUD"
 	var property position = game.at(5,19)
 	
 	method image(){
@@ -300,6 +317,7 @@ object maderaCientos{
 	}
 } 
 object maderaMiles{
+	var property tipo = "numerosHUD"
 	var property position = game.at(4,19)
 	
 	method image(){
@@ -312,6 +330,7 @@ object maderaMiles{
 	}
 }
 object maderaDecenaMiles{
+	var property tipo = "numerosHUD"
 	var property position = game.at(4,19)
 	
 	method image(){
@@ -324,6 +343,7 @@ object maderaDecenaMiles{
 	}
 }
 object maderaCientosMiles{
+	var property tipo = "numerosHUD"
 	var property position = game.at(4,19)
 	
 	method image(){
@@ -339,6 +359,7 @@ object maderaCientosMiles{
 ////// ------------------------------------- PIEDRA HUD
 
 object piedraUnidad{
+	var property tipo = "numerosHUD"
 	var property position = game.at(8,19)
 	
 	method image(){
@@ -347,6 +368,7 @@ object piedraUnidad{
 	}
 }
 object piedraDecena{
+	var property tipo = "numerosHUD"
 	var property position = game.at(8,19)
 	
 	method image(){
@@ -359,6 +381,7 @@ object piedraDecena{
 	}
 }
 object piedraCientos{
+	var property tipo = "numerosHUD"
 	var property position = game.at(8,19)
 	
 	method image(){
@@ -371,6 +394,7 @@ object piedraCientos{
 	}
 } 
 object piedraMiles{
+	var property tipo = "numerosHUD"
 	var property position = game.at(7,19)
 	
 	method image(){
@@ -383,6 +407,7 @@ object piedraMiles{
 	}
 }
 object piedraDecenaMiles{
+	var property tipo = "numerosHUD"
 	var property position = game.at(7,19)
 	
 	method image(){
@@ -395,6 +420,7 @@ object piedraDecenaMiles{
 	}
 }
 object piedraCientosMiles{
+	var property tipo = "numerosHUD"
 	var property position = game.at(7,19)
 	
 	method image(){
@@ -410,6 +436,7 @@ object piedraCientosMiles{
 ////// ------------------------------------- ALDEANOS HUD
 
 object aldeanosUnidad{
+	var property tipo = "numerosHUD"
 	var property position = game.at(11,19)
 	
 	method image(){
@@ -418,6 +445,7 @@ object aldeanosUnidad{
 	}
 }
 object aldeanosDecena{
+	var property tipo = "numerosHUD"
 	var property position = game.at(11,19)
 	
 	method image(){
@@ -430,6 +458,7 @@ object aldeanosDecena{
 	}
 }
 object aldeanosCientos{
+	var property tipo = "numerosHUD"
 	var property position = game.at(11,19)
 	
 	method image(){
@@ -442,6 +471,7 @@ object aldeanosCientos{
 	}
 } 
 object aldeanosMiles{
+	var property tipo = "numerosHUD"
 	var property position = game.at(10,19)
 	
 	method image(){
@@ -454,6 +484,7 @@ object aldeanosMiles{
 	}
 }
 object aldeanosDecenaMiles{
+	var property tipo = "numerosHUD"
 	var property position = game.at(10,19)
 	
 	method image(){
@@ -466,6 +497,7 @@ object aldeanosDecenaMiles{
 	}
 }
 object aldeanosCientosMiles{
+	var property tipo = "numerosHUD"
 	var property position = game.at(10,19)
 	
 	method image(){
@@ -481,6 +513,7 @@ object aldeanosCientosMiles{
 ////// ------------------------------------- POBLACION HUD
 
 object poblacionUnidad{
+	var property tipo = "numerosHUD"
 	var property position = game.at(14,19)
 	
 	method image(){
@@ -489,6 +522,7 @@ object poblacionUnidad{
 	}
 }
 object poblacionDecena{
+	var property tipo = "numerosHUD"
 	var property position = game.at(14,19)
 	
 	method image(){
@@ -501,6 +535,7 @@ object poblacionDecena{
 	}
 }
 object poblacionCientos{
+	var property tipo = "numerosHUD"
 	var property position = game.at(14,19)
 	
 	method image(){
@@ -513,6 +548,7 @@ object poblacionCientos{
 	}
 } 
 object poblacionMiles{
+	var property tipo = "numerosHUD"
 	var property position = game.at(13,19)
 	
 	method image(){
@@ -525,6 +561,7 @@ object poblacionMiles{
 	}
 }
 object poblacionDecenaMiles{
+	var property tipo = "numerosHUD"
 	var property position = game.at(13,19)
 	
 	method image(){
@@ -537,6 +574,7 @@ object poblacionDecenaMiles{
 	}
 }
 object poblacionCientosMiles{
+	var property tipo = "numerosHUD"
 	var property position = game.at(13,19)
 	
 	method image(){
@@ -552,6 +590,7 @@ object poblacionCientosMiles{
 //// ----------------- Hud Aldeanos
 
 object aldDispUnidad{
+	var property tipo = "numerosHUD"
 	var property position = game.at(2,3)
 	
 	method image(){
@@ -560,6 +599,7 @@ object aldDispUnidad{
 	}
 }
 object aldDispDecena{
+	var property tipo = "numerosHUD"
 	var property position = game.at(2,3)
 	
 	method image(){
@@ -572,6 +612,7 @@ object aldDispDecena{
 	}
 }
 object aldDispCientos{
+	var property tipo = "numerosHUD"
 	var property position = game.at(2,3)
 	
 	method image(){
@@ -585,6 +626,7 @@ object aldDispCientos{
 } 
 
 object taladorUnidad{
+	var property tipo = "numerosHUD"
 	var property position = game.at(2,2)
 	
 	method image(){
@@ -593,6 +635,7 @@ object taladorUnidad{
 	}
 }
 object taladorDecena{
+	var property tipo = "numerosHUD"
 	var property position = game.at(2,2)
 	
 	method image(){
@@ -605,6 +648,7 @@ object taladorDecena{
 	}
 }
 object taladorCientos{
+	var property tipo = "numerosHUD"
 	var property position = game.at(2,2)
 	
 	method image(){
@@ -618,6 +662,7 @@ object taladorCientos{
 } 
 
 object mineroUnidad{
+	var property tipo = "numerosHUD"
 	var property position = game.at(2,1)
 	
 	method image(){
@@ -626,6 +671,7 @@ object mineroUnidad{
 	}
 }
 object mineroDecena{
+	var property tipo = "numerosHUD"
 	var property position = game.at(2,1)
 	
 	method image(){
@@ -638,6 +684,7 @@ object mineroDecena{
 	}
 }
 object mineroCientos{
+	var property tipo = "numerosHUD"
 	var property position = game.at(2,1)
 	
 	method image(){
@@ -651,6 +698,7 @@ object mineroCientos{
 } 
 
 object constructorUnidad{
+	var property tipo = "numerosHUD"
 	var property position = game.at(2,0)
 	
 	method image(){
@@ -659,6 +707,7 @@ object constructorUnidad{
 	}
 }
 object constructorDecena{
+	var property tipo = "numerosHUD"
 	var property position = game.at(2,0)
 	
 	method image(){
@@ -671,6 +720,7 @@ object constructorDecena{
 	}
 }
 object constructorCientos{
+	var property tipo = "numerosHUD"
 	var property position = game.at(2,0)
 	
 	method image(){
@@ -684,6 +734,7 @@ object constructorCientos{
 } 
 
 object granjeroUnidad{
+	var property tipo = "numerosHUD"
 	var property position = game.at(5,3)
 	
 	method image(){
@@ -692,6 +743,7 @@ object granjeroUnidad{
 	}
 }
 object granjeroDecena{
+	var property tipo = "numerosHUD"
 	var property position = game.at(5,3)
 	
 	method image(){
@@ -704,6 +756,7 @@ object granjeroDecena{
 	}
 }
 object granjeroCientos{
+	var property tipo = "numerosHUD"
 	var property position = game.at(5,3)
 	
 	method image(){
@@ -717,6 +770,7 @@ object granjeroCientos{
 } 
 
 object agricultorUnidad{
+	var property tipo = "numerosHUD"
 	var property position = game.at(5,2)
 	
 	method image(){
@@ -725,6 +779,7 @@ object agricultorUnidad{
 	}
 }
 object agricultorDecena{
+	var property tipo = "numerosHUD"
 	var property position = game.at(5,2)
 	
 	method image(){
@@ -737,6 +792,7 @@ object agricultorDecena{
 	}
 }
 object agricultorCientos{
+	var property tipo = "numerosHUD"
 	var property position = game.at(5,2)
 	
 	method image(){
@@ -751,6 +807,7 @@ object agricultorCientos{
 
 
 object pescadorUnidad{
+	var property tipo = "numerosHUD"
 	var property position = game.at(5,1)
 	
 	method image(){
@@ -759,6 +816,7 @@ object pescadorUnidad{
 	}
 }
 object pescadorDecena{
+	var property tipo = "numerosHUD"
 	var property position = game.at(5,1)
 	
 	method image(){
@@ -771,6 +829,7 @@ object pescadorDecena{
 	}
 }
 object pescadorCientos{
+	var property tipo = "numerosHUD"
 	var property position = game.at(5,1)
 	
 	method image(){
@@ -784,6 +843,7 @@ object pescadorCientos{
 } 
 
 object cazadorUnidad{
+	var property tipo = "numerosHUD"
 	var property position = game.at(5,0)
 	
 	method image(){
@@ -792,6 +852,7 @@ object cazadorUnidad{
 	}
 }
 object cazadorDecena{
+	var property tipo = "numerosHUD"
 	var property position = game.at(5,0)
 	
 	method image(){
@@ -804,6 +865,7 @@ object cazadorDecena{
 	}
 }
 object cazadorCientos{
+	var property tipo = "numerosHUD"
 	var property position = game.at(5,0)
 	
 	method image(){

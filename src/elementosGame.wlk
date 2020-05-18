@@ -11,6 +11,10 @@ object centralErrores{
 	method image() = "assets/vacio35.png"
 }
 
+object aldeanoLibre{
+	var property tipo = "AldeanoLibre"
+}
+
 class BarraConstruccion{
 	var property position
 	var property tipo = "Barra"
@@ -70,13 +74,13 @@ class Arboleda{
 }
 class Talada{
 	var property position
-	var property tipo = "Talada"
+	var property tipo = "Talador"
 	method image() = "assets/talando.png"
 	method calcularRecursos(){}
 }
 class Construir{
 	var property position
-	var property tipo = "Construir"
+	var property tipo = "Constructor"
 	method image() = "assets/construir.png"
 }
 
@@ -89,12 +93,12 @@ class Piedras{
 
 class Minado{
 	var property position
-	var property tipo = "Minado"
+	var property tipo = "Minero"
 	method image() = "assets/minado.png"
 }
 class Pesca{
 	var property position
-	var property tipo = "Pesca"
+	var property tipo = "Pescador"
 	method image() = "assets/pesca.png"
 }
 class Lago{
@@ -312,6 +316,12 @@ class CeroCeroCero{
 	var property position
 	var property tipo = "numero"
 	method image() = "assets/0__.png"
+}
+
+object gameover{
+	var property position
+	var property tipo = "gameover"
+	method image() = "assets/gameover.png"
 }
 
 object agua{
