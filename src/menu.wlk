@@ -10,12 +10,12 @@ object menu{
 	var property visible
 	var property seleccionado = []
 		
-	var property cantRecursoMadera=10000
-	var property cantRecursoPiedra=50000
+	var property cantRecursoMadera=100
+	var property cantRecursoPiedra=50
 	var property cantRecursoAlimento=0
 	var property cantAldeanos = 5
 	var property cantPoblacion = 5
-	var property maxAlmacen = 100000
+	var property maxAlmacen = 100
 	
 	var property cantAldeanoDisponible = 5
 	var property cantAldeanoTalador = 0
@@ -102,6 +102,31 @@ object menu{
 			game.removeVisual(botonSalir)
 		}
 		visible = null
+	}
+	
+	method Alimentar(){
+		const alimentoNecesario = cantAldeanos * 5
+		const alimentoRestante = cantRecursoAlimento - alimentoNecesario
+		if(alimentoRestante < 0){
+			cantRecursoAlimento = 0
+			const cantidadDeMuertes = alimentoRestante.abs().div(5)
+			var inicio = 1000
+			cantidadDeMuertes.times({ i => game.schedule(inicio, { => self.killRandom() }) 
+										inicio += 500 })
+		}else{
+			cantRecursoAlimento = alimentoRestante
+		}
+	}
+	
+	method Nacimiento(){
+		const alimentoNecesario = cantAldeanos * 5
+		const alimentoRestante = cantRecursoAlimento - alimentoNecesario
+		if(alimentoRestante >= 100){
+			cantAldeanoDisponible += 1
+			cantAldeanos += 1
+			cantRecursoAlimento -= 50
+			game.say(centralErrores, "Ha nacido un nuevo Aldeano")
+		}
 	}
 	
 	method killRandom(){

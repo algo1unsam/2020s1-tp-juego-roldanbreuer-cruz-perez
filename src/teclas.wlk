@@ -81,7 +81,7 @@ object teclas{
 		
 	}
 	method k(){
-		menu.killRandom()
+		menu.Alimentar()
 	}
 	method c(){
 		if(menu.visible() == null and cursor.seleccionInicio().size() == 0){
