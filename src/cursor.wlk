@@ -22,7 +22,7 @@ object cursor {
 	var property tipo = "Cursor"
 	method seleccion() {
 		if (seleccionInicio.size() == 0){
-			self.accesoAlLugar(objeto)
+			self.accesoAlLugar(self.position())
 			seleccionInicio.add(self.position())
 			game.addVisualIn(new Seleccion(), position)
 		}else{
@@ -36,7 +36,7 @@ object cursor {
 				if (seleccionInicio.size() == 0){
 					self.position(posicionNueva)
 				}else{
-					self.accesoAlLugar(objeto)
+					self.accesoAlLugar(posicionNueva)
 					self.position(posicionNueva)
 					seleccionInicio.add(position)
 					game.addVisualIn(new Seleccion(), position)
