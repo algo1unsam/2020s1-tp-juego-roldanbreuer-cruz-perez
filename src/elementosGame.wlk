@@ -1,6 +1,9 @@
 import wollok.game.*
 import cursor.*
 import menu.*
+
+
+
 //en este archivo solo se van a encontrar los elementos que interactuen con los aldeanos(arboledas
 //casas, pesca etc..)
 

@@ -1,7 +1,10 @@
-import wollok.game.*
-import cursor.*
-import elementosGame.*
-import teclas.*
+//import wollok.game.*
+//import cursor.*
+//import elementosGame.*
+//import teclas.*
+
+
+
 //solo para comodidad del desarrollo del juego
 //en este archivo se encuentran solamente los elementos que componen el menu
 

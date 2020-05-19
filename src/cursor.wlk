@@ -2,6 +2,9 @@ import wollok.game.*
 import elementosGame.*
 import menu.*
 import teclas.*
+
+
+
 //aqui se encuentra nuestro cursor y su configuracion
 class Seleccion{
 	var property position

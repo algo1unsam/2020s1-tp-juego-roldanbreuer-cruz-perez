@@ -3,6 +3,9 @@ import cursor.*
 import elementosGame.*
 import menu.*
 import timer.*
+
+
+
 //solo para comodidad del desarrollo del juego
 //en este archivo solo se encuentra la configuracion de las teclas
 object teclas{

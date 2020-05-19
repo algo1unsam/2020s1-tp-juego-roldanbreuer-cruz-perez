@@ -5,6 +5,8 @@ import menu.*
 import teclas.*
 import hud.*
 import timer.*
+
+
 //aqui solo configuracion de teclas y game
 //solo para comodidad del desarrollo del juego
 program game {
@@ -41,9 +43,9 @@ program game {
 	keyboard.num3().onPressDo { menu.sumPiedra(100) }
 	keyboard.num4().onPressDo { menu.Nacimiento() }
 	keyboard.minusKey().onPressDo { teclas.menos() }
-	menu.accion("plantar", arboledaNO.area())
-	menu.accion("colocarPiedra", piedras.area())
-	menu.accion("colocarLago", agua.area())
+	//menu.accion("plantar", arboledaNO.area())
+	//menu.accion("colocarPiedra", piedras.area())
+	//menu.accion("colocarLago", agua.area())
 	cargaHud.cargar()
 	timer.inicio()
 	game.addVisualIn(centralErrores, game.at(31,0))

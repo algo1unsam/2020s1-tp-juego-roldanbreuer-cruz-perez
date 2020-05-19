@@ -2,6 +2,8 @@ import wollok.game.*
 import cursor.*
 import hud.*
 import menu.*
+
+
 object timer{
 	var property segundos=0
 	var property minutos=0
