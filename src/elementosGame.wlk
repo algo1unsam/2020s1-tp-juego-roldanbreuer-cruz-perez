@@ -123,7 +123,7 @@ class Pesca{
 class Lago{
 	var property position
 	var property tipo="Agua"
-	method image()= "vacio35.png"
+	method image()= "assets/vacio35.png"
 }
 object botonTalar{
 	var property tipo = "boton"

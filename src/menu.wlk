@@ -1,9 +1,7 @@
-//import wollok.game.*
-//import cursor.*
-//import elementosGame.*
-//import teclas.*
-
-
+import wollok.game.*
+import cursor.*
+import elementosGame.*
+import teclas.*
 
 //solo para comodidad del desarrollo del juego
 //en este archivo se encuentran solamente los elementos que componen el menu
@@ -156,9 +154,6 @@ object menu{
 		}
 		 
 	}
-	
-	
-	
 	method remover(tipo,lista){
 		lista.forEach({ 
 			objeto => 
@@ -195,7 +190,6 @@ object menu{
 					cantAldeanoDisponible += 1
 					cantAldeanoConstructor -= 1
 					self.terminarConstruccion("Construccion"+objeto.toString())
-					
 				}
 				if(tipo == "Constructor2"){
 					cantAldeanoDisponible += 2
@@ -217,14 +211,27 @@ object menu{
 	method accion(accion,lista){
 		// aparecer
 		if(accion == "plantar") {
-			self.remover("Seleccion", lista)
 			lista.forEach({ 
 				objeto => 
 				game.addVisualIn(new Arboleda(), objeto)
 			})
 		
 		}
-		//listaPos.filter({ objeto => objeto.tipo() == "Arboleda" })
+		if(accion == "colocarPiedra") {
+			lista.forEach({ 
+				objeto => 
+				game.addVisualIn(new Piedras(), objeto)
+			})
+		}
+		if(accion == "colocarLago") {
+			lista.forEach({ 
+				objeto => 
+				game.addVisualIn(new Lago(), objeto)
+			})
+		}
+		
+		////--------------------------------------------- RECOLECCION
+		
 		if(accion == "talar") {
 			const recurso = 50
 			const ticksRecurso = 60
@@ -265,25 +272,6 @@ object menu{
 				}
 			})
 		}
-		
-		
-		if(accion == "colocarPiedra") {
-			
-			self.remover("Seleccion", lista)
-			lista.forEach({ 
-				objeto => 
-				game.addVisualIn(new Piedras(), objeto)
-			})
-		}
-		if(accion == "colocarLago") {
-			
-			self.remover("Seleccion", lista)
-			lista.forEach({ 
-				objeto => 
-				game.addVisualIn(new Lago(), objeto)
-			})
-		}
-		
 		if(accion == "minar") {
 			const recurso = 75
 			const ticksRecurso = 120
@@ -359,6 +347,10 @@ object menu{
 				}
 			})
 		}
+		
+		
+		
+		
 		if(accion == "granja") {
 			const recurso=50
 			const ticksRecurso = 150
@@ -429,6 +421,7 @@ object menu{
 		}
 		
 		
+		////--------------------------------------------- CONSTRUCCIONES 
 		if(accion == "Almacen") {
 			const costoMadera = 0
 			const costoPiedra = 50
@@ -689,6 +682,7 @@ object menu{
 			}
 			if(self.visible() != null) self.cerrar()
 		}
+	
 	}
 	
 }
