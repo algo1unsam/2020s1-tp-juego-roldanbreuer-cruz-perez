@@ -113,7 +113,7 @@ object teclas{
 			}
 			if(listaPos.filter({ objeto => objeto.tipo() == "Agua" }).size() > 0 and 
 				listaPos.filter({ objeto => objeto.tipo() == "Pescador" }).size() == 0){
-				menu.accion("talar", [cursor.position()])
+				menu.accion("pesca", [cursor.position()])
 			}
 			if(listaPos.filter({ objeto => objeto.tipo() == "Piedras" }).size() > 0 and 
 				listaPos.filter({ objeto => objeto.tipo() == "Minero" }).size() == 0){
