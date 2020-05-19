@@ -15,11 +15,9 @@ object timer{
 		if(acumuladorTiempo == 59){
 			minutos+=1
 			menu.Alimentar()
+			if(minutos.even()){menu.Nacimiento()}
 			segundos=0
 			acumuladorTiempo=0
-		}
-		if(acumuladorTiempo%5==0){
-			menu.Nacimiento()
 		}
 		
 	}
