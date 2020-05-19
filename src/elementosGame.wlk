@@ -75,6 +75,7 @@ class Arboleda{
 class Talada{
 	var property position
 	var property tipo = "Talador"
+	method sound()= "talar.ogg"
 	method image() = "assets/talando.png"
 	method calcularRecursos(){}
 }
@@ -98,6 +99,7 @@ class Piedras{
 class Minado{
 	var property position
 	var property tipo = "Minero"
+	method sound()="minar.ogg"
 	method image() = "assets/minado.png"
 }
 class Granjero{
