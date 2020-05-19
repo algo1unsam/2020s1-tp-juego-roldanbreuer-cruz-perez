@@ -63,10 +63,16 @@ object teclas{
 		if(menu.visible() == "tecla"){
 			menu.accion("colocarPiedra", [cursor.position()])
 		}
+		if(menu.visible() == "construccion"){
+			menu.accion("Mercado", [cursor.position()])
+		}
 	}
 	method s(){
 		if(cursor.seleccionInicio().size() == 0){
 			cursor.seleccion()
+		}
+		if(menu.visible() == "construccion"){
+			menu.accion("Granja", [cursor.position()])
 		}
 	}
 	method d(){
@@ -75,6 +81,9 @@ object teclas{
 		}
 		if(menu.visible() == "tecla"){
 			menu.accion("pesca", [cursor.position()])
+		}
+		if(menu.visible() == "construccion"){
+			menu.accion("Plantacion", [cursor.position()])
 		}
 	}
 	method f(){
@@ -97,6 +106,10 @@ object teclas{
 		if(menu.visible() == null){
 			if(listaPos.filter({ objeto => objeto.tipo() == "Arboleda" }).size() > 0 and 
 				listaPos.filter({ objeto => objeto.tipo() == "Talador" }).size() == 0){
+				menu.accion("talar", [cursor.position()])
+			}
+			if(listaPos.filter({ objeto => objeto.tipo() == "Agua" }).size() > 0 and 
+				listaPos.filter({ objeto => objeto.tipo() == "Pescador" }).size() == 0){
 				menu.accion("talar", [cursor.position()])
 			}
 			if(listaPos.filter({ objeto => objeto.tipo() == "Piedras" }).size() > 0 and 

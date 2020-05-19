@@ -6,12 +6,12 @@ import menu.*
 
 
 object centralErrores{
-	var property position
 	var property tipo = "Errores"
 	method image() = "assets/vacio35.png"
 }
 
 object aldeanoLibre{
+	var property position
 	var property tipo = "AldeanoLibre"
 }
 
@@ -83,7 +83,11 @@ class Construir{
 	var property tipo = "Constructor"
 	method image() = "assets/construir.png"
 }
-
+class Construir2{
+	var property position
+	var property tipo = "Constructor2"
+	method image() = "assets/construir.png"
+}
 
 class Piedras{
 	var property position
@@ -95,6 +99,16 @@ class Minado{
 	var property position
 	var property tipo = "Minero"
 	method image() = "assets/minado.png"
+}
+class Granjero{
+	var property position
+	var property tipo = "Granjero"
+	method image() = "assets/vaca35.png"
+}
+class Agricultor{
+	var property position
+	var property tipo = "Agricultor"
+	method image() = "assets/recoleccion.png"
 }
 class Pesca{
 	var property position
@@ -146,6 +160,20 @@ object botonCasaG{
 	var property tipo = "boton"
 	method image() = "assets/botonCasaG.png"
 }
+object botonGranja{
+	var property tipo = "boton"
+	method image() = "assets/botonGranja.png"
+}
+object botonMercado{
+	var property tipo = "boton"
+	method image() = "assets/botonMercado.png"
+}
+object botonPlantacion{
+	var property tipo = "boton"
+	method image() = "assets/botonPlantacion.png"
+}
+
+//------------- CONSTRUCCIONES
 class CasaC{
 	var property position
 	var property tipo = "casac"
@@ -160,6 +188,36 @@ class Almacen{
 	var property position
 	var property tipo = "almacen"
 	method image() = "assets/almacen35.png"
+}
+class Mercado{
+	var property position
+	var property tipo = "mercado"
+	method image() = "assets/market70.png"
+}
+class MercadoVacio{
+	var property position
+	var property tipo = "mercado"
+	method image() = "assets/vacio35.png"
+}
+class Granja{
+	var property position
+	var property tipo = "granja"
+	method image() = "assets/granjaAnimales.png"
+}
+class GranjaVacio{
+	var property position
+	var property tipo = "granja"
+	method image() = "assets/vacio35.png"
+}
+class Plantacion{
+	var property position
+	var property tipo = "plantacion"
+	method image() = "assets/plantacion.png"
+}
+class PlantacionVacio{
+	var property position
+	var property tipo = "plantacion"
+	method image() = "assets/vacio35.png"
 }
 
 //----------- NUMEROS
@@ -320,7 +378,6 @@ class CeroCeroCero{
 }
 
 object gameover{
-	var property position
 	var property tipo = "gameover"
 	method image() = "assets/gameover.png"
 }

@@ -12,13 +12,18 @@ object timer{
 		if(acumuladorTiempo<60){
 			segundos+=1
 			}
-		if(acumuladorTiempo == 59){
+		if(acumuladorTiempo == 60){
 			minutos+=1
 			menu.Alimentar()
 			segundos=0
 			acumuladorTiempo=0
 		}
-		if(acumuladorTiempo%5==0){
+		if(acumuladorTiempo%5==0){   //// --- Mercado
+			menu.sumAlimento(1*menu.mercadosConstruidos())
+			menu.sumMadera(1*menu.mercadosConstruidos())
+			menu.sumPiedra(1*menu.mercadosConstruidos())
+		}
+		if(acumuladorTiempo.even()){
 			menu.Nacimiento()
 		}
 		
