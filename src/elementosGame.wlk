@@ -1,6 +1,7 @@
 import wollok.game.*
 import cursor.*
 import estados.*
+import accionesRecoleccion.*
 //import menu.*
 
 
@@ -65,8 +66,8 @@ class BarraAlmacen{
 	var property tipo = "Barra"
 	
 	method image(){
-		const recursos = [menu.cantRecursoMadera(), menu.cantRecursoPiedra(), menu.cantRecursoAlimento()]
-		const porcentaje = ( recursos.max() * 100)/menu.maxAlmacen()
+		const recus = [recursos.cantAlimento(), recursos.cantMadera(), recursos.cantPiedra()
+		const porcentaje = ( recus.max() * 100)/recursos.cantAlmacen()
 		if(porcentaje < 20 and porcentaje >= 0){return "assets/barraAlmacen00.png" }
 		else if(porcentaje < 40 and porcentaje >= 20){ return "assets/barraAlmacen20.png" }
 		else if(porcentaje < 60 and porcentaje >= 40){ return "assets/barraAlmacen40.png" }
@@ -83,7 +84,7 @@ class Arboleda{
 	var property trabajable = true
 	
 	method trabajar(posicion){
-		game.addVisualIn(new Recolector(tipo = self, position = posicion)
+		game.addVisualIn(new Recolector(tipo = self, position = posicion), posicion)
 	}
 	
 	method image() = "assets/arbol1.png"
@@ -99,7 +100,6 @@ object talada{
 	var property aldeanosNecesarios = 1
 	var property tiempoNecesario = 60
 	var property tipoObjetivo = arbol
-	var property objetivo
 	
 	method usarAldeano(){
 		aldeanos.aldeanoTalador(aldeanos.aldeanoTalador() + 1)

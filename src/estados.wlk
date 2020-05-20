@@ -109,7 +109,7 @@ object inGame{
 		
 	}
 	method t(){
-		const objectivo = game.getObjectsIn(cursor.position()).find({ objeto => objeto.trabajable() == true })
+		const objetivo = game.getObjectsIn(cursor.position()).find({ objeto => objeto.trabajable() })
 		objetivo.trabajar(cursor.position())
 	}
 	

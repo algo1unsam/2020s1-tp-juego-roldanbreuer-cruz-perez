@@ -6,8 +6,8 @@ import estados.*
 class Recolector{
 	var property tipo
 	var property position
-	var property barra
-	var nombreTick 
+	var property barra = null
+	var nombreTick = nullposicion
 	
 	method image(){
 		return tipo.image()
