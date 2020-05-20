@@ -16,7 +16,7 @@ object centralErrores{
 }
 
 object aldeanoLibre{
-	var property position
+	var property position = null
 	var property tipo = "AldeanoLibre"
 }
 
@@ -93,6 +93,10 @@ class Arboleda{
 	var property tipo = arbol
 	var property trabajable = true
 	
+	method remover(){
+		game.removeVisual(self)
+	}
+	
 	method image() = "assets/arbol1.png"
 }
 
@@ -121,7 +125,7 @@ object talada{
 
 // -------------   PIEDRA
 
-object piedra{
+object roca{
 	var property recurso = 75
 	var property tipoRecurso = piedra
 }
@@ -129,8 +133,13 @@ object piedra{
 class Piedras{
 	var property accion = minado
 	var property position 
-	var property tipo = piedra
+	var property tipo = roca
 	var property trabajable = true
+	
+	method remover(){
+		game.removeVisual(self)
+	}
+	
 	method image() = "assets/piedra2.png"
 }
 
@@ -138,7 +147,7 @@ object minado{
 	var property tipo = "Minero"
 	var property aldeanosNecesarios = 1
 	var property tiempoNecesario = 120
-	var property tipoObjetivo = piedra
+	var property tipoObjetivo = roca
 	
 	method usarAldeano(){
 		aldeanos.aldeanoMinero(aldeanos.aldeanoMinero() + 1)
@@ -168,6 +177,11 @@ class Lago{
 	var property position 
 	var property tipo = pez
 	var property trabajable = true
+	
+	method remover(){
+		
+	}
+	
 	method image()= "assets/vacio35.png"
 }
 

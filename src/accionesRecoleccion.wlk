@@ -24,7 +24,7 @@ class Recolector{
 	method detener(){
 		aldeanos.liberar(tipo)
 		game.removeVisual(barra)
-		if(tipo.tipo() != pez) game.removeVisual(tipo)
+		tipo.remover()
 		game.removeTickEvent(nombreTick)
 	}
 	

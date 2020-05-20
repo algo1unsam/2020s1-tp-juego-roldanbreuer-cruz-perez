@@ -1,30 +1,32 @@
 //acciones que se disparan utilizando el timer
+import wollok.game.*
 import timer.*
-//import menu.*
+import estados.*
+import elementosGame.*
 
 object dispararEvento{
 	
 	method Alimentar(){
-		const alimentoNecesario = cantAldeanos * 5
-		const alimentoRestante = cantRecursoAlimento - alimentoNecesario
+		const alimentoNecesario = aldeanos.aldeanos() * 5
+		const alimentoRestante = recursos.cantAlimento() - alimentoNecesario
 		if(alimentoRestante < 0){
-			cantRecursoAlimento = 0
+			recursos.cantAlimento(0)
 			const cantidadDeMuertes = alimentoRestante.abs().div(5)
 			var inicio = 1000
 			cantidadDeMuertes.times({ i => game.schedule(inicio, { => self.killRandom() }) 
 										inicio += 500 })
 		}else{
-			cantRecursoAlimento = alimentoRestante
+			recursos.cantAlimento(alimentoRestante)
 		}
 	}
 	
 	method Nacimiento(){
-		const alimentoNecesario = cantAldeanos * 5
-		const alimentoRestante = cantRecursoAlimento - alimentoNecesario
-		if(alimentoRestante >= 100 and cantAldeanos < cantPoblacion){
-			cantAldeanoDisponible += 1
-			cantAldeanos += 1
-			cantRecursoAlimento -= 50
+		const alimentoNecesario = aldeanos.aldeanos() * 5
+		const alimentoRestante = recursos.cantAlimento() - alimentoNecesario
+		if(alimentoRestante >= 100 and aldeanos.aldeanos() < aldeanos.poblacion()){
+			aldeanos.aldeanoDisponible(aldeanos.aldeanoDisponible() + 1)
+			aldeanos.aldeanos(aldeanos.aldeanos() + 1)
+			alimento.modificar(-50)
 			game.say(centralErrores, "Ha nacido un nuevo Aldeano")
 		}
 	}
