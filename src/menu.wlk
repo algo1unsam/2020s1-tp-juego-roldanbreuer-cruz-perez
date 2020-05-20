@@ -9,7 +9,6 @@
 
 object menu{
 	var property seleccionado = []
-	var property estado
 
 	method image() = "assets/menu.png"
 	

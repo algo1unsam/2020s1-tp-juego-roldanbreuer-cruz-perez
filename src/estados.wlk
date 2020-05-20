@@ -1,6 +1,10 @@
 import elementosGame.*
-//import wollok.game.*
+import wollok.game.*
+import cursor.*
 
+object escenario{
+	var property estado = inGame
+}
 
 object recursos{
 	//--- Recursos Inicializacion
@@ -103,6 +107,10 @@ object inGame{
 	
 	method f(){
 		
+	}
+	method t(){
+		const objectivo = game.getObjectsIn(cursor.position()).find({ objeto => objeto.trabajable() == true })
+		objetivo.trabajar(cursor.position())
 	}
 	
 }

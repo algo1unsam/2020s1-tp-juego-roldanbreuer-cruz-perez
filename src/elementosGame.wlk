@@ -78,8 +78,14 @@ class BarraAlmacen{
 
 class Arboleda{
 	var property accion = talada
-	var property position
+	var property position 
 	var property tipo = arbol
+	var property trabajable = true
+	
+	method trabajar(posicion){
+		game.addVisualIn(new Recolector(tipo = self, position = posicion)
+	}
+	
 	method image() = "assets/arbol1.png"
 }
 
