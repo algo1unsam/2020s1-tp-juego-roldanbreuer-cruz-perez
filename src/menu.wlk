@@ -8,31 +8,10 @@
 
 
 object menu{
-	var property visible
 	var property seleccionado = []
 	var property estado
-		
-	var property cantRecursoMadera=50
-	var property cantRecursoPiedra=50
-	var property cantRecursoAlimento=25
-	var property cantAldeanos = 5
-	var property cantPoblacion = 5
-	var property maxAlmacen = 100
-	
-	var property cantAldeanoDisponible = 5
-	var property cantAldeanoTalador = 0
-	var property cantAldeanoMinero = 0
-	var property cantAldeanoConstructor = 0
-	var property cantAldeanoGranjero = 0
-	var property cantAldeanoAgricultor = 0
-	var property cantAldeanoPescador = 0
-	var property cantAldeanoCazador = 0
-	
-	var property cantArbolesPlantados=0
-	var property cantidadPiedrasMinadas=0
-	var property cantidadPesca=0
 
-	var property mercadosConstruidos = 0	
+	method image() = "assets/menu.png"
 	
 	method sumAlimento(valor){
 		cantRecursoAlimento += valor
@@ -42,119 +21,8 @@ object menu{
 	}
 	method sumPiedra(valor){
 		cantRecursoPiedra += valor
-	}
-
+	}	
 	
-	
-
-	method image() = "assets/menu.png"
-	method informacionRecursos(){
-		game.say(cursor,"Madera: " + cantRecursoMadera.toString() + " Piedra: " + cantRecursoPiedra.toString() + " Alimento: " + cantRecursoAlimento.toString())
-	}
-	method aparecer(motivo){
-		visible = motivo
-		if(motivo == "postSeleccion" or motivo == "tecla" ){
-			game.addVisualIn(self, game.at(12,5))
-			game.addVisualIn(tituloAcciones, game.at(13,13))
-			game.addVisualIn(botonTalar, game.at(13,11))
-			game.addVisualIn(botonMinar, game.at(16,11))
-			game.addVisualIn(botonDetener, game.at(19,11))
-			game.addVisualIn(botonCancelar, game.at(13,6))
-			game.addVisualIn(botonSalir, game.at(20,6))
-		}
-		if(motivo == "construccion"){
-			game.addVisualIn(self, game.at(12,5))
-			game.addVisualIn(tituloConstrucciones, game.at(13,13))
-			game.addVisualIn(botonAlmacen, game.at(13,10))
-			game.addVisualIn(botonCasaC, game.at(16,10))
-			game.addVisualIn(botonCasaG, game.at(19,10))
-			game.addVisualIn(botonMercado, game.at(13,7))
-			game.addVisualIn(botonGranja, game.at(16,7))
-			game.addVisualIn(botonPlantacion, game.at(19,7))
-			game.addVisualIn(botonCancelar, game.at(13,6))
-			game.addVisualIn(botonSalir, game.at(20,6))
-		}
-	}
-	
-	method cerrar(){
-		if(visible == "postSeleccion" or visible == "tecla" ){
-			game.removeVisual(self)
-			game.removeVisual(tituloAcciones)
-			game.removeVisual(botonTalar)
-			game.removeVisual(botonMinar)
-			game.removeVisual(botonDetener)
-			game.removeVisual(botonCancelar)
-			game.removeVisual(botonSalir)
-		}
-		if(visible == "construccion"){
-			game.removeVisual(self)
-			game.removeVisual(tituloConstrucciones)
-			game.removeVisual(botonAlmacen)
-			game.removeVisual(botonCasaC)
-			game.removeVisual(botonCasaG)
-			game.removeVisual(botonMercado)
-			game.removeVisual(botonGranja)
-			game.removeVisual(botonPlantacion)
-			game.removeVisual(botonCancelar)
-			game.removeVisual(botonSalir)
-		}
-		visible = null
-	}
-	
-	method Alimentar(){
-		const alimentoNecesario = cantAldeanos * 5
-		const alimentoRestante = cantRecursoAlimento - alimentoNecesario
-		if(alimentoRestante < 0){
-			cantRecursoAlimento = 0
-			const cantidadDeMuertes = alimentoRestante.abs().div(5)
-			var inicio = 1000
-			cantidadDeMuertes.times({ i => game.schedule(inicio, { => self.killRandom() }) 
-										inicio += 500 })
-		}else{
-			cantRecursoAlimento = alimentoRestante
-		}
-	}
-	
-	method Nacimiento(){
-		const alimentoNecesario = cantAldeanos * 5
-		const alimentoRestante = cantRecursoAlimento - alimentoNecesario
-		if(alimentoRestante >= 100 and cantAldeanos < cantPoblacion){
-			cantAldeanoDisponible += 1
-			cantAldeanos += 1
-			cantRecursoAlimento -= 50
-			game.say(centralErrores, "Ha nacido un nuevo Aldeano")
-		}
-	}
-	
-	method killRandom(){
-		const todosLosAldeanos = game.allVisuals().filter({ filtro => filtro.tipo() == "Talador" or 
-																	filtro.tipo() == "Minero" or
-																	filtro.tipo() == "Constructor" or 
-																	filtro.tipo() == "Pescador"})
-		if(cantAldeanoDisponible > 0) todosLosAldeanos.add(aldeanoLibre)
-		const sujetoAMorir = todosLosAldeanos.anyOne()
-		if(sujetoAMorir.tipo() == "Talador" or sujetoAMorir.tipo() == "Minero" or sujetoAMorir.tipo() == "Constructor" or sujetoAMorir.tipo() == "Pescador"){
-			self.remover(sujetoAMorir.tipo(), [sujetoAMorir.position()])
-			cantAldeanoDisponible -= 1
-			cantAldeanos -= 1
-			if(cantAldeanos == 0){
-				game.clear()
-				game.addVisualIn(self, game.at(12,5))
-				game.addVisualIn(gameover, game.at(13,10))
-			}
-			centralErrores.error("Ha muerto un aldeano "+sujetoAMorir.tipo())
-		}else{
-			cantAldeanoDisponible -= 1
-			cantAldeanos -= 1
-			if(cantAldeanos == 0){
-				game.clear()
-				game.addVisualIn(self, game.at(12,5))
-				game.addVisualIn(gameover, game.at(13,10))
-			}
-			centralErrores.error("Ha muerto un aldeano disponible")
-		}
-		 
-	}
 	method remover(tipo,lista){
 		lista.forEach({ 
 			objeto => 

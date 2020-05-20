@@ -1,5 +1,6 @@
 import wollok.game.*
 import cursor.*
+import estados.*
 //import menu.*
 
 
@@ -40,9 +41,14 @@ class BarraRecoleccion{
 	var property position
 	var property tipo = "Barra"
 	var property progreso = 1
+	var property recolector
 	
 	method suma(){
 		progreso += 1
+		recolector.recolectar()
+		if(progreso > 5){
+			recolector.detener()
+		}
 	}
 	
 	method image(){
@@ -71,16 +77,34 @@ class BarraAlmacen{
 }
 
 class Arboleda{
+	var property accion = talada
 	var property position
-	var property tipo = "Arboleda"
+	var property tipo = arbol
 	method image() = "assets/arbol1.png"
 }
-class Talada{
-	var property position
+
+object arbol{
+	var property recurso = 50
+	var property tipoRecurso = madera
+}
+
+object talada{
 	var property tipo = "Talador"
-	method sound()= "talar.ogg"
+	var property aldeanosNecesarios = 1
+	var property tiempoNecesario = 60
+	var property tipoObjetivo = arbol
+	var property objetivo
+	
+	method usarAldeano(){
+		aldeanos.aldeanoTalador(aldeanos.aldeanoTalador() + 1)
+	}
+	
+	method dejarAldeano(){
+		aldeanos.aldeanoTalador(aldeanos.aldeanoTalador() - 1)
+	}
+	
+	method sound() = "talar.ogg"
 	method image() = "assets/talando.png"
-	method calcularRecursos(){}
 }
 class Construir{
 	var property position
@@ -94,6 +118,7 @@ class Construir2{
 }
 
 class Piedras{
+	var property recurso = 75
 	var property position
 	var property tipo = "Piedras"
 	method image() = "assets/piedra2.png"
@@ -121,6 +146,7 @@ class Pesca{
 	method image() = "assets/pesca.png"
 }
 class Lago{
+	var property recurso = 25
 	var property position
 	var property tipo="Agua"
 	method image()= "assets/vacio35.png"

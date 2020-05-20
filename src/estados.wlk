@@ -1,6 +1,67 @@
 import elementosGame.*
-import wollok.game.*
+//import wollok.game.*
 
+
+object recursos{
+	//--- Recursos Inicializacion
+	var property cantAlimento = 25
+	var property cantMadera = 50
+	var property cantPiedra = 50
+	var property cantAlmacen = 100
+	var property mercadosConstruidos = 0
+}
+
+// ---- Modificadores de recurso
+object madera{
+	method modificar(valor){
+		recursos.cantMadera(recursos.cantMadera() + valor)
+	}
+}
+object alimento{
+	method modificar(valor){
+		recursos.cantAlimento(recursos.cantAlimento() + valor)
+	}
+}
+object piedra{
+	method modificar(valor){
+		recursos.cantPiedra(recursos.cantPiedra() + valor)
+	}
+}
+object almacen{
+	method modificar(valor){
+		recursos.cantAlmacen(recursos.cantAlmacen() + valor)
+	}
+}
+
+object aldeanos{
+	//--- Aldeanos Inicializacion
+	var property aldeanos = 5
+	var property poblacion = 5
+	var property aldeanoDisponible = 5
+	var property aldeanoTalador = 0
+	var property aldeanoMinero = 0
+	var property aldeanoConstructor = 0
+	var property aldeanoGranjero = 0
+	var property aldeanoAgricultor = 0
+	var property aldeanoPescador = 0
+	var property aldeanoCazador = 0
+	
+	//-- Manejadores de trabajos
+	method requerir(tipo){
+		if(tipo.accion().aldeanosNecesarios() <= aldeanoDisponible){
+			aldeanoDisponible -= tipo.accion().aldeanosNecesarios()
+			tipo.accion().usarAldeano()
+		}else{
+			centralErrores.error("No hay aldeanos disponibles.")
+		}
+	}
+	
+	method liberar(tipo){
+		aldeanoDisponible += tipo.accion().aldeanosNecesarios()
+		tipo.accion().dejarAldeano()
+	}
+	
+}
 
 object inGame{
 	
@@ -12,13 +73,41 @@ object inGame{
 		
 	}
 	
-	method accion(){
+	method q(){
+		
+	}
+	
+	method w(){
+		
+	}
+	
+	method e(){
+		
+	}
+	
+	method r(){
+		
+	}
+	
+	method a(){
+		
+	}
+	
+	method s(){
+		
+	}
+	
+	method d(){
+		
+	}
+	
+	method f(){
 		
 	}
 	
 }
 
-
+/*
 object inMenu{
 	
 	method aparecer(){
@@ -42,6 +131,38 @@ object inMenu{
 	}
 	
 	method accion(){
+		
+	}
+	
+	method q(){
+		
+	}
+	
+	method w(){
+		
+	}
+	
+	method e(){
+		
+	}
+	
+	method r(){
+		
+	}
+	
+	method a(){
+		
+	}
+	
+	method s(){
+		
+	}
+	
+	method d(){
+		
+	}
+	
+	method f(){
 		
 	}
 	
@@ -80,4 +201,36 @@ object inMenuConst{
 		
 	}
 	
-}
+	method q(){
+		
+	}
+	
+	method w(){
+		
+	}
+	
+	method e(){
+		
+	}
+	
+	method r(){
+		
+	}
+	
+	method a(){
+		
+	}
+	
+	method s(){
+		
+	}
+	
+	method d(){
+		
+	}
+	
+	method f(){
+		
+	}
+	
+}*/
