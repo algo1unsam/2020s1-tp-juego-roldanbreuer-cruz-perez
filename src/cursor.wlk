@@ -1,6 +1,6 @@
 import wollok.game.*
 import elementosGame.*
-import menu.*
+//import menu.*
 import teclas.*
 
 
@@ -13,8 +13,6 @@ class Seleccion{
 }
 
 
-
-
 object cursor {
 	var property seleccionInicio = []
 	var property limites = [game.at(0,19),game.at(1,19),game.at(2,19),game.at(3,19),game.at(4,19),game.at(5,19),game.at(6,19),game.at(7,19),game.at(8,19),game.at(9,19),game.at(10,19),game.at(11,19),game.at(12,19),game.at(13,19),game.at(14,19),game.at(15,19),game.at(16,19),game.at(17,19),game.at(18,19),game.at(19,19),game.at(20,19),game.at(21,19),game.at(22,19),game.at(23,19),game.at(24,19),game.at(25,19),game.at(26,19),game.at(27,19),game.at(28,19),game.at(29,19),game.at(30,19),game.at(31,19),game.at(32,19),game.at(33,19),game.at(34,19),game.at(35,19),game.at(36,19),
@@ -23,6 +21,7 @@ object cursor {
 							game.at(37,18),game.at(37,17),game.at(37,16),game.at(37,15),game.at(37,14),game.at(37,13),game.at(37,12),game.at(37,11),game.at(37,10),game.at(37,9),game.at(37,8),game.at(37,7),game.at(37,6),game.at(37,5),game.at(37,4),game.at(31,3),game.at(31,2),game.at(31,1),game.at(31,0)]
 	var property position = game.center()
 	var property tipo = "Cursor"
+	
 	method seleccion() {
 		if (seleccionInicio.size() == 0){
 			self.accesoAlLugar(self.position())
@@ -33,6 +32,7 @@ object cursor {
 			seleccionInicio.clear()
 		}
 	}
+	
 	method mover(posicionNueva){
 		if(limites.filter({valor => valor == posicionNueva}).size() == 0){
 			if(menu.visible() == null ){

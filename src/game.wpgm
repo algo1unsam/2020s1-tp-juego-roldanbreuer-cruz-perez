@@ -1,7 +1,7 @@
 import wollok.game.*
 import cursor.*
 import elementosGame.*
-import menu.*
+//import menu.*
 import teclas.*
 import hud.*
 import timer.*
@@ -15,7 +15,6 @@ program game {
 	game.boardGround("assets/Mapa.png")
 	game.cellSize(35)
 	game.title("Aldeanos")
-	//game.addVisualIn(menu, game.at(12,5))
 	game.addVisual(cursor)
 	game.addVisual(hud)	
 	keyboard.up().onPressDo { cursor.mover(cursor.position().up(1)) }

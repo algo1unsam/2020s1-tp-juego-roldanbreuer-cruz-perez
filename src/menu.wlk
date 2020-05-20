@@ -1,7 +1,7 @@
-import wollok.game.*
-import cursor.*
-import elementosGame.*
-import teclas.*
+//import wollok.game.*
+//import cursor.*
+//import elementosGame.*
+//import teclas.*
 
 //solo para comodidad del desarrollo del juego
 //en este archivo se encuentran solamente los elementos que componen el menu
@@ -10,6 +10,7 @@ import teclas.*
 object menu{
 	var property visible
 	var property seleccionado = []
+	var property estado
 		
 	var property cantRecursoMadera=50
 	var property cantRecursoPiedra=50

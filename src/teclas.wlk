@@ -1,9 +1,9 @@
 import wollok.game.*
 import cursor.*
 import elementosGame.*
-import menu.*
+//import menu.*
 import timer.*
-
+import estados.*
 
 
 //solo para comodidad del desarrollo del juego
@@ -139,9 +139,12 @@ object teclas{
 	}
 	
 	method m(){
+		estadosMenu.estado(inMenu)
+		
+		/* 
 		if(menu.visible() == null){
 			menu.aparecer("tecla")
-		}
+		}*/
 	}	
 	method menos(){
 		if(menu.visible() != null){
@@ -149,9 +152,12 @@ object teclas{
 		}
 	} 
 	method bkps(){
+		menu.estado(inGame)
+		
+		/*
 		menu.cerrar() 
 		if(menu.seleccionado().size() > 0)	menu.remover("Seleccion", menu.seleccionado())
-		
+		*/
 	}
 }
 object enter{
