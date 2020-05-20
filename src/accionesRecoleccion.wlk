@@ -7,10 +7,10 @@ class Recolector{
 	var property tipo
 	var property position
 	var property barra = null
-	var nombreTick = nullposicion
+	var nombreTick = null
 	
 	method image(){
-		return tipo.image()
+		return tipo.accion().image()
 	}
 	
 	method iniciar(){
@@ -24,10 +24,12 @@ class Recolector{
 	method detener(){
 		aldeanos.liberar(tipo)
 		game.removeVisual(barra)
+		if(tipo.tipo() != pez) game.removeVisual(tipo)
 		game.removeTickEvent(nombreTick)
 	}
 	
 	method recolectar(){
 		tipo.tipo().tipoRecurso().modificar(tipo.tipo().recurso()/5)
 	}
+	
 }

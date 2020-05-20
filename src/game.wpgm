@@ -1,7 +1,7 @@
 import wollok.game.*
 import cursor.*
 import elementosGame.*
-//import menu.*
+import estados.*
 import teclas.*
 import hud.*
 import timer.*
@@ -37,14 +37,8 @@ program game {
 	keyboard.c().onPressDo { teclas.c() }
 	keyboard.p().onPressDo { game.say(cursor, cursor.position().toString()) }
 	keyboard.o().onPressDo { teclas.o() }
-	keyboard.num1().onPressDo { menu.sumAlimento(100) }
-	keyboard.num2().onPressDo { menu.sumMadera(100) }
-	keyboard.num3().onPressDo { menu.sumPiedra(100) }
-	keyboard.num4().onPressDo { menu.Nacimiento() }
 	keyboard.minusKey().onPressDo { teclas.menos() }
-	menu.accion("plantar", arboledaNO.area())
-	menu.accion("colocarPiedra", piedras.area())
-	menu.accion("colocarLago", agua.area())
+	inicializar.poblarMapa()
 	cargaHud.cargar()
 	timer.inicio()
 	game.addVisualIn(centralErrores, game.at(31,0))

@@ -67,6 +67,17 @@ object aldeanos{
 	
 }
 
+object inicializar{
+	
+	method poblarMapa(){
+		agua.area().forEach({ objeto => game.addVisualIn(new Lago(), objeto) })
+		arboles.area().forEach({ objeto => game.addVisualIn(new Arboleda(), objeto) })
+		piedras.area().forEach({ objeto => game.addVisualIn(new Piedras(), objeto) })
+	}
+	
+}
+
+
 object inGame{
 	
 	method aparecer(){
@@ -110,7 +121,7 @@ object inGame{
 	}
 	method t(){
 		const objetivo = game.getObjectsIn(cursor.position()).find({ objeto => objeto.trabajable() })
-		objetivo.trabajar(cursor.position())
+		objetivo.accion().trabajar(objetivo, cursor.position())
 	}
 	
 }

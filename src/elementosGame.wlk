@@ -61,13 +61,14 @@ class BarraRecoleccion{
 		else{ return "assets/barraRecurso00.png" }
 	}
 }
+
 class BarraAlmacen{
 	var property position
 	var property tipo = "Barra"
 	
 	method image(){
-		const recus = [recursos.cantAlimento(), recursos.cantMadera(), recursos.cantPiedra()
-		const porcentaje = ( recus.max() * 100)/recursos.cantAlmacen()
+		const recus = [recursos.cantAlimento(), recursos.cantMadera(), recursos.cantPiedra()]
+		const porcentaje = (recus.max() * 100)/recursos.cantAlmacen()
 		if(porcentaje < 20 and porcentaje >= 0){return "assets/barraAlmacen00.png" }
 		else if(porcentaje < 40 and porcentaje >= 20){ return "assets/barraAlmacen20.png" }
 		else if(porcentaje < 60 and porcentaje >= 40){ return "assets/barraAlmacen40.png" }
@@ -77,22 +78,22 @@ class BarraAlmacen{
 	}
 }
 
+
+// -------------   RECURSOS
+// -------------   MADERA
+
+object arbol{
+	var property recurso = 50
+	var property tipoRecurso = madera
+}
+
 class Arboleda{
 	var property accion = talada
 	var property position 
 	var property tipo = arbol
 	var property trabajable = true
 	
-	method trabajar(posicion){
-		game.addVisualIn(new Recolector(tipo = self, position = posicion), posicion)
-	}
-	
 	method image() = "assets/arbol1.png"
-}
-
-object arbol{
-	var property recurso = 50
-	var property tipoRecurso = madera
 }
 
 object talada{
@@ -109,9 +110,92 @@ object talada{
 		aldeanos.aldeanoTalador(aldeanos.aldeanoTalador() - 1)
 	}
 	
+	method trabajar(origen, posicion){
+		game.addVisualIn(new Recolector(tipo = origen, position = posicion), posicion)
+		game.getObjectsIn(cursor.position()).find({ objeto => objeto.type() == origen }).iniciar()
+	}
+	
 	method sound() = "talar.ogg"
 	method image() = "assets/talando.png"
 }
+
+// -------------   PIEDRA
+
+object piedra{
+	var property recurso = 75
+	var property tipoRecurso = piedra
+}
+
+class Piedras{
+	var property accion = minado
+	var property position 
+	var property tipo = piedra
+	var property trabajable = true
+	method image() = "assets/piedra2.png"
+}
+
+object minado{
+	var property tipo = "Minero"
+	var property aldeanosNecesarios = 1
+	var property tiempoNecesario = 120
+	var property tipoObjetivo = piedra
+	
+	method usarAldeano(){
+		aldeanos.aldeanoMinero(aldeanos.aldeanoMinero() + 1)
+	}
+	
+	method dejarAldeano(){
+		aldeanos.aldeanoMinero(aldeanos.aldeanoMinero() - 1)
+	}
+	
+	method trabajar(origen, posicion){
+		game.addVisualIn(new Recolector(tipo = origen, position = posicion), posicion)
+		game.getObjectsIn(cursor.position()).find({ objeto => objeto.type() == origen }).iniciar()
+	}
+	
+	method sound()="minar.ogg"
+	method image() = "assets/minado.png"
+}
+
+// -------------   PECES
+object pez{
+	var property recurso = 25
+	var property tipoRecurso = alimento
+}
+
+class Lago{
+	var property accion = pesca
+	var property position 
+	var property tipo = pez
+	var property trabajable = true
+	method image()= "assets/vacio35.png"
+}
+
+object pesca{
+	var property tipo = "Pescador"
+	var property aldeanosNecesarios = 1
+	var property tiempoNecesario = 100
+	var property tipoObjetivo = pez
+	
+	method usarAldeano(){
+		aldeanos.aldeanoPescador(aldeanos.aldeanoPescador() + 1)
+	}
+	
+	method dejarAldeano(){
+		aldeanos.aldeanoPescador(aldeanos.aldeanoPescador() - 1)
+	}
+	
+	method trabajar(origen, posicion){
+		game.addVisualIn(new Recolector(tipo = origen, position = posicion), posicion)
+		game.getObjectsIn(cursor.position()).find({ objeto => objeto.type() == origen }).iniciar()
+	}
+	
+	method image() = "assets/pesca.png"
+}
+
+
+
+
 class Construir{
 	var property position
 	var property tipo = "Constructor"
@@ -121,20 +205,6 @@ class Construir2{
 	var property position
 	var property tipo = "Constructor2"
 	method image() = "assets/construir.png"
-}
-
-class Piedras{
-	var property recurso = 75
-	var property position
-	var property tipo = "Piedras"
-	method image() = "assets/piedra2.png"
-}
-
-class Minado{
-	var property position
-	var property tipo = "Minero"
-	method sound()="minar.ogg"
-	method image() = "assets/minado.png"
 }
 class Granjero{
 	var property position
@@ -146,17 +216,7 @@ class Agricultor{
 	var property tipo = "Agricultor"
 	method image() = "assets/recoleccion.png"
 }
-class Pesca{
-	var property position
-	var property tipo = "Pescador"
-	method image() = "assets/pesca.png"
-}
-class Lago{
-	var property recurso = 25
-	var property position
-	var property tipo="Agua"
-	method image()= "assets/vacio35.png"
-}
+
 object botonTalar{
 	var property tipo = "boton"
 	method image() = "assets/botonTalar.png"
@@ -430,7 +490,7 @@ object agua{
 ]
 }
 
-object arboledaNO{
+object arboles{
 	const property area = [game.at(0,18),game.at(1,18),game.at(2,18),game.at(3,18),game.at(4,18),game.at(5,18),game.at(6,18),game.at(7,18),game.at(8,18),game.at(9,18),game.at(10,18),game.at(11,18),game.at(12,18),game.at(13,18),game.at(14,18),game.at(15,18),game.at(16,18),game.at(17,18),game.at(18,18),game.at(19,18),game.at(20,18),game.at(21,18),game.at(25,18),game.at(26,18),game.at(27,18),game.at(28,18),game.at(29,18),game.at(30,18),game.at(31,18),game.at(32,18),game.at(33,18),game.at(34,18),game.at(35,18),game.at(36,18),
 game.at(0,17),game.at(1,17),game.at(2,17),game.at(3,17),game.at(4,17),game.at(5,17),game.at(6,17),game.at(7,17),game.at(8,17),game.at(9,17),game.at(10,17),game.at(11,17),game.at(12,17),game.at(13,17),game.at(14,17),game.at(15,17),game.at(16,17),game.at(17,17),game.at(18,17),game.at(19,17),game.at(20,17),game.at(21,17),game.at(22,17),game.at(25,17),game.at(26,17),game.at(27,17),game.at(28,17),game.at(29,17),game.at(30,17),game.at(31,17),game.at(32,17),game.at(33,17),game.at(34,17),game.at(35,17),game.at(36,17),
 game.at(0,16),game.at(1,16),game.at(2,16),game.at(3,16),game.at(4,16),game.at(5,16),game.at(6,16),game.at(7,16),game.at(8,16),game.at(9,16),game.at(10,16),game.at(11,16),game.at(12,16),game.at(13,16),game.at(14,16),game.at(15,16),game.at(16,16),game.at(17,16),game.at(18,16),game.at(19,16),game.at(20,16),game.at(21,16),game.at(22,16),game.at(23,16),game.at(24,16),game.at(25,16),game.at(26,16),game.at(27,16),game.at(28,16),game.at(29,16),game.at(30,16),game.at(34,16),game.at(35,16),game.at(36,16),

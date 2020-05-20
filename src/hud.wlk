@@ -100,6 +100,67 @@ object cientos{
 		}
 	}
 }
+
+class Unidad{
+	var property tipo = "numerosHUD"
+	var property position
+	var property origen
+	
+	method image(){
+		const stringNumero= origen.toString()
+		return unidades.imagen(stringNumero.reverse().charAt(0))
+	}
+	
+}
+
+class Decena{
+	var property tipo = "numerosHUD"
+	var property position
+	var property origen
+	
+	method image(){
+		const stringNumero = origen.toString()
+		var valor = null
+		if(stringNumero.length() > 1){
+			valor = stringNumero.reverse().drop(1).charAt(0)
+		}
+		return decenas.imagen(valor)
+	}
+}
+
+class DecenaSegundos{
+	var property tipo = "numerosHUD"
+	var property position 
+	var property origen
+	
+	method image(){
+		const stringNumero = origen.toString()
+		var valor = null
+		if(stringNumero.length() > 1){
+			valor = stringNumero.reverse().drop(1).charAt(0)
+		}else{
+			valor = "0"
+		}
+		return decenas.imagen(valor)
+	}
+}
+
+class Centena{
+	var property tipo = "numerosHUD"
+	var property position 
+	var property origen
+	
+	method image(){
+		const stringNumero = origen.toString()
+		var valor = null
+		if(stringNumero.length() > 2){
+			valor = stringNumero.reverse().drop(2).charAt(0)
+		}
+		return cientos.imagen(valor)
+	}
+}
+
+
 //////---------------------------------------TIMER HUD
 object timerUnidad{
 	var property tipo = "numerosHUD"
@@ -166,7 +227,7 @@ object almacenUnidad{
 	var property position = game.at(17,19)
 	
 	method image(){
-		const stringNumero = menu.maxAlmacen().toString()
+		const stringNumero = recursos.cantAlmacen().toString()
 		return unidades.imagen(stringNumero.reverse().charAt(0))
 	}
 }
@@ -175,7 +236,7 @@ object almacenDecena{
 	var property position = game.at(17,19)
 	
 	method image(){
-		const stringNumero = menu.maxAlmacen().toString()
+		const stringNumero = recursos.cantAlmacen().toString()
 		var valor = null
 		if(stringNumero.length() > 1){
 			valor = stringNumero.reverse().drop(1).charAt(0)
@@ -188,7 +249,7 @@ object almacenCientos{
 	var property position = game.at(17,19)
 	
 	method image(){
-		const stringNumero = menu.maxAlmacen().toString()
+		const stringNumero = recursos.cantAlmacen().toString()
 		var valor = null
 		if(stringNumero.length() > 2){
 			valor = stringNumero.reverse().drop(2).charAt(0)
@@ -201,7 +262,7 @@ object almacenMiles{
 	var property position = game.at(16,19)
 	
 	method image(){
-		const stringNumero = menu.maxAlmacen().toString()
+		const stringNumero = recursos.cantAlmacen().toString()
 		var valor = null
 		if(stringNumero.length() > 3){
 			valor = stringNumero.reverse().drop(3).charAt(0)
@@ -214,7 +275,7 @@ object almacenDecenaMiles{
 	var property position = game.at(16,19)
 	
 	method image(){
-		const stringNumero = menu.maxAlmacen().toString()
+		const stringNumero = recursos.cantAlmacen().toString()
 		var valor = null
 		if(stringNumero.length() > 4){
 			valor = stringNumero.reverse().drop(4).charAt(0)
@@ -227,7 +288,7 @@ object almacenCientosMiles{
 	var property position = game.at(16,19)
 	
 	method image(){
-		const stringNumero = menu.maxAlmacen().toString()
+		const stringNumero = recursos.cantAlmacen().toString()
 		var valor = null
 		if(stringNumero.length() > 5){
 			valor = stringNumero.reverse().drop(5).charAt(0)
@@ -243,7 +304,7 @@ object alimentoUnidad{
 	var property position = game.at(2,19)
 	
 	method image(){
-		const stringNumero = menu.cantRecursoAlimento().toString()
+		const stringNumero = recursos.cantAlimento().toString()
 		return unidades.imagen(stringNumero.reverse().charAt(0))
 	}
 }
@@ -252,7 +313,7 @@ object alimentoDecena{
 	var property position = game.at(2,19)
 	
 	method image(){
-		const stringNumero = menu.cantRecursoAlimento().toString()
+		const stringNumero = recursos.cantAlimento().toString()
 		var valor = null
 		if(stringNumero.length() > 1){
 			valor = stringNumero.reverse().drop(1).charAt(0)
@@ -265,7 +326,7 @@ object alimentoCientos{
 	var property position = game.at(2,19)
 	
 	method image(){
-		const stringNumero = menu.cantRecursoAlimento().toString()
+		const stringNumero = recursos.cantAlimento().toString()
 		var valor = null
 		if(stringNumero.length() > 2){
 			valor = stringNumero.reverse().drop(2).charAt(0)
@@ -278,7 +339,7 @@ object alimentoMiles{
 	var property position = game.at(1,19)
 	
 	method image(){
-		const stringNumero = menu.cantRecursoAlimento().toString()
+		const stringNumero = recursos.cantAlimento().toString()
 		var valor = null
 		if(stringNumero.length() > 3){
 			valor = stringNumero.reverse().drop(3).charAt(0)
@@ -291,7 +352,7 @@ object alimentoDecenaMiles{
 	var property position = game.at(1,19)
 	
 	method image(){
-		const stringNumero = menu.cantRecursoAlimento().toString()
+		const stringNumero = recursos.cantAlimento().toString()
 		var valor = null
 		if(stringNumero.length() > 4){
 			valor = stringNumero.reverse().drop(4).charAt(0)
@@ -304,7 +365,7 @@ object alimentoCientosMiles{
 	var property position = game.at(1,19)
 	
 	method image(){
-		const stringNumero = menu.cantRecursoAlimento().toString()
+		const stringNumero = recursos.cantAlimento().toString()
 		var valor = null
 		if(stringNumero.length() > 5){
 			valor = stringNumero.reverse().drop(5).charAt(0)
@@ -320,7 +381,7 @@ object maderaUnidad{
 	var property position = game.at(5,19)
 	
 	method image(){
-		const stringNumero = menu.cantRecursoMadera().toString()
+		const stringNumero = recursos.cantMadera().toString()
 		return unidades.imagen(stringNumero.reverse().charAt(0))
 	}
 }
@@ -329,7 +390,7 @@ object maderaDecena{
 	var property position = game.at(5,19)
 	
 	method image(){
-		const stringNumero = menu.cantRecursoMadera().toString()
+		const stringNumero = recursos.cantMadera().toString()
 		var valor = null
 		if(stringNumero.length() > 1){
 			valor = stringNumero.reverse().drop(1).charAt(0)
@@ -342,7 +403,7 @@ object maderaCientos{
 	var property position = game.at(5,19)
 	
 	method image(){
-		const stringNumero = menu.cantRecursoMadera().toString()
+		const stringNumero = recursos.cantMadera().toString()
 		var valor = null
 		if(stringNumero.length() > 2){
 			valor = stringNumero.reverse().drop(2).charAt(0)
@@ -355,7 +416,7 @@ object maderaMiles{
 	var property position = game.at(4,19)
 	
 	method image(){
-		const stringNumero = menu.cantRecursoMadera().toString()
+		const stringNumero = recursos.cantMadera().toString()
 		var valor = null
 		if(stringNumero.length() > 3){
 			valor = stringNumero.reverse().drop(3).charAt(0)
@@ -368,7 +429,7 @@ object maderaDecenaMiles{
 	var property position = game.at(4,19)
 	
 	method image(){
-		const stringNumero = menu.cantRecursoMadera().toString()
+		const stringNumero = recursos.cantMadera().toString()
 		var valor = null
 		if(stringNumero.length() > 4){
 			valor = stringNumero.reverse().drop(4).charAt(0)
@@ -381,7 +442,7 @@ object maderaCientosMiles{
 	var property position = game.at(4,19)
 	
 	method image(){
-		const stringNumero = menu.cantRecursoMadera().toString()
+		const stringNumero = recursos.cantMadera().toString()
 		var valor = null
 		if(stringNumero.length() > 5){
 			valor = stringNumero.reverse().drop(5).charAt(0)
@@ -397,7 +458,7 @@ object piedraUnidad{
 	var property position = game.at(8,19)
 	
 	method image(){
-		const stringNumero = menu.cantRecursoPiedra().toString()
+		const stringNumero = recursos.cantPiedra().toString()
 		return unidades.imagen(stringNumero.reverse().charAt(0))
 	}
 }
@@ -406,7 +467,7 @@ object piedraDecena{
 	var property position = game.at(8,19)
 	
 	method image(){
-		const stringNumero = menu.cantRecursoPiedra().toString()
+		const stringNumero = recursos.cantPiedra().toString()
 		var valor = null
 		if(stringNumero.length() > 1){
 			valor = stringNumero.reverse().drop(1).charAt(0)
@@ -419,7 +480,7 @@ object piedraCientos{
 	var property position = game.at(8,19)
 	
 	method image(){
-		const stringNumero = menu.cantRecursoPiedra().toString()
+		const stringNumero = recursos.cantPiedra().toString()
 		var valor = null
 		if(stringNumero.length() > 2){
 			valor = stringNumero.reverse().drop(2).charAt(0)
@@ -432,7 +493,7 @@ object piedraMiles{
 	var property position = game.at(7,19)
 	
 	method image(){
-		const stringNumero = menu.cantRecursoPiedra().toString()
+		const stringNumero = recursos.cantPiedra().toString()
 		var valor = null
 		if(stringNumero.length() > 3){
 			valor = stringNumero.reverse().drop(3).charAt(0)
@@ -445,7 +506,7 @@ object piedraDecenaMiles{
 	var property position = game.at(7,19)
 	
 	method image(){
-		const stringNumero = menu.cantRecursoPiedra().toString()
+		const stringNumero = recursos.cantPiedra().toString()
 		var valor = null
 		if(stringNumero.length() > 4){
 			valor = stringNumero.reverse().drop(4).charAt(0)
@@ -458,7 +519,7 @@ object piedraCientosMiles{
 	var property position = game.at(7,19)
 	
 	method image(){
-		const stringNumero = menu.cantRecursoPiedra().toString()
+		const stringNumero = recursos.cantPiedra().toString()
 		var valor = null
 		if(stringNumero.length() > 5){
 			valor = stringNumero.reverse().drop(5).charAt(0)
@@ -474,7 +535,7 @@ object aldeanosUnidad{
 	var property position = game.at(11,19)
 	
 	method image(){
-		const stringNumero = menu.cantAldeanos().toString()
+		const stringNumero = aldeanos.aldeanos().toString()
 		return unidades.imagen(stringNumero.reverse().charAt(0))
 	}
 }
@@ -483,7 +544,7 @@ object aldeanosDecena{
 	var property position = game.at(11,19)
 	
 	method image(){
-		const stringNumero = menu.cantAldeanos().toString()
+		const stringNumero = aldeanos.aldeanos().toString()
 		var valor = null
 		if(stringNumero.length() > 1){
 			valor = stringNumero.reverse().drop(1).charAt(0)
@@ -496,7 +557,7 @@ object aldeanosCientos{
 	var property position = game.at(11,19)
 	
 	method image(){
-		const stringNumero = menu.cantAldeanos().toString()
+		const stringNumero = aldeanos.aldeanos().toString()
 		var valor = null
 		if(stringNumero.length() > 2){
 			valor = stringNumero.reverse().drop(2).charAt(0)
@@ -509,7 +570,7 @@ object aldeanosMiles{
 	var property position = game.at(10,19)
 	
 	method image(){
-		const stringNumero = menu.cantAldeanos().toString()
+		const stringNumero = aldeanos.aldeanos().toString()
 		var valor = null
 		if(stringNumero.length() > 3){
 			valor = stringNumero.reverse().drop(3).charAt(0)
@@ -522,7 +583,7 @@ object aldeanosDecenaMiles{
 	var property position = game.at(10,19)
 	
 	method image(){
-		const stringNumero = menu.cantAldeanos().toString()
+		const stringNumero = aldeanos.aldeanos().toString()
 		var valor = null
 		if(stringNumero.length() > 4){
 			valor = stringNumero.reverse().drop(4).charAt(0)
@@ -535,7 +596,7 @@ object aldeanosCientosMiles{
 	var property position = game.at(10,19)
 	
 	method image(){
-		const stringNumero = menu.cantAldeanos().toString()
+		const stringNumero = aldeanos.aldeanos().toString()
 		var valor = null
 		if(stringNumero.length() > 5){
 			valor = stringNumero.reverse().drop(5).charAt(0)
@@ -551,7 +612,7 @@ object poblacionUnidad{
 	var property position = game.at(14,19)
 	
 	method image(){
-		const stringNumero = menu.cantPoblacion().toString()
+		const stringNumero = aldeanos.poblacion().toString()
 		return unidades.imagen(stringNumero.reverse().charAt(0))
 	}
 }
@@ -560,7 +621,7 @@ object poblacionDecena{
 	var property position = game.at(14,19)
 	
 	method image(){
-		const stringNumero = menu.cantPoblacion().toString()
+		const stringNumero = aldeanos.poblacion().toString()
 		var valor = null
 		if(stringNumero.length() > 1){
 			valor = stringNumero.reverse().drop(1).charAt(0)
@@ -573,7 +634,7 @@ object poblacionCientos{
 	var property position = game.at(14,19)
 	
 	method image(){
-		const stringNumero = menu.cantPoblacion().toString()
+		const stringNumero = aldeanos.poblacion().toString()
 		var valor = null
 		if(stringNumero.length() > 2){
 			valor = stringNumero.reverse().drop(2).charAt(0)
@@ -586,7 +647,7 @@ object poblacionMiles{
 	var property position = game.at(13,19)
 	
 	method image(){
-		const stringNumero = menu.cantPoblacion().toString()
+		const stringNumero = aldeanos.poblacion().toString()
 		var valor = null
 		if(stringNumero.length() > 3){
 			valor = stringNumero.reverse().drop(3).charAt(0)
@@ -599,7 +660,7 @@ object poblacionDecenaMiles{
 	var property position = game.at(13,19)
 	
 	method image(){
-		const stringNumero = menu.cantPoblacion().toString()
+		const stringNumero = aldeanos.poblacion().toString()
 		var valor = null
 		if(stringNumero.length() > 4){
 			valor = stringNumero.reverse().drop(4).charAt(0)
@@ -612,7 +673,7 @@ object poblacionCientosMiles{
 	var property position = game.at(13,19)
 	
 	method image(){
-		const stringNumero = menu.cantPoblacion().toString()
+		const stringNumero = aldeanos.poblacion().toString()
 		var valor = null
 		if(stringNumero.length() > 5){
 			valor = stringNumero.reverse().drop(5).charAt(0)
@@ -628,7 +689,7 @@ object aldDispUnidad{
 	var property position = game.at(2,3)
 	
 	method image(){
-		const stringNumero = menu.cantAldeanoDisponible().toString()
+		const stringNumero = aldeanos.aldeanoDisponible().toString()
 		return unidades.imagen(stringNumero.reverse().charAt(0))
 	}
 }
@@ -637,7 +698,7 @@ object aldDispDecena{
 	var property position = game.at(2,3)
 	
 	method image(){
-		const stringNumero = menu.cantAldeanoDisponible().toString()
+		const stringNumero = aldeanos.aldeanoDisponible().toString()
 		var valor = null
 		if(stringNumero.length() > 1){
 			valor = stringNumero.reverse().drop(1).charAt(0)
@@ -650,7 +711,7 @@ object aldDispCientos{
 	var property position = game.at(2,3)
 	
 	method image(){
-		const stringNumero = menu.cantAldeanoDisponible().toString()
+		const stringNumero = aldeanos.aldeanoDisponible().toString()
 		var valor = null
 		if(stringNumero.length() > 2){
 			valor = stringNumero.reverse().drop(2).charAt(0)
@@ -664,7 +725,7 @@ object taladorUnidad{
 	var property position = game.at(2,2)
 	
 	method image(){
-		const stringNumero = menu.cantAldeanoTalador().toString()
+		const stringNumero = aldeanos.aldeanoTalador().toString()
 		return unidades.imagen(stringNumero.reverse().charAt(0))
 	}
 }
@@ -673,7 +734,7 @@ object taladorDecena{
 	var property position = game.at(2,2)
 	
 	method image(){
-		const stringNumero = menu.cantAldeanoTalador().toString()
+		const stringNumero = aldeanos.aldeanoTalador().toString()
 		var valor = null
 		if(stringNumero.length() > 1){
 			valor = stringNumero.reverse().drop(1).charAt(0)
@@ -686,7 +747,7 @@ object taladorCientos{
 	var property position = game.at(2,2)
 	
 	method image(){
-		const stringNumero = menu.cantAldeanoTalador().toString()
+		const stringNumero = aldeanos.aldeanoTalador().toString()
 		var valor = null
 		if(stringNumero.length() > 2){
 			valor = stringNumero.reverse().drop(2).charAt(0)
@@ -700,7 +761,7 @@ object mineroUnidad{
 	var property position = game.at(2,1)
 	
 	method image(){
-		const stringNumero = menu.cantAldeanoMinero().toString()
+		const stringNumero = aldeanos.aldeanoMinero().toString()
 		return unidades.imagen(stringNumero.reverse().charAt(0))
 	}
 }
@@ -709,7 +770,7 @@ object mineroDecena{
 	var property position = game.at(2,1)
 	
 	method image(){
-		const stringNumero = menu.cantAldeanoMinero().toString()
+		const stringNumero = aldeanos.aldeanoMinero().toString()
 		var valor = null
 		if(stringNumero.length() > 1){
 			valor = stringNumero.reverse().drop(1).charAt(0)
@@ -722,7 +783,7 @@ object mineroCientos{
 	var property position = game.at(2,1)
 	
 	method image(){
-		const stringNumero = menu.cantAldeanoMinero().toString()
+		const stringNumero = aldeanos.aldeanoMinero().toString()
 		var valor = null
 		if(stringNumero.length() > 2){
 			valor = stringNumero.reverse().drop(2).charAt(0)
@@ -736,7 +797,7 @@ object constructorUnidad{
 	var property position = game.at(2,0)
 	
 	method image(){
-		const stringNumero = menu.cantAldeanoConstructor().toString()
+		const stringNumero = aldeanos.aldeanoConstructor().toString()
 		return unidades.imagen(stringNumero.reverse().charAt(0))
 	}
 }
@@ -745,7 +806,7 @@ object constructorDecena{
 	var property position = game.at(2,0)
 	
 	method image(){
-		const stringNumero = menu.cantAldeanoConstructor().toString()
+		const stringNumero = aldeanos.aldeanoConstructor().toString()
 		var valor = null
 		if(stringNumero.length() > 1){
 			valor = stringNumero.reverse().drop(1).charAt(0)
@@ -758,7 +819,7 @@ object constructorCientos{
 	var property position = game.at(2,0)
 	
 	method image(){
-		const stringNumero = menu.cantAldeanoConstructor().toString()
+		const stringNumero = aldeanos.aldeanoConstructor().toString()
 		var valor = null
 		if(stringNumero.length() > 2){
 			valor = stringNumero.reverse().drop(2).charAt(0)
@@ -772,7 +833,7 @@ object granjeroUnidad{
 	var property position = game.at(5,3)
 	
 	method image(){
-		const stringNumero = menu.cantAldeanoGranjero().toString()
+		const stringNumero = aldeanos.aldeanoGranjero().toString()
 		return unidades.imagen(stringNumero.reverse().charAt(0))
 	}
 }
@@ -781,7 +842,7 @@ object granjeroDecena{
 	var property position = game.at(5,3)
 	
 	method image(){
-		const stringNumero = menu.cantAldeanoGranjero().toString()
+		const stringNumero = aldeanos.aldeanoGranjero().toString()
 		var valor = null
 		if(stringNumero.length() > 1){
 			valor = stringNumero.reverse().drop(1).charAt(0)
@@ -794,7 +855,7 @@ object granjeroCientos{
 	var property position = game.at(5,3)
 	
 	method image(){
-		const stringNumero = menu.cantAldeanoGranjero().toString()
+		const stringNumero = aldeanos.aldeanoGranjero().toString()
 		var valor = null
 		if(stringNumero.length() > 2){
 			valor = stringNumero.reverse().drop(2).charAt(0)
@@ -808,7 +869,7 @@ object agricultorUnidad{
 	var property position = game.at(5,2)
 	
 	method image(){
-		const stringNumero = menu.cantAldeanoAgricultor().toString()
+		const stringNumero = aldeanos.aldeanoAgricultor().toString()
 		return unidades.imagen(stringNumero.reverse().charAt(0))
 	}
 }
@@ -817,7 +878,7 @@ object agricultorDecena{
 	var property position = game.at(5,2)
 	
 	method image(){
-		const stringNumero = menu.cantAldeanoAgricultor().toString()
+		const stringNumero = aldeanos.aldeanoAgricultor().toString()
 		var valor = null
 		if(stringNumero.length() > 1){
 			valor = stringNumero.reverse().drop(1).charAt(0)
@@ -830,7 +891,7 @@ object agricultorCientos{
 	var property position = game.at(5,2)
 	
 	method image(){
-		const stringNumero = menu.cantAldeanoAgricultor().toString()
+		const stringNumero = aldeanos.aldeanoAgricultor().toString()
 		var valor = null
 		if(stringNumero.length() > 2){
 			valor = stringNumero.reverse().drop(2).charAt(0)
@@ -843,7 +904,7 @@ object pescadorUnidad{
 	var property position = game.at(5,1)
 	
 	method image(){
-		const stringNumero = menu.cantAldeanoPescador().toString()
+		const stringNumero = aldeanos.aldeanoPescador().toString()
 		return unidades.imagen(stringNumero.reverse().charAt(0))
 	}
 }
@@ -852,7 +913,7 @@ object pescadorDecena{
 	var property position = game.at(5,1)
 	
 	method image(){
-		const stringNumero = menu.cantAldeanoPescador().toString()
+		const stringNumero = aldeanos.aldeanoPescador().toString()
 		var valor = null
 		if(stringNumero.length() > 1){
 			valor = stringNumero.reverse().drop(1).charAt(0)
@@ -865,7 +926,7 @@ object pescadorCientos{
 	var property position = game.at(5,1)
 	
 	method image(){
-		const stringNumero = menu.cantAldeanoPescador().toString()
+		const stringNumero = aldeanos.aldeanoPescador().toString()
 		var valor = null
 		if(stringNumero.length() > 2){
 			valor = stringNumero.reverse().drop(2).charAt(0)
@@ -879,7 +940,7 @@ object cazadorUnidad{
 	var property position = game.at(5,0)
 	
 	method image(){
-		const stringNumero = menu.cantAldeanoCazador().toString()
+		const stringNumero = aldeanos.aldeanoCazador().toString()
 		return unidades.imagen(stringNumero.reverse().charAt(0))
 	}
 }
@@ -888,7 +949,7 @@ object cazadorDecena{
 	var property position = game.at(5,0)
 	
 	method image(){
-		const stringNumero = menu.cantAldeanoCazador().toString()
+		const stringNumero = aldeanos.aldeanoCazador().toString()
 		var valor = null
 		if(stringNumero.length() > 1){
 			valor = stringNumero.reverse().drop(1).charAt(0)
@@ -901,7 +962,7 @@ object cazadorCientos{
 	var property position = game.at(5,0)
 	
 	method image(){
-		const stringNumero = menu.cantAldeanoCazador().toString()
+		const stringNumero = aldeanos.aldeanoCazador().toString()
 		var valor = null
 		if(stringNumero.length() > 2){
 			valor = stringNumero.reverse().drop(2).charAt(0)
