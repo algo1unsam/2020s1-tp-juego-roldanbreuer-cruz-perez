@@ -14,6 +14,11 @@ object recursos{
 	var property cantPiedra = 50
 	var property cantAlmacen = 100
 	var property mercadosConstruidos = 0
+	
+	method disponible(alimento, madera, piedra){
+		if(cantAlimento < alimento or cantMadera < madera or cantPiedra < piedra) centralErrores.error("No hay recursos disponibles")
+	}
+	
 }
 
 // ---- Modificadores de recurso
@@ -89,18 +94,25 @@ object inGame{
 	method cerrar(){ }
 	method accion(){ }
 	method mover(posicionNueva, position){ cursor.position(posicionNueva) }
+	method bksp(){ }
+	method enter(){ self.t() }
 	method q(){ }
 	method w(){ }
 	method e(){ }
 	method r(){ }
 	method a(){	}
-	method s(){	}
+	method s(){ 
+		escenario.estado(inSeleccion)
+		cursor.seleccion()
+	}
 	method d(){	}
 	method f(){	}
 	method t(){
-		const objetivo = game.getObjectsIn(cursor.position()).find({ objeto => objeto.trabajable() })
-		cursor.accesoAlLugar()
-		objetivo.accion().trabajar(objetivo, cursor.position())
+		if(game.getObjectsIn(cursor.position()).find({ objeto => objeto.trabajable() }).size() > 0){
+			const objetivo = game.getObjectsIn(cursor.position()).find({ objeto => objeto.trabajable() })
+			cursor.accesoAlLugar()
+			objetivo.accion().trabajar(objetivo, cursor.position())
+		}
 	}
 	
 }
@@ -114,6 +126,13 @@ object inSeleccion{
 					cursor.position(posicionNueva)
 					cursor.seleccionInicio().add(position)
 					game.addVisualIn(new Seleccion(), position) }
+	method bksp(){ }
+	method enter(){ 
+		/// ------------- Interaccion con menu TO DO
+		cursor.seleccion()
+		escenario.estado(inPostSeleccion)
+		inPostSeleccion.aparecer()
+	}
 	method q(){ }
 	method w(){ }
 	method e(){ }
@@ -131,6 +150,7 @@ object inPausa{
 	method cerrar(){ }
 	method accion(){ }
 	method mover(posicionNueva, position){  }
+	method bksp(){ }
 	method q(){ }
 	method w(){ }
 	method e(){ }
@@ -143,11 +163,11 @@ object inPausa{
 }
 
 
-/*
-object inMenu{
+
+object inPostSeleccion{
 	
 	method aparecer(){
-		game.addVisualIn(menu, game.at(12,5))
+		game.addVisualIn(fondoMenu, game.at(12,5))
 		game.addVisualIn(tituloAcciones, game.at(13,13))
 		game.addVisualIn(botonTalar, game.at(13,11))
 		game.addVisualIn(botonMinar, game.at(16,11))
@@ -157,7 +177,7 @@ object inMenu{
 	}
 	
 	method cerrar(){
-		game.removeVisual(menu)
+		game.removeVisual(fondoMenu)
 		game.removeVisual(tituloAcciones)
 		game.removeVisual(botonTalar)
 		game.removeVisual(botonMinar)
@@ -165,7 +185,10 @@ object inMenu{
 		game.removeVisual(botonCancelar)
 		game.removeVisual(botonSalir)
 	}
-	
+	method bksp(){ 
+		self.cerrar()
+		cursor.seleccionInicio().forEach({ posicion => game.getObjectsIn(posicion).find({ objeto => game.removeVisual(objeto.tipo() == "Seleccion" )}) })
+	}	
 	method accion(){ }
 	method q(){ }
 	method w(){ }
@@ -206,9 +229,12 @@ object inMenuConst{
 		game.removeVisual(botonCancelar)
 		game.removeVisual(botonSalir)
 	}
-	
+	method bksp(){ }	
 	method accion(){ }
-	method q(){ }
+	method q(){ 
+		recursos.disponible( almacen.costoAlimento(), almacen.costoMadera(), almacen.costoPiedra())
+		
+	}
 	method w(){ }
 	method e(){ }
 	method r(){ }
@@ -218,4 +244,4 @@ object inMenuConst{
 	method f(){	}
 	method t(){ }
 	
-}*/
+}
