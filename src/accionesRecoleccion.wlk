@@ -15,21 +15,47 @@ class Recolector{
 	
 	method iniciar(){
 		aldeanos.requerir(tipo)
-		barra = new BarraRecoleccion(recolector = self, position = position)
-		game.addVisualIn(barra, position)
+		if(barra == null){
+			barra = new BarraRecoleccion(recolector = self, position = position)
+			game.addVisualIn(barra, position)
+		}
 		nombreTick = "Recolector"+position.toString()
-		game.onTick((tipo.accion().tiempoNecesario()/5), nombreTick, {=> barra.suma() })
+		escenario.tickEnCurso().add(self)
+		game.onTick((tipo.accion().tiempoNecesario()/5)*100, nombreTick, {=> barra.suma() })
+	}
+	
+	method pausa(){
+		game.removeTickEvent(nombreTick)
+	}
+	
+	method unpausa(){
+		game.onTick((tipo.accion().tiempoNecesario()/5)*100, nombreTick, {=> barra.suma() })
 	}
 	
 	method detener(){
 		aldeanos.liberar(tipo)
+		escenario.tickEnCurso().remove(nombreTick)
+		game.removeTickEvent(nombreTick)
+		game.removeVisual(self)
+	}
+	
+	method finalizar(){
+		aldeanos.liberar(tipo)
 		game.removeVisual(barra)
 		tipo.remover()
+		escenario.tickEnCurso().remove(nombreTick)
 		game.removeTickEvent(nombreTick)
+		game.removeVisual(self)
 	}
 	
 	method recolectar(){
-		tipo.tipo().tipoRecurso().modificar(tipo.tipo().recurso()/5)
+		if((tipo.tipo().tipoRecurso().consulta() + (tipo.tipo().recurso()/5)) <= almacen.consulta()){
+			tipo.tipo().tipoRecurso().modificar(tipo.tipo().recurso()/5)
+		}else{
+			self.detener()
+			barra.resta()
+			centralErrores.error("No hay espacio en el Almacen")
+		}
 	}
 	
 }

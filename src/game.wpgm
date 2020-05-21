@@ -2,7 +2,6 @@ import wollok.game.*
 import cursor.*
 import elementosGame.*
 import estados.*
-import teclas.*
 import hud.*
 import timer.*
 
@@ -21,23 +20,7 @@ program game {
 	keyboard.down().onPressDo { cursor.mover(cursor.position().down(1)) }
 	keyboard.left().onPressDo { cursor.mover(cursor.position().left(1)) }
 	keyboard.right().onPressDo { cursor.mover(cursor.position().right(1)) }
-	keyboard.enter().onPressDo { enter.apretar() }
-	keyboard.backspace().onPressDo { teclas.bkps() }
-	keyboard.m().onPressDo { teclas.m() }
-	keyboard.q().onPressDo { teclas.q() }
-	keyboard.w().onPressDo { teclas.w() }
-	keyboard.e().onPressDo { teclas.e() }
-	keyboard.r().onPressDo { teclas.r() }
-	keyboard.a().onPressDo { teclas.a() }
-	keyboard.s().onPressDo { teclas.s() }
-	keyboard.d().onPressDo { teclas.d() }
-	keyboard.f().onPressDo { teclas.f() }
-	keyboard.k().onPressDo { teclas.k() }
-	keyboard.t().onPressDo { teclas.t() }
-	keyboard.c().onPressDo { teclas.c() }
-	keyboard.p().onPressDo { game.say(cursor, cursor.position().toString()) }
-	keyboard.o().onPressDo { teclas.o() }
-	keyboard.minusKey().onPressDo { teclas.menos() }
+	keyboard.t().onPressDo { escenario.estado().t() }
 	inicializar.poblarMapa()
 	cargaHud.cargar()
 	timer.inicio()

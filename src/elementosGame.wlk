@@ -4,8 +4,6 @@ import estados.*
 import accionesRecoleccion.*
 //import menu.*
 
-
-
 //en este archivo solo se van a encontrar los elementos que interactuen con los aldeanos(arboledas
 //casas, pesca etc..)
 
@@ -48,8 +46,12 @@ class BarraRecoleccion{
 		progreso += 1
 		recolector.recolectar()
 		if(progreso > 5){
-			recolector.detener()
+			recolector.finalizar()
 		}
+	}
+	
+	method resta(){
+		progreso -= 1
 	}
 	
 	method image(){
@@ -116,7 +118,7 @@ object talada{
 	
 	method trabajar(origen, posicion){
 		game.addVisualIn(new Recolector(tipo = origen, position = posicion), posicion)
-		game.getObjectsIn(cursor.position()).find({ objeto => objeto.type() == origen }).iniciar()
+		game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == origen }).iniciar()
 	}
 	
 	method sound() = "talar.ogg"
@@ -159,7 +161,7 @@ object minado{
 	
 	method trabajar(origen, posicion){
 		game.addVisualIn(new Recolector(tipo = origen, position = posicion), posicion)
-		game.getObjectsIn(cursor.position()).find({ objeto => objeto.type() == origen }).iniciar()
+		game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == origen }).iniciar()
 	}
 	
 	method sound()="minar.ogg"
@@ -201,7 +203,7 @@ object pesca{
 	
 	method trabajar(origen, posicion){
 		game.addVisualIn(new Recolector(tipo = origen, position = posicion), posicion)
-		game.getObjectsIn(cursor.position()).find({ objeto => objeto.type() == origen }).iniciar()
+		game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == origen }).iniciar()
 	}
 	
 	method image() = "assets/pesca.png"

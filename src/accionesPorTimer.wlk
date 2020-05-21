@@ -32,10 +32,10 @@ object dispararEvento{
 	}
 	
 	method killRandom(){
-		const todosLosAldeanos = game.allVisuals().filter({ filtro => filtro.tipo() == "Talador" or 
-																	filtro.tipo() == "Minero" or
-																	filtro.tipo() == "Constructor" or 
-																	filtro.tipo() == "Pescador"})
+	/*	const todosLosAldeanos = game.allVisuals().filter({ filtro => filtro.tipo().accion().tipo() == "Talador" or 
+																	filtro.tipo().accion().tipo() == "Minero" or
+																	filtro.tipo().accion().tipo() == "Constructor" or 
+																	filtro.tipo().accion().tipo() == "Pescador"})
 		if(cantAldeanoDisponible > 0) todosLosAldeanos.add(aldeanoLibre)
 		const sujetoAMorir = todosLosAldeanos.anyOne()
 		if(sujetoAMorir.tipo() == "Talador" or sujetoAMorir.tipo() == "Minero" or sujetoAMorir.tipo() == "Constructor" or sujetoAMorir.tipo() == "Pescador"){
@@ -57,7 +57,7 @@ object dispararEvento{
 				game.addVisualIn(gameover, game.at(13,10))
 			}
 			centralErrores.error("Ha muerto un aldeano disponible")
-		}
+		}*/
 		 
 	}
 	

@@ -1,6 +1,8 @@
 import wollok.game.*
 import cursor.*
 import hud.*
+import accionesPorTimer.*
+import estados.*
 //import menu.*
 
 
@@ -16,20 +18,16 @@ object timer{
 			}
 		if(acumuladorTiempo == 60){
 			minutos+=1
-			menu.Alimentar()
-			if(minutos.even()){menu.Nacimiento()}
+			dispararEvento.Alimentar()
+			if(minutos.even()){dispararEvento.Nacimiento()}
 			segundos=0
 			acumuladorTiempo=0
 		}
 		if(acumuladorTiempo%5==0){   //// --- Mercado
-			menu.sumAlimento(1*menu.mercadosConstruidos())
-			menu.sumMadera(1*menu.mercadosConstruidos())
-			menu.sumPiedra(1*menu.mercadosConstruidos())
+			alimento.modificar(1*recursos.mercadosConstruidos())
+			madera.modificar(1*recursos.mercadosConstruidos())
+			piedra.modificar(1*recursos.mercadosConstruidos())
 		}
 		
 	}
 }
-
-
-///esto es al pedo para que me tome el commit
-object wollokDejameCommitear{}

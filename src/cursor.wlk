@@ -1,8 +1,7 @@
 import wollok.game.*
 import elementosGame.*
 //import menu.*
-import teclas.*
-
+import estados.*
 
 
 //aqui se encuentra nuestro cursor y su configuracion
@@ -29,22 +28,14 @@ object cursor {
 			seleccionInicio.add(self.position())
 			game.addVisualIn(new Seleccion(), position)
 		}else{
-			menu.seleccionado(seleccionInicio.copy())
+//			menu.seleccionado(seleccionInicio.copy())
 			seleccionInicio.clear()
 		}
 	}
 	
 	method mover(posicionNueva){
-		if(limites.filter({valor => valor == posicionNueva}).size() == 0){
-			if(menu.visible() == null ){
-				if (seleccionInicio.size() == 0){
-					self.position(posicionNueva)
-				}else{
-					self.position(posicionNueva)
-					seleccionInicio.add(position)
-					game.addVisualIn(new Seleccion(), position)
-				}
-			}
+		if(!limites.contains(posicionNueva)){
+			escenario.estado().mover(posicionNueva, position)
 		}
 	}
 	
@@ -57,6 +48,7 @@ object cursor {
 			centralErrores.error("No se tiene acceso a esta posicion.")
 		}
 	}
+	
 	method accesoAlLugar(posicion){
 		// -- Se revisa si se tiene acceso a la posicion para poder realizar acciones
 		if(game.getObjectsIn(posicion.up(1)).size() > 0 and

@@ -4,6 +4,7 @@ import cursor.*
 
 object escenario{
 	var property estado = inGame
+	var property tickEnCurso = []
 }
 
 object recursos{
@@ -17,21 +18,25 @@ object recursos{
 
 // ---- Modificadores de recurso
 object madera{
+	method consulta() = recursos.cantMadera()
 	method modificar(valor){
 		recursos.cantMadera(recursos.cantMadera() + valor)
 	}
 }
 object alimento{
+	method consulta() = recursos.cantAlimento()
 	method modificar(valor){
 		recursos.cantAlimento(recursos.cantAlimento() + valor)
 	}
 }
 object piedra{
+	method consulta() = recursos.cantPiedra()
 	method modificar(valor){
 		recursos.cantPiedra(recursos.cantPiedra() + valor)
 	}
 }
 object almacen{
+	method consulta() = recursos.cantAlmacen()
 	method modificar(valor){
 		recursos.cantAlmacen(recursos.cantAlmacen() + valor)
 	}
@@ -80,51 +85,63 @@ object inicializar{
 
 object inGame{
 	
-	method aparecer(){
-		
-	}
-	
-	method cerrar(){
-		
-	}
-	
-	method q(){
-		
-	}
-	
-	method w(){
-		
-	}
-	
-	method e(){
-		
-	}
-	
-	method r(){
-		
-	}
-	
-	method a(){
-		
-	}
-	
-	method s(){
-		
-	}
-	
-	method d(){
-		
-	}
-	
-	method f(){
-		
-	}
+	method aparecer(){ }
+	method cerrar(){ }
+	method accion(){ }
+	method mover(posicionNueva, position){ cursor.position(posicionNueva) }
+	method q(){ }
+	method w(){ }
+	method e(){ }
+	method r(){ }
+	method a(){	}
+	method s(){	}
+	method d(){	}
+	method f(){	}
 	method t(){
 		const objetivo = game.getObjectsIn(cursor.position()).find({ objeto => objeto.trabajable() })
+		cursor.accesoAlLugar()
 		objetivo.accion().trabajar(objetivo, cursor.position())
 	}
 	
 }
+
+object inSeleccion{
+	
+	method aparecer(){ }
+	method cerrar(){ }
+	method accion(){ }
+	method mover(posicionNueva, position){ 
+					cursor.position(posicionNueva)
+					cursor.seleccionInicio().add(position)
+					game.addVisualIn(new Seleccion(), position) }
+	method q(){ }
+	method w(){ }
+	method e(){ }
+	method r(){ }
+	method a(){	}
+	method s(){	}
+	method d(){	}
+	method f(){	}
+	method t(){ }
+}
+
+object inPausa{
+	
+	method aparecer(){ }
+	method cerrar(){ }
+	method accion(){ }
+	method mover(posicionNueva, position){  }
+	method q(){ }
+	method w(){ }
+	method e(){ }
+	method r(){ }
+	method a(){	}
+	method s(){	}
+	method d(){	}
+	method f(){	}
+	method t(){ }
+}
+
 
 /*
 object inMenu{
@@ -149,42 +166,16 @@ object inMenu{
 		game.removeVisual(botonSalir)
 	}
 	
-	method accion(){
-		
-	}
-	
-	method q(){
-		
-	}
-	
-	method w(){
-		
-	}
-	
-	method e(){
-		
-	}
-	
-	method r(){
-		
-	}
-	
-	method a(){
-		
-	}
-	
-	method s(){
-		
-	}
-	
-	method d(){
-		
-	}
-	
-	method f(){
-		
-	}
-	
+	method accion(){ }
+	method q(){ }
+	method w(){ }
+	method e(){ }
+	method r(){ }
+	method a(){	}
+	method s(){	}
+	method d(){	}
+	method f(){	}
+	method t(){ }
 }
 
 
@@ -216,40 +207,15 @@ object inMenuConst{
 		game.removeVisual(botonSalir)
 	}
 	
-	method accion(){
-		
-	}
-	
-	method q(){
-		
-	}
-	
-	method w(){
-		
-	}
-	
-	method e(){
-		
-	}
-	
-	method r(){
-		
-	}
-	
-	method a(){
-		
-	}
-	
-	method s(){
-		
-	}
-	
-	method d(){
-		
-	}
-	
-	method f(){
-		
-	}
+	method accion(){ }
+	method q(){ }
+	method w(){ }
+	method e(){ }
+	method r(){ }
+	method a(){	}
+	method s(){	}
+	method d(){	}
+	method f(){	}
+	method t(){ }
 	
 }*/
