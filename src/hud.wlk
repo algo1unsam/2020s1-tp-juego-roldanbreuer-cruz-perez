@@ -973,12 +973,12 @@ object cazadorCientos{
 
 object cargaHud{
 	method cargar(){
-	game.addVisual(almacenUnidad)
-	game.addVisual(almacenDecena)
-	game.addVisual(almacenCientos)
-	game.addVisual(almacenMiles)
-	game.addVisual(almacenDecenaMiles)
-	game.addVisual(almacenCientosMiles)	
+	//game.addVisual(almacenUnidad)
+	//game.addVisual(almacenDecena)
+	//game.addVisual(almacenCientos)
+	//game.addVisual(almacenMiles)
+	//game.addVisual(almacenDecenaMiles)
+	//game.addVisual(almacenCientosMiles)	
 	game.addVisual(alimentoUnidad)
 	game.addVisual(alimentoDecena)
 	game.addVisual(alimentoCientos)

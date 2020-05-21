@@ -14,11 +14,17 @@ object recursos{
 	var property cantPiedra = 50
 	var property cantAlmacen = 100
 	var property mercadosConstruidos = 0
-	
+	//var property tipo="numerosHUD"
+	//var property posicionHud=game.at(17,19)
 	method disponible(alimento, madera, piedra){
 		if(cantAlimento < alimento or cantMadera < madera or cantPiedra < piedra) centralErrores.error("No hay recursos disponibles")
 	}
-	
+	/*method recursosHud(){
+		hud.unidad(self.tipo(),self.posicionHud(),self.cantAlimento())
+		hud.decena(self.tipo(),self.posicionHud(),self.cantAlimento())
+		hud.centena(self.tipo(),self.posicionHud(),self.cantAlimento())
+		hud.miles((self.tipo(),self.posicionHud(),self.cantAlimento()))
+	}*/
 }
 
 // ---- Modificadores de recurso
@@ -59,7 +65,7 @@ object aldeanos{
 	var property aldeanoAgricultor = 0
 	var property aldeanoPescador = 0
 	var property aldeanoCazador = 0
-	
+	//var property position = game.at(2,3)
 	//-- Manejadores de trabajos
 	method requerir(tipo){
 		if(tipo.accion().aldeanosNecesarios() <= aldeanoDisponible){
@@ -74,6 +80,9 @@ object aldeanos{
 		aldeanoDisponible += tipo.accion().aldeanosNecesarios()
 		tipo.accion().dejarAldeano()
 	}
+	/*method aldeanoDisponibleHud(){
+		hud.unidad(position,aldeanoDisponible)
+	}*/
 	
 }
 
