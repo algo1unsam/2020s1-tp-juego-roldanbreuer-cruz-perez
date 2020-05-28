@@ -9,10 +9,15 @@
 
 object menu{
 	var property seleccionado = []
-
 	method image() = "assets/menu.png"
+	}
 	
-	method remover(tipo,lista){
+class Remover{
+	method removerObjeto(){
+
+	}
+}
+	/*method remover(tipo,lista){
 		lista.forEach({ 
 			objeto => 
 			if(game.getObjectsIn(objeto).filter({ filtro => filtro.tipo() == tipo }).size() > 0){
@@ -395,3 +400,4 @@ object menu{
 	}
 	
 }
+*/

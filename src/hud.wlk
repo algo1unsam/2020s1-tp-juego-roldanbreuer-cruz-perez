@@ -101,7 +101,7 @@ object cientos{
 	}
 }
 
-class Unidad{
+/*class Unidad{
 	var property tipo = "numerosHUD"
 	var property position
 	var property origen
@@ -160,7 +160,7 @@ class Centena{
 	}
 }
 
-
+*/
 //////---------------------------------------TIMER HUD
 object timerUnidad{
 	var property tipo = "numerosHUD"
