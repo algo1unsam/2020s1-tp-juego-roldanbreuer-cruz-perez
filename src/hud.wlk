@@ -158,13 +158,15 @@ class Centena{
 		}
 		return cientos.imagen(valor)
 	}
+	*
 }
 
 */
 //////---------------------------------------TIMER HUD
 object timerUnidad{
-	var property tipo = "numerosHUD"
-	var property position= game.at(36,19)
+	
+	var position= game.at(36,19)
+	method position(){return game.at(36,19)}
 	method image(){
 		const stringNumero= timer.segundos().toString()
 		return unidades.imagen(stringNumero.reverse().charAt(0))
@@ -221,7 +223,7 @@ object timerCentenaMinutos{
 	}
 }
 ////// ------------------------------------- ALMACEN HUD
-
+/* 
 object almacenUnidad{
 	var property tipo = "numerosHUD"
 	var property position = game.at(17,19)
@@ -269,6 +271,7 @@ object almacenMiles{
 		}
 		return unidades.imagen(valor)
 	}
+	
 }
 object almacenDecenaMiles{
 	var property tipo = "numerosHUD"
@@ -450,7 +453,7 @@ object maderaCientosMiles{
 		return cientos.imagen(valor)
 	}
 }
-
+*/
 ////// ------------------------------------- PIEDRA HUD
 
 object piedraUnidad{
