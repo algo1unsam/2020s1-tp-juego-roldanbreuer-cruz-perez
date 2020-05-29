@@ -455,7 +455,7 @@ object maderaCientosMiles{
 }
 */
 ////// ------------------------------------- PIEDRA HUD
-
+/* 
 object piedraUnidad{
 	var property tipo = "numerosHUD"
 	var property position = game.at(8,19)
@@ -530,9 +530,9 @@ object piedraCientosMiles{
 		return cientos.imagen(valor)
 	}
 }
-
+*/
 ////// ------------------------------------- ALDEANOS HUD
-
+/* 
 object aldeanosUnidad{
 	var property tipo = "numerosHUD"
 	var property position = game.at(11,19)
@@ -684,9 +684,9 @@ object poblacionCientosMiles{
 		return cientos.imagen(valor)
 	}
 }
-
+*/
 //// ----------------- Hud Aldeanos
-
+/*
 object aldDispUnidad{
 	var property tipo = "numerosHUD"
 	var property position = game.at(2,3)
@@ -888,7 +888,7 @@ object agricultorDecena{
 		}
 		return decenas.imagen(valor)
 	}
-}
+}*//*
 object agricultorCientos{
 	var property tipo = "numerosHUD"
 	var property position = game.at(5,2)
@@ -972,8 +972,8 @@ object cazadorCientos{
 		}
 		return cientos.imagen(valor)
 	}
-} 
-
+} */
+/* 
 object cargaHud{
 	method cargar(){
 	//game.addVisual(almacenUnidad)
@@ -1045,3 +1045,4 @@ object cargaHud{
 	game.addVisual(timerCentenaMinutos)
 	}
 }
+*/
