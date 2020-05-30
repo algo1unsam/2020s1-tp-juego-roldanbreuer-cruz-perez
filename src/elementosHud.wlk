@@ -1,11 +1,9 @@
-
 import estados.*
 import wollok.game.*
 import timer.*
 //aca estoy tratando de achicar el archivo hud en metodos de unidades, decenas, centenas, etc.. sin importar que es lo que le mande, y me pueda 
 //returnar el calculo que necesito para el hud
 //cuando estes disponible te cuento la idea
-
 object hud{
 	var property position = game.at(0,0)
 	var property tipo = "hud"
@@ -15,11 +13,8 @@ object hud{
 	var property trabajaPesca  = 0
 	var property trabajaGranja = 0
 	var property trabajaGanaderia = 0	
-	
-	
 	method image() = "assets/hud.png"
 }
-
 object unidades{
 	method imagen(valor){
 		if(valor == "0"){
@@ -101,10 +96,7 @@ object cientos{
 		}
 	}
 }
-
-
 //---- unidad en este caso es la clase padre-----
-
 class Unidad{
 	var property origen
 	var property position
@@ -113,7 +105,6 @@ class Unidad{
 		return unidades.imagen(stringNumero.reverse().charAt(0))
 	}
 }
-
 class Decena inherits Unidad{
 	override method image(){
 		const stringNumero = origen.toString()
@@ -124,7 +115,6 @@ class Decena inherits Unidad{
 		return decenas.imagen(valor)
 	}
 }
-
 class Centena inherits Unidad{
 	override method image(){
 		const stringNumero = origen.toString()
@@ -172,8 +162,6 @@ class AlmacenCentena inherits Centena{}
 class AlmacenMiles inherits Miles{}
 class AlmacenDecenaMiles inherits Decena{}
 class AlmacenCentenaMiles inherits Centena{}
-//timer
-
 // alimento
 class AlimentoUnidad inherits Unidad{}
 class AlimentoDecena inherits Decena{}
@@ -235,7 +223,6 @@ class TimerUnidadMinutos inherits Unidad{}
 class TimerDecenaMinutos inherits Decena{}
 class TimerCentenaMinutos inherits Centena{}
 object cargarHud{
-	
 	method instanciarYCargarHud(){
 	game.addVisual(new AlmacenUnidad(origen=recursos.cantAlmacen(),position=game.at(17,19)))
 	game.addVisual(new AlmacenDecena(origen=recursos.cantAlmacen(),position=game.at(17,19)))
@@ -273,7 +260,6 @@ object cargarHud{
 	game.addVisual(new PoblacionMiles(origen=aldeanos.poblacion(),position=game.at(13,19)))
 	game.addVisual(new PoblacionDecenaMiles(origen=aldeanos.poblacion(),position=game.at(13,19)))
 	game.addVisual(new PoblacionCentenaMiles(origen=aldeanos.poblacion(),position=game.at(13,19)))
-	
 	///---Aldeanos
 	game.addVisual(new AldeanosDisponiblesUnidad(origen=aldeanos.aldeanoDisponible(),position=game.at(2,3)))
 	game.addVisual(new AldeanosDisponiblesDecena(origen=aldeanos.aldeanoDisponible(),position=game.at(2,3)))
