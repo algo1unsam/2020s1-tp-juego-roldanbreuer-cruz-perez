@@ -115,6 +115,18 @@ class Decena inherits Unidad{
 		return decenas.imagen(valor)
 	}
 }
+class DecenaTimerSegundos inherits Unidad{
+	override method image(){
+		const stringNumero = origen.consulta().toString()
+		var valor = null
+		if(stringNumero.length() > 1){
+			valor = stringNumero.reverse().drop(1).charAt(0)
+		}else{
+			valor = "0"
+		}
+		return decenas.imagen(valor)
+	}
+}
 class Centena inherits Unidad{
 	override method image(){
 		const stringNumero = origen.consulta().toString()
@@ -218,7 +230,7 @@ class CazadorUnidad inherits Unidad{}
 class CazadorDecena inherits Decena{}
 class CazadorCentena inherits Centena{}
 class TimerUnidad inherits Unidad{}
-class TimerDecena inherits Decena{}
+class TimerDecena inherits DecenaTimerSegundos{}
 class TimerUnidadMinutos inherits Unidad{}
 class TimerDecenaMinutos inherits Decena{}
 class TimerCentenaMinutos inherits Centena{}

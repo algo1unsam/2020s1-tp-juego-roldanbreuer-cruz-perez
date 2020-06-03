@@ -1,6 +1,5 @@
 import wollok.game.*
 import cursor.*
-import hud.*
 import accionesPorTimer.*
 import estados.*
 import elementosHud.*

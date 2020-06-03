@@ -3,7 +3,6 @@ import cursor.*
 import elementosGame.*
 import elementosHud.*
 import estados.*
-import hud.*
 import timer.*
 import elementosHud.*
 
@@ -21,6 +20,9 @@ program game {
 	keyboard.down().onPressDo { cursor.mover(cursor.position().down(1)) }
 	keyboard.left().onPressDo { cursor.mover(cursor.position().left(1)) }
 	keyboard.right().onPressDo { cursor.mover(cursor.position().right(1)) }
+	keyboard.backspace().onPressDo { escenario.estado().bksp() }
+	keyboard.c().onPressDo { escenario.estado().c() }
+	keyboard.q().onPressDo { escenario.estado().q() }
 	keyboard.t().onPressDo { escenario.estado().t() }
 	inicializar.poblarMapa()
 	cargarHud.instanciarYCargarHud()

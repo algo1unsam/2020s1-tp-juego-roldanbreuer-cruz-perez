@@ -6,7 +6,7 @@
 //solo para comodidad del desarrollo del juego
 //en este archivo se encuentran solamente los elementos que componen el menu
 
-object recuso
+
 object menu{
 	var property seleccionado = []
 	method image() = "assets/menu.png"
@@ -18,9 +18,7 @@ class Remover{
 	}
 }
 
-object recursoHud{
-	method consulta
-}
+
 	/*method remover(tipo,lista){
 		lista.forEach({ 
 			objeto => 

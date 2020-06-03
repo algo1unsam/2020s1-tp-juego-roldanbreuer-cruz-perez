@@ -2,6 +2,7 @@ import elementosGame.*
 import wollok.game.*
 import cursor.*
 import menu.*
+import construcciones.*
 
 object escenario{
 	var property estado = inGame
@@ -88,32 +89,32 @@ object aldeanos{
 class Aldeano{
 	method consulta()=aldeanos.aldeanos()
 }
-class AldeanoDisponible inherits Aldeano{
-	override method consulta()=aldeanos.aldeanoDisponible()
+class AldeanoDisponible {
+	method consulta()=aldeanos.aldeanoDisponible()
 }
-class AldeanoTalador inherits Aldeano{
-	override method consulta()= aldeanos.aldeanoTalador()
+class AldeanoTalador {
+	method consulta()= aldeanos.aldeanoTalador()
 }
-class AldeanoMinero inherits Aldeano{
-	override method consulta()= aldeanos.aldeanoMinero()
+class AldeanoMinero {
+	method consulta()= aldeanos.aldeanoMinero()
 }
-class AldeanoPescador inherits Aldeano{
-	override method consulta()= aldeanos.aldeanoPescador()
+class AldeanoPescador {
+	method consulta()= aldeanos.aldeanoPescador()
 }
-class AldeanoCazador inherits Aldeano{
-	override method consulta()= aldeanos.aldeanoCazador()
+class AldeanoCazador {
+	method consulta()= aldeanos.aldeanoCazador()
 }
-class AldeanoGranjero inherits Aldeano{
-	override method consulta()= aldeanos.aldeanoGranjero()
+class AldeanoGranjero {
+	method consulta()= aldeanos.aldeanoGranjero()
 }
-class AldeanoAgricultor inherits Aldeano{
-	override method consulta()= aldeanos.aldeanoAgricultor()
+class AldeanoAgricultor {
+	method consulta()= aldeanos.aldeanoAgricultor()
 }
-class AldeanoConstructor inherits Aldeano{
-	override method consulta()= aldeanos.aldeanoConstructor()
+class AldeanoConstructor {
+	method consulta()= aldeanos.aldeanoConstructor()
 }
-class Poblacion inherits Aldeano{
-	override method consulta()= aldeanos.poblacion()
+class Poblacion {
+	method consulta()= aldeanos.poblacion()
 }
 
 object inicializar{
@@ -135,6 +136,10 @@ object inGame{
 	method mover(posicionNueva, position){ cursor.position(posicionNueva) }
 	method bksp(){ }
 	method enter(){ self.t() }
+	method c(){ 
+		inMenuConst.aparecer()
+		escenario.estado(inMenuConst)
+	}
 	method q(){ }
 	method w(){ }
 	method e(){ }
@@ -166,6 +171,7 @@ object inSeleccion{
 					cursor.seleccionInicio().add(position)
 					game.addVisualIn(new Seleccion(), position) }
 	method bksp(){ }
+	method c(){ }
 	method enter(){ 
 		/// ------------- Interaccion con menu TO DO
 		cursor.seleccion()
@@ -190,6 +196,7 @@ object inPausa{
 	method accion(){ }
 	method mover(posicionNueva, position){  }
 	method bksp(){ }
+	method c(){ }
 	method q(){ }
 	method w(){ }
 	method e(){ }
@@ -227,8 +234,10 @@ object inPostSeleccion{
 	method bksp(){ 
 		self.cerrar()
 		cursor.seleccionInicio().forEach({ posicion => game.getObjectsIn(posicion).find({ objeto => game.removeVisual(objeto.tipo() == "Seleccion" )}) })
+		escenario.estado(inGame)
 	}	
 	method accion(){ }
+	method c(){ }
 	method q(){ }
 	method w(){ }
 	method e(){ }
@@ -244,7 +253,7 @@ object inPostSeleccion{
 object inMenuConst{
 	
 	method aparecer(){
-		game.addVisualIn(menu, game.at(12,5))
+		game.addVisualIn(fondoMenu, game.at(12,5))
 		game.addVisualIn(tituloConstrucciones, game.at(13,13))
 		game.addVisualIn(botonAlmacen, game.at(13,10))
 		game.addVisualIn(botonCasaC, game.at(16,10))
@@ -257,7 +266,7 @@ object inMenuConst{
 	}
 	
 	method cerrar(){
-		game.removeVisual(menu)
+		game.removeVisual(fondoMenu)
 		game.removeVisual(tituloConstrucciones)
 		game.removeVisual(botonAlmacen)
 		game.removeVisual(botonCasaC)
@@ -268,11 +277,17 @@ object inMenuConst{
 		game.removeVisual(botonCancelar)
 		game.removeVisual(botonSalir)
 	}
-	method bksp(){ }	
+	method bksp(){
+		self.cerrar()
+		escenario.estado(inGame)
+	}	
 	method accion(){ }
+	method c(){ }
 	method q(){ 
 		recursos.disponible( almacenB.costoAlimento(), almacenB.costoMadera(), almacenB.costoPiedra())
-		
+		cursor.accesoAlLugar()
+		game.addVisualIn(new Constructor(tipo = new Construir(accion= almacenB, position= cursor.position()), position = cursor.position()), cursor.position())
+		game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == "Constructor" }).iniciar()
 	}
 	method w(){ }
 	method e(){ }
