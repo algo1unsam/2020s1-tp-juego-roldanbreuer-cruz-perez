@@ -3,6 +3,7 @@ import cursor.*
 import hud.*
 import accionesPorTimer.*
 import estados.*
+import elementosHud.*
 //import menu.*
 
 
@@ -28,6 +29,11 @@ object timer{
 			madera.modificar(1*recursos.mercadosConstruidos())
 			piedra.modificar(1*recursos.mercadosConstruidos())
 		}
-		
 	}
+}
+object timerSegundos {
+	method consulta()= timer.segundos()
+}
+object timerMinutos{
+	method consulta()=timer.minutos()
 }

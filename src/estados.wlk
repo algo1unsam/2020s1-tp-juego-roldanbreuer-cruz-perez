@@ -83,7 +83,36 @@ object aldeanos{
 	/*method aldeanoDisponibleHud(){
 		hud.unidad(position,aldeanoDisponible)
 	}*/
-	
+}
+class Aldeano{
+	method consulta()=aldeanos.aldeanos()
+}
+class AldeanoDisponible inherits Aldeano{
+	override method consulta()=aldeanos.aldeanoDisponible()
+}
+class AldeanoTalador inherits Aldeano{
+	override method consulta()= aldeanos.aldeanoTalador()
+}
+class AldeanoMinero inherits Aldeano{
+	override method consulta()= aldeanos.aldeanoMinero()
+}
+class AldeanoPescador inherits Aldeano{
+	override method consulta()= aldeanos.aldeanoPescador()
+}
+class AldeanoCazador inherits Aldeano{
+	override method consulta()= aldeanos.aldeanoCazador()
+}
+class AldeanoGranjero inherits Aldeano{
+	override method consulta()= aldeanos.aldeanoGranjero()
+}
+class AldeanoAgricultor inherits Aldeano{
+	override method consulta()= aldeanos.aldeanoAgricultor()
+}
+class AldeanoConstructor inherits Aldeano{
+	override method consulta()= aldeanos.aldeanoConstructor()
+}
+class Poblacion inherits Aldeano{
+	override method consulta()= aldeanos.poblacion()
 }
 
 object inicializar{

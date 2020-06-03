@@ -4,7 +4,7 @@ import elementosGame.*
 import estados.*
 import hud.*
 import timer.*
-
+import elementosHud.*
 
 //aqui solo configuracion de teclas y game
 //solo para comodidad del desarrollo del juego
@@ -22,7 +22,7 @@ program game {
 	keyboard.right().onPressDo { cursor.mover(cursor.position().right(1)) }
 	keyboard.t().onPressDo { escenario.estado().t() }
 	inicializar.poblarMapa()
-	cargaHud.cargar()
+	cargarHud.instanciarYCargarHud()
 	timer.inicio()
 	game.addVisualIn(centralErrores, game.at(31,0))
 	game.errorReporter(centralErrores)
