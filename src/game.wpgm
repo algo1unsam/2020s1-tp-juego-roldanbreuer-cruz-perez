@@ -1,6 +1,7 @@
 import wollok.game.*
 import cursor.*
 import elementosGame.*
+import elementosHud.*
 import estados.*
 import hud.*
 import timer.*
@@ -22,7 +23,7 @@ program game {
 	keyboard.right().onPressDo { cursor.mover(cursor.position().right(1)) }
 	keyboard.t().onPressDo { escenario.estado().t() }
 	inicializar.poblarMapa()
-	cargaHud.cargar()
+	cargarHud.instanciarYCargarHud()
 	timer.inicio()
 	game.addVisualIn(centralErrores, game.at(31,0))
 	game.errorReporter(centralErrores)
