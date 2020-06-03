@@ -1,4 +1,5 @@
 import wollok.game.*
+/* 
 class Elemento{
 	var property position 
 	
@@ -25,4 +26,4 @@ class Arboleda inherits Elemento{
 	}
 	method sound() = "talar.ogg"
 	method image() = "assets/talando.png"
-}
+}*/

@@ -4,7 +4,7 @@ import elementosGame.*
 //import menu.*
 import timer.*
 import estados.*
-
+/*
 
 //solo para comodidad del desarrollo del juego
 //en este archivo solo se encuentra la configuracion de las teclas
@@ -144,7 +144,7 @@ object teclas{
 		/* 
 		if(menu.visible() == null){
 			menu.aparecer("tecla")
-		}*/
+		}
 	}	
 	method menos(){
 		if(menu.visible() != null){
@@ -157,7 +157,7 @@ object teclas{
 		/*
 		menu.cerrar() 
 		if(menu.seleccionado().size() > 0)	menu.remover("Seleccion", menu.seleccionado())
-		*/
+		
 	}
 }
 object enter{
@@ -167,4 +167,4 @@ object enter{
 			menu.aparecer("postSeleccion")
 		}
 	}
-}
+}*/
