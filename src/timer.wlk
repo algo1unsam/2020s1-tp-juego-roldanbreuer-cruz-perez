@@ -37,4 +37,3 @@ object timerSegundos {
 object timerMinutos{
 	method consulta()=timer.minutos()
 }
-object wollok{}
