@@ -1,6 +1,7 @@
 import elementosGame.*
 import wollok.game.*
 import cursor.*
+import menu.*
 
 object escenario{
 	var property estado = inGame
@@ -146,7 +147,7 @@ object inGame{
 	method d(){	}
 	method f(){	}
 	method t(){
-		if(game.getObjectsIn(cursor.position()).find({ objeto => objeto.trabajable() }).size() > 0){
+		if(game.getObjectsIn(cursor.position()).any({ objeto => objeto.trabajable() })){
 			const objetivo = game.getObjectsIn(cursor.position()).find({ objeto => objeto.trabajable() })
 			cursor.accesoAlLugar()
 			objetivo.accion().trabajar(objetivo, cursor.position())
@@ -270,7 +271,7 @@ object inMenuConst{
 	method bksp(){ }	
 	method accion(){ }
 	method q(){ 
-		recursos.disponible( almacen.costoAlimento(), almacen.costoMadera(), almacen.costoPiedra())
+		recursos.disponible( almacenB.costoAlimento(), almacenB.costoMadera(), almacenB.costoPiedra())
 		
 	}
 	method w(){ }

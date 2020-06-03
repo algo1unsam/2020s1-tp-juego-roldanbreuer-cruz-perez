@@ -1,6 +1,7 @@
 import wollok.game.*
 import cursor.*
 import elementosGame.*
+import elementosHud.*
 import estados.*
 import hud.*
 import timer.*

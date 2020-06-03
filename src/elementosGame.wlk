@@ -335,7 +335,7 @@ object casaG{
 	
 	method image() = "assets/casa2-35.png"
 }
-object almacen{
+object almacenB{
 	var property position
 	var property tipo = "almacen"
 	var property costoAlimento = 0
