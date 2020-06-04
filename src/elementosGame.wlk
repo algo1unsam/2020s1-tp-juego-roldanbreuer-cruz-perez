@@ -197,7 +197,7 @@ object talada{
 		game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == origen }).iniciar()
 	}
 	
-	method sound() = "talar.ogg"
+	method sound() = "assets/talar.ogg"
 	method image() = "assets/talando.png"
 }
 
@@ -246,7 +246,7 @@ object minado{
 	}
 	
 	
-	method sound()="minar.ogg"
+	method sound()="assets/minar.ogg"
 	method image() = "assets/minado.png"
 }
 

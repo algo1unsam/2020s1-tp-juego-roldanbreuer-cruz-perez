@@ -6,7 +6,6 @@ import timer.*
 //cuando estes disponible te cuento la idea
 object hud{
 	var property position = game.at(0,0)
-	var property tipo = "hud"
 	var property tiempo = 0
 	var property trabajaMadera = 0
 	var property trabajaPiedra = 0
@@ -160,10 +159,10 @@ class CentenaMiles inherits Centena{
 	override method image(){
 		const stringNumero = origen.consulta().toString()
 		var valor = null
-		if(stringNumero.length() > 4){
-			valor = stringNumero.reverse().drop(4).charAt(0)
+		if(stringNumero.length() > 5){
+			valor = stringNumero.reverse().drop(5).charAt(0)
 		}
-		return decenas.imagen(valor)
+		return cientos.imagen(valor)
 	}
 	}
 // ACA VOY A EMPEZAR A HEREDAR DE ESTAS TRES CLASES PADRES PARA TODOS LOS ELEMENTOS DEL HUD
@@ -172,8 +171,9 @@ class AlmacenUnidad inherits Unidad{}
 class AlmacenDecena inherits Decena{}
 class AlmacenCentena inherits Centena{}
 class AlmacenMiles inherits Miles{}
-class AlmacenDecenaMiles inherits Decena{}
-class AlmacenCentenaMiles inherits Centena{}
+class AlmacenDecenaMiles inherits DecenaMiles{}
+class AlmacenCentenaMiles inherits CentenaMiles{}
+
 // alimento
 class AlimentoUnidad inherits Unidad{}
 class AlimentoDecena inherits Decena{}
