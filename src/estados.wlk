@@ -21,6 +21,12 @@ object recursos{
 	method disponible(alimento, madera, piedra){
 		if(cantAlimento < alimento or cantMadera < madera or cantPiedra < piedra) centralErrores.error("No hay recursos disponibles")
 	}
+	
+	method consumir(alim, mad, pied){
+		alimento.modificar(-alim)
+		piedra.modificar(-pied)
+		madera.modificar(-mad)
+	}
 	/*method recursosHud(){
 		hud.unidad(self.tipo(),self.posicionHud(),self.cantAlimento())
 		hud.decena(self.tipo(),self.posicionHud(),self.cantAlimento())
@@ -152,10 +158,15 @@ object inGame{
 	method d(){	}
 	method f(){	}
 	method t(){
-		if(game.getObjectsIn(cursor.position()).any({ objeto => objeto.trabajable() })){
+		if(game.getObjectsIn(cursor.position()).any({ objeto => objeto.tipo() == "Barra" })){
 			const objetivo = game.getObjectsIn(cursor.position()).find({ objeto => objeto.trabajable() })
-			cursor.accesoAlLugar()
-			objetivo.accion().trabajar(objetivo, cursor.position())
+			objetivo.accion().continuar(objetivo, cursor.position())
+		}else{
+			if(game.getObjectsIn(cursor.position()).any({ objeto => objeto.trabajable() })){
+				const objetivo = game.getObjectsIn(cursor.position()).find({ objeto => objeto.trabajable() })
+				cursor.accesoAlLugar()
+				objetivo.accion().trabajar(objetivo, cursor.position())
+			}
 		}
 	}
 	
@@ -283,18 +294,61 @@ object inMenuConst{
 	}	
 	method accion(){ }
 	method c(){ }
-	method q(){ 
+	method q(){ 		
 		recursos.disponible( almacenB.costoAlimento(), almacenB.costoMadera(), almacenB.costoPiedra())
 		cursor.accesoAlLugar()
 		game.addVisualIn(new Constructor(tipo = new Construir(accion= almacenB, position= cursor.position()), position = cursor.position()), cursor.position())
-		game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == "Constructor" }).iniciar()
+		game.getObjectsIn(cursor.position()).last().iniciar()
+		recursos.consumir( almacenB.costoAlimento(), almacenB.costoMadera(), almacenB.costoPiedra())
+		self.cerrar()
+		escenario.estado(inGame)
 	}
-	method w(){ }
-	method e(){ }
+	method w(){ 		
+		recursos.disponible( casaC.costoAlimento(), casaC.costoMadera(), casaC.costoPiedra())
+		cursor.accesoAlLugar()
+		game.addVisualIn(new Constructor(tipo = new Construir(accion= casaC, position= cursor.position()), position = cursor.position()), cursor.position())
+		game.getObjectsIn(cursor.position()).last().iniciar()
+		recursos.consumir( casaC.costoAlimento(), casaC.costoMadera(), casaC.costoPiedra())
+		self.cerrar()
+		escenario.estado(inGame)
+	}
+	method e(){ 		
+		recursos.disponible( casaG.costoAlimento(), casaG.costoMadera(), casaG.costoPiedra())
+		cursor.accesoAlLugar()
+		game.addVisualIn(new Constructor(tipo = new Construir(accion= casaG, position= cursor.position()), position = cursor.position()), cursor.position())
+		game.getObjectsIn(cursor.position()).last().iniciar()
+		recursos.consumir( casaG.costoAlimento(), casaG.costoMadera(), casaG.costoPiedra())
+		self.cerrar()
+		escenario.estado(inGame)
+	}
 	method r(){ }
-	method a(){	}
-	method s(){	}
-	method d(){	}
+	method a(){			
+		recursos.disponible( casaG.costoAlimento(), mercado.costoMadera(), mercado.costoPiedra())
+		cursor.accesoAlLugar()
+		game.addVisualIn(new Constructor(tipo = new Construir(accion= mercado, position= cursor.position()), position = cursor.position()), cursor.position())
+		game.getObjectsIn(cursor.position()).last().iniciar()
+		recursos.consumir( mercado.costoAlimento(), mercado.costoMadera(), mercado.costoPiedra())
+		self.cerrar()
+		escenario.estado(inGame)
+	}
+	method s(){			
+		recursos.disponible( granja.costoAlimento(), granja.costoMadera(), granja.costoPiedra())
+		cursor.accesoAlLugar()
+		game.addVisualIn(new Constructor(tipo = new Construir(accion= granja, position= cursor.position()), position = cursor.position()), cursor.position())
+		game.getObjectsIn(cursor.position()).last().iniciar()
+		recursos.consumir( granja.costoAlimento(), granja.costoMadera(), granja.costoPiedra())
+		self.cerrar()
+		escenario.estado(inGame)
+	}
+	method d(){			
+		recursos.disponible( plantacion.costoAlimento(), plantacion.costoMadera(), plantacion.costoPiedra())
+		cursor.accesoAlLugar()
+		game.addVisualIn(new Constructor(tipo = new Construir(accion= plantacion, position= cursor.position()), position = cursor.position()), cursor.position())
+		game.getObjectsIn(cursor.position()).last().iniciar()
+		recursos.consumir( plantacion.costoAlimento(), plantacion.costoMadera(), plantacion.costoPiedra())
+		self.cerrar()
+		escenario.estado(inGame)
+	}
 	method f(){	}
 	method t(){ }
 	

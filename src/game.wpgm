@@ -21,9 +21,16 @@ program game {
 	keyboard.left().onPressDo { cursor.mover(cursor.position().left(1)) }
 	keyboard.right().onPressDo { cursor.mover(cursor.position().right(1)) }
 	keyboard.backspace().onPressDo { escenario.estado().bksp() }
-	keyboard.c().onPressDo { escenario.estado().c() }
 	keyboard.q().onPressDo { escenario.estado().q() }
+	keyboard.w().onPressDo { escenario.estado().w() }
+	keyboard.e().onPressDo { escenario.estado().e() }
+	keyboard.r().onPressDo { escenario.estado().r() }
 	keyboard.t().onPressDo { escenario.estado().t() }
+	keyboard.a().onPressDo { escenario.estado().a() }
+	keyboard.s().onPressDo { escenario.estado().s() }
+	keyboard.d().onPressDo { escenario.estado().d() }
+	keyboard.f().onPressDo { escenario.estado().f() }
+	keyboard.c().onPressDo { escenario.estado().c() }
 	inicializar.poblarMapa()
 	cargarHud.instanciarYCargarHud()
 	timer.inicio()

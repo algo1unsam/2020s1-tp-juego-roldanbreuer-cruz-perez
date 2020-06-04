@@ -11,14 +11,14 @@ class Constructor{
 	method image() = "assets/construir.png"
 	
 	method iniciar(){
-		game.addVisual(tipo)
+		aldeanos.requerir(tipo)
+		game.addVisualIn(tipo, position)
 		if(barra == null){
 			barra = new BarraConstruccion(albanil = self, position = position)
 			game.addVisualIn(barra, position)
 		}
 		nombreTick = "Constructor"+position.toString()
 		escenario.tickEnCurso().add(self)
-		
 		game.onTick((tipo.accion().tiempoNecesario()/5)*100, nombreTick, {=> barra.suma() })
 	}
 	
@@ -39,8 +39,8 @@ class Constructor{
 		
 	method finalizar(){
 		aldeanos.liberar(tipo)
+		tipo.accion().activar()
 		game.removeVisual(barra)
-		tipo.remover()
 		escenario.tickEnCurso().remove(nombreTick)
 		game.removeTickEvent(nombreTick)
 		game.removeVisual(self)

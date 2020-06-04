@@ -192,6 +192,11 @@ object talada{
 		game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == origen }).iniciar()
 	}
 	
+	method continuar(origen, posicion){
+		game.addVisualIn(new Recolector(tipo = origen, position = posicion, barra = game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == "Barra" })), posicion)
+		game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == origen }).iniciar()
+	}
+	
 	method sound() = "talar.ogg"
 	method image() = "assets/talando.png"
 }
@@ -235,6 +240,12 @@ object minado{
 		game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == origen }).iniciar()
 	}
 	
+	method continuar(origen, posicion){
+		game.addVisualIn(new Recolector(tipo = origen, position = posicion, barra = game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == "Barra" })), posicion)
+		game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == origen }).iniciar()
+	}
+	
+	
 	method sound()="minar.ogg"
 	method image() = "assets/minado.png"
 }
@@ -277,6 +288,12 @@ object pesca{
 		game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == origen }).iniciar()
 	}
 	
+	method continuar(origen, posicion){
+		game.addVisualIn(new Recolector(tipo = origen, position = posicion, barra = game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == "Barra" })), posicion)
+		game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == origen }).iniciar()
+	}
+	
+	
 	method image() = "assets/pesca.png"
 }
 
@@ -313,7 +330,6 @@ class Construir2{
 }
 
 object casaC{
-	var property position
 	var property tipo = "casac"
 	var property costoAlimento = 0
 	var property costoMadera = 100
@@ -322,10 +338,22 @@ object casaC{
 	var property aldeanosNecesarios = 1 
 	
 	method image() = "assets/casa1-35.png"
+	
+	method usarAldeano(){
+		aldeanos.aldeanoConstructor(aldeanos.aldeanoConstructor() + 1)
+	}
+	
+	method dejarAldeano(){
+		aldeanos.aldeanoConstructor(aldeanos.aldeanoConstructor() - 1)
+	}
+	
+	method activar(){
+		aldeanos.poblacion(aldeanos.poblacion() + 1)
+	}
+	
 }
 
 object casaG{
-	var property position
 	var property tipo = "casag"
 	var property costoAlimento = 0
 	var property costoMadera = 200
@@ -334,9 +362,21 @@ object casaG{
 	var property aldeanosNecesarios = 1 
 	
 	method image() = "assets/casa2-35.png"
+	
+	method usarAldeano(){
+		aldeanos.aldeanoConstructor(aldeanos.aldeanoConstructor() + 1)
+	}
+	
+	method dejarAldeano(){
+		aldeanos.aldeanoConstructor(aldeanos.aldeanoConstructor() - 1)
+	}
+	
+	method activar(){
+		aldeanos.poblacion(aldeanos.poblacion() + 3)
+	}
+	
 }
 object almacenB{
-	var property position
 	var property tipo = "almacen"
 	var property costoAlimento = 0
 	var property costoMadera = 0
@@ -345,9 +385,21 @@ object almacenB{
 	var property aldeanosNecesarios = 1 
 	
 	method image() = "assets/almacen35.png"
+	
+	method usarAldeano(){
+		aldeanos.aldeanoConstructor(aldeanos.aldeanoConstructor() + 1)
+	}
+	
+	method dejarAldeano(){
+		aldeanos.aldeanoConstructor(aldeanos.aldeanoConstructor() - 1)
+	}
+	
+	method activar(){
+		recursos.cantAlmacen(recursos.cantAlmacen() + 50)
+	}
+	
 }
 object mercado{
-	var property position
 	var property tipo = "mercado"
 	var property costoAlimento = 0
 	var property costoMadera = 300
@@ -356,6 +408,19 @@ object mercado{
 	var property aldeanosNecesarios = 1 
 	
 	method image() = "assets/market70.png"
+	
+	method usarAldeano(){
+		aldeanos.aldeanoConstructor(aldeanos.aldeanoConstructor() + 1)
+	}
+	
+	method dejarAldeano(){
+		aldeanos.aldeanoConstructor(aldeanos.aldeanoConstructor() - 1)
+	}
+	
+	method activar(){
+		recursos.mercadosConstruidos(recursos.mercadosConstruidos() + 1)
+	}
+	
 }
 class MercadoVacio{
 	var property position
@@ -363,7 +428,6 @@ class MercadoVacio{
 	method image() = "assets/vacio35.png"
 }
 object granja{
-	var property position
 	var property tipo = "granja"
 	var property costoAlimento = 0
 	var property costoMadera = 500
@@ -372,6 +436,17 @@ object granja{
 	var property aldeanosNecesarios = 1 
 	
 	method image() = "assets/granjaAnimales.png"
+	
+	method usarAldeano(){
+		aldeanos.aldeanoConstructor(aldeanos.aldeanoConstructor() + 1)
+	}
+	
+	method dejarAldeano(){
+		aldeanos.aldeanoConstructor(aldeanos.aldeanoConstructor() - 1)
+	}
+	
+	method activar(){}
+	
 }
 class GranjaVacio{
 	var property position
@@ -379,7 +454,6 @@ class GranjaVacio{
 	method image() = "assets/vacio35.png"
 }
 object plantacion{
-	var property position
 	var property tipo = "plantacion"
 	var property costoAlimento = 0
 	var property costoMadera = 800
@@ -388,6 +462,17 @@ object plantacion{
 	var property aldeanosNecesarios = 1 
 	
 	method image() = "assets/plantacion.png"
+	
+	method usarAldeano(){
+		aldeanos.aldeanoConstructor(aldeanos.aldeanoConstructor() + 1)
+	}
+	
+	method dejarAldeano(){
+		aldeanos.aldeanoConstructor(aldeanos.aldeanoConstructor() - 1)
+	}
+	
+	method activar(){}
+	
 }
 class PlantacionVacio{
 	var property position
