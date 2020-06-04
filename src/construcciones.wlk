@@ -19,7 +19,7 @@ class Constructor{
 		}
 		nombreTick = "Constructor"+position.toString()
 		escenario.tickEnCurso().add(self)
-		game.onTick((tipo.accion().tiempoNecesario()/5)*100, nombreTick, {=> barra.suma() })
+		game.onTick((tipo.accion().tiempoNecesario()/5)*1000, nombreTick, {=> barra.suma() })
 	}
 	
 	method pausa(){
@@ -27,7 +27,7 @@ class Constructor{
 	}
 	
 	method unpausa(){
-		game.onTick((tipo.accion().tiempoNecesario()/5)*100, nombreTick, {=> barra.suma() })
+		game.onTick((tipo.accion().tiempoNecesario()/5)*1000, nombreTick, {=> barra.suma() })
 	}
 	
 	method detener(){

@@ -158,7 +158,7 @@ object inGame{
 	method d(){	}
 	method f(){	}
 	method t(){
-		if(game.getObjectsIn(cursor.position()).any({ objeto => objeto.tipo() == "Barra" })){
+		if(game.getObjectsIn(cursor.position()).any({ objeto => objeto.tipo() == barraobj })){
 			const objetivo = game.getObjectsIn(cursor.position()).find({ objeto => objeto.trabajable() })
 			objetivo.accion().continuar(objetivo, cursor.position())
 		}else{

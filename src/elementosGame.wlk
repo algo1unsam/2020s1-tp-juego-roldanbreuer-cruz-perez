@@ -18,9 +18,11 @@ object aldeanoLibre{
 	var property tipo = "AldeanoLibre"
 }
 
+object barraobj{}
+
 class BarraConstruccion{
 	var property position
-	var property tipo = "Barra"
+	var property tipo = barraobj
 	var property progreso = 1
 	var property albanil
 	
@@ -46,7 +48,7 @@ class BarraConstruccion{
 }
 class BarraRecoleccion{
 	var property position
-	var property tipo = "Barra"
+	var property tipo = barraobj
 	var property progreso = 1
 	var property recolector
 	
@@ -74,7 +76,7 @@ class BarraRecoleccion{
 
 class BarraAlmacen{
 	var property position
-	var property tipo = "Barra"
+	var property tipo = barraobj
 	
 	method image(){
 		const recus = [recursos.cantAlimento(), recursos.cantMadera(), recursos.cantPiedra()]
@@ -95,55 +97,42 @@ object fondoMenu{
 }
 
 object botonTalar{
-	var property tipo = "boton"
 	method image() = "assets/botonTalar.png"
 }
 object botonMinar{
-	var property tipo = "boton"
 	method image() = "assets/botonMinar.png"
 }
 object botonDetener{
-	var property tipo = "boton"
 	method image() = "assets/botonDetener.png"
 }
 object botonCancelar{
-	var property tipo = "boton"
 	method image() = "assets/botonCancelarFlat.png"
 }
 object botonSalir{
-	var property tipo = "boton"
 	method image() = "assets/botonSalir.png"
 }
 object tituloAcciones{
-	var property tipo = "boton"
 	method image() = "assets/menuTituloAcciones.png"
 }
 object tituloConstrucciones{
-	var property tipo = "boton"
 	method image() = "assets/menuTituloConstrucciones.png"
 }
 object botonAlmacen{
-	var property tipo = "boton"
 	method image() = "assets/botonAlmacen.png"
 }
 object botonCasaC{
-	var property tipo = "boton"
 	method image() = "assets/botonCasaC.png"
 }
 object botonCasaG{
-	var property tipo = "boton"
 	method image() = "assets/botonCasaG.png"
 }
 object botonGranja{
-	var property tipo = "boton"
 	method image() = "assets/botonGranja.png"
 }
 object botonMercado{
-	var property tipo = "boton"
 	method image() = "assets/botonMercado.png"
 }
 object botonPlantacion{
-	var property tipo = "boton"
 	method image() = "assets/botonPlantacion.png"
 }
 
@@ -174,7 +163,6 @@ class Arboleda{
 }
 
 object talada{
-	var property tipo = "Talador"
 	var property aldeanosNecesarios = 1
 	var property tiempoNecesario = 60
 	var property tipoObjetivo = arbol
@@ -193,7 +181,7 @@ object talada{
 	}
 	
 	method continuar(origen, posicion){
-		game.addVisualIn(new Recolector(tipo = origen, position = posicion, barra = game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == "Barra" })), posicion)
+		game.addVisualIn(new Recolector(tipo = origen, position = posicion, barra = game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == barraobj })), posicion)
 		game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == origen }).iniciar()
 	}
 	
@@ -222,7 +210,6 @@ class Piedras{
 }
 
 object minado{
-	var property tipo = "Minero"
 	var property aldeanosNecesarios = 1
 	var property tiempoNecesario = 120
 	var property tipoObjetivo = roca
@@ -241,7 +228,7 @@ object minado{
 	}
 	
 	method continuar(origen, posicion){
-		game.addVisualIn(new Recolector(tipo = origen, position = posicion, barra = game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == "Barra" })), posicion)
+		game.addVisualIn(new Recolector(tipo = origen, position = posicion, barra = game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == barraobj })), posicion)
 		game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == origen }).iniciar()
 	}
 	
@@ -270,7 +257,6 @@ class Lago{
 }
 
 object pesca{
-	var property tipo = "Pescador"
 	var property aldeanosNecesarios = 1
 	var property tiempoNecesario = 100
 	var property tipoObjetivo = pez
@@ -289,7 +275,7 @@ object pesca{
 	}
 	
 	method continuar(origen, posicion){
-		game.addVisualIn(new Recolector(tipo = origen, position = posicion, barra = game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == "Barra" })), posicion)
+		game.addVisualIn(new Recolector(tipo = origen, position = posicion, barra = game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == barraobj })), posicion)
 		game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == origen }).iniciar()
 	}
 	
@@ -303,12 +289,10 @@ object pesca{
 
 class Granjero{
 	var property position
-	var property tipo = "Granjero"
 	method image() = "assets/vaca35.png"
 }
 class Agricultor{
 	var property position
-	var property tipo = "Agricultor"
 	method image() = "assets/recoleccion.png"
 }
 
@@ -317,7 +301,6 @@ class Agricultor{
 class Construir{
 	var property position
 	var property accion
-	var property tipo = "Constructor"
 
 	method image() = accion.image()
 }
@@ -325,12 +308,10 @@ class Construir{
 
 class Construir2{
 	var property position
-	var property tipo = "Constructor2"
 	method image() = "assets/construir.png"
 }
 
 object casaC{
-	var property tipo = "casac"
 	var property costoAlimento = 0
 	var property costoMadera = 100
 	var property costoPiedra = 0
@@ -354,7 +335,6 @@ object casaC{
 }
 
 object casaG{
-	var property tipo = "casag"
 	var property costoAlimento = 0
 	var property costoMadera = 200
 	var property costoPiedra = 100
@@ -377,7 +357,6 @@ object casaG{
 	
 }
 object almacenB{
-	var property tipo = "almacen"
 	var property costoAlimento = 0
 	var property costoMadera = 0
 	var property costoPiedra = 50
@@ -400,7 +379,6 @@ object almacenB{
 	
 }
 object mercado{
-	var property tipo = "mercado"
 	var property costoAlimento = 0
 	var property costoMadera = 300
 	var property costoPiedra = 300
@@ -428,7 +406,6 @@ class MercadoVacio{
 	method image() = "assets/vacio35.png"
 }
 object granja{
-	var property tipo = "granja"
 	var property costoAlimento = 0
 	var property costoMadera = 500
 	var property costoPiedra = 50
@@ -450,11 +427,9 @@ object granja{
 }
 class GranjaVacio{
 	var property position
-	var property tipo = "granja"
 	method image() = "assets/vacio35.png"
 }
 object plantacion{
-	var property tipo = "plantacion"
 	var property costoAlimento = 0
 	var property costoMadera = 800
 	var property costoPiedra = 150
@@ -476,7 +451,6 @@ object plantacion{
 }
 class PlantacionVacio{
 	var property position
-	var property tipo = "plantacion"
 	method image() = "assets/vacio35.png"
 }
 
@@ -486,7 +460,6 @@ class PlantacionVacio{
 // -------------                    -------------------------------------------------------------------------------////
 
 object gameover{
-	var property tipo = "gameover"
 	method image() = "assets/gameover.png"
 }
 

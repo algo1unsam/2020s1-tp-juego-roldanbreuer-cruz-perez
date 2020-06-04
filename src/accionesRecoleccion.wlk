@@ -18,10 +18,12 @@ class Recolector{
 		if(barra == null){
 			barra = new BarraRecoleccion(recolector = self, position = position)
 			game.addVisualIn(barra, position)
+		}else{
+			barra = game.getObjectsIn(position).find({ objeto => objeto.tipo() == barraobj })
 		}
 		nombreTick = "Recolector"+position.toString()
 		escenario.tickEnCurso().add(self)
-		game.onTick((tipo.accion().tiempoNecesario()/5)*100, nombreTick, {=> barra.suma() })
+		game.onTick((tipo.accion().tiempoNecesario()/5)*1000, nombreTick, {=> barra.suma() })
 	}
 	
 	method pausa(){
@@ -29,14 +31,14 @@ class Recolector{
 	}
 	
 	method unpausa(){
-		game.onTick((tipo.accion().tiempoNecesario()/5)*100, nombreTick, {=> barra.suma() })
+		game.onTick((tipo.accion().tiempoNecesario()/5)*1000, nombreTick, {=> barra.suma() })
 	}
 	
 	method detener(){
 		aldeanos.liberar(tipo)
 		escenario.tickEnCurso().remove(nombreTick)
 		game.removeTickEvent(nombreTick)
-		game.removeVisual(self)
+		game.removeVisual(game.getObjectsIn(position).find({ objeto => objeto.tipo() == tipo }))
 	}
 	
 	method finalizar(){
@@ -45,7 +47,7 @@ class Recolector{
 		tipo.remover()
 		escenario.tickEnCurso().remove(nombreTick)
 		game.removeTickEvent(nombreTick)
-		game.removeVisual(self)
+		game.removeVisual(game.getObjectsIn(position).find({ objeto => objeto.tipo() == tipo }))
 	}
 	
 	method recolectar(){
