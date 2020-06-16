@@ -360,7 +360,7 @@ object casaC{
 	method activar(){
 		aldeanos.poblacion(aldeanos.poblacion() + 1)
 	}
-	
+	method completarEspacios(){}
 }
 
 object casaG{
@@ -383,6 +383,7 @@ object casaG{
 	method activar(){
 		aldeanos.poblacion(aldeanos.poblacion() + 3)
 	}
+	method completarEspacios(){}
 	
 }
 object almacenB{
@@ -405,6 +406,8 @@ object almacenB{
 	method activar(){
 		recursos.cantAlmacen(recursos.cantAlmacen() + 50)
 	}
+	
+	method completarEspacios(){}
 	
 }
 class Mercado{
