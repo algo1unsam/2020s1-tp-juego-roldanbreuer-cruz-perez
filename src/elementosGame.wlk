@@ -16,6 +16,12 @@ object centralErrores{
 object aldeanoLibre{
 	var property position = null
 	var property tipo = "AldeanoLibre"
+	
+	method morir(){
+		aldeanos.aldeanoDisponible(aldeanos.aldeanoDisponible() - 1)
+		aldeanos.aldeanos(aldeanos.aldeanos() - 1)
+	}
+	
 }
 
 object barraobj{}

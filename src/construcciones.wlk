@@ -16,6 +16,8 @@ class Constructor{
 		if(barra == null){
 			barra = new BarraConstruccion(albanil = self, position = position)
 			game.addVisualIn(barra, position)
+		}else{
+			barra = game.getObjectsIn(position).find({ objeto => objeto.tipo() == barraobj })
 		}
 		nombreTick = "Constructor"+position.toString()
 		escenario.tickEnCurso().add(self)
@@ -30,9 +32,14 @@ class Constructor{
 		game.onTick((tipo.accion().tiempoNecesario()/5)*1000, nombreTick, {=> barra.suma() })
 	}
 	
+	method morir(){
+		self.detener()
+		aldeanoLibre.morir()
+	}
+	
 	method detener(){
 		aldeanos.liberar(tipo)
-		escenario.tickEnCurso().remove(nombreTick)
+		escenario.tickEnCurso().remove(self)
 		game.removeTickEvent(nombreTick)
 		game.removeVisual(self)
 	}
@@ -41,7 +48,7 @@ class Constructor{
 		aldeanos.liberar(tipo)
 		tipo.accion().activar()
 		game.removeVisual(barra)
-		escenario.tickEnCurso().remove(nombreTick)
+		escenario.tickEnCurso().remove(self)
 		game.removeTickEvent(nombreTick)
 		game.removeVisual(self)
 	}

@@ -32,33 +32,23 @@ object dispararEvento{
 	}
 	
 	method killRandom(){
-	/*	const todosLosAldeanos = game.allVisuals().filter({ filtro => filtro.tipo().accion().tipo() == "Talador" or 
-																	filtro.tipo().accion().tipo() == "Minero" or
-																	filtro.tipo().accion().tipo() == "Constructor" or 
-																	filtro.tipo().accion().tipo() == "Pescador"})
-		if(cantAldeanoDisponible > 0) todosLosAldeanos.add(aldeanoLibre)
+	
+		const todosLosAldeanos = escenario.tickEnCurso()
+		if(aldeanos.aldeanoDisponible() > 0) todosLosAldeanos.add(aldeanoLibre)
+		
 		const sujetoAMorir = todosLosAldeanos.anyOne()
-		if(sujetoAMorir.tipo() == "Talador" or sujetoAMorir.tipo() == "Minero" or sujetoAMorir.tipo() == "Constructor" or sujetoAMorir.tipo() == "Pescador"){
-			self.remover(sujetoAMorir.tipo(), [sujetoAMorir.position()])
-			cantAldeanoDisponible -= 1
-			cantAldeanos -= 1
-			if(cantAldeanos == 0){
+		
+		sujetoAMorir.morir()
+		
+		if(aldeanos.aldeanos() == 0){
 				game.clear()
-				game.addVisualIn(self, game.at(12,5))
+				game.addVisualIn(fondoMenu, game.at(12,5))
 				game.addVisualIn(gameover, game.at(13,10))
-			}
-			centralErrores.error("Ha muerto un aldeano "+sujetoAMorir.tipo())
-		}else{
-			cantAldeanoDisponible -= 1
-			cantAldeanos -= 1
-			if(cantAldeanos == 0){
-				game.clear()
-				game.addVisualIn(self, game.at(12,5))
-				game.addVisualIn(gameover, game.at(13,10))
-			}
-			centralErrores.error("Ha muerto un aldeano disponible")
-		}*/
-		 
+		}
+		
+		centralErrores.error("Ha muerto un aldeano")
+		
+			 
 	}
 	
 }

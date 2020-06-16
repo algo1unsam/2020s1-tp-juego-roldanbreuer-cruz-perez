@@ -63,9 +63,9 @@ object almacen{
 
 object aldeanos{
 	//--- Aldeanos Inicializacion
-	var property aldeanos = 5
-	var property poblacion = 5
-	var property aldeanoDisponible = 5
+	var property aldeanos = 6
+	var property poblacion = 6
+	var property aldeanoDisponible = 6
 	var property aldeanoTalador = 0
 	var property aldeanoMinero = 0
 	var property aldeanoConstructor = 0
@@ -80,6 +80,12 @@ object aldeanos{
 			aldeanoDisponible -= tipo.accion().aldeanosNecesarios()
 			tipo.accion().usarAldeano()
 		}else{
+			centralErrores.error("No hay aldeanos disponibles.")
+		}
+	}
+	
+	method disponible(){
+		if(aldeanoDisponible == 0){
 			centralErrores.error("No hay aldeanos disponibles.")
 		}
 	}
@@ -158,6 +164,7 @@ object inGame{
 	method d(){	}
 	method f(){	}
 	method t(){
+		aldeanos.disponible()
 		if(game.getObjectsIn(cursor.position()).any({ objeto => objeto.tipo() == barraobj })){
 			const objetivo = game.getObjectsIn(cursor.position()).find({ objeto => objeto.trabajable() })
 			objetivo.accion().continuar(objetivo, cursor.position())

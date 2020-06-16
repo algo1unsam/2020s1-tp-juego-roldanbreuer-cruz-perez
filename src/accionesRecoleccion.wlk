@@ -34,9 +34,14 @@ class Recolector{
 		game.onTick((tipo.accion().tiempoNecesario()/5)*1000, nombreTick, {=> barra.suma() })
 	}
 	
+	method morir(){
+		self.detener()
+		aldeanoLibre.morir()
+	}
+	
 	method detener(){
 		aldeanos.liberar(tipo)
-		escenario.tickEnCurso().remove(nombreTick)
+		escenario.tickEnCurso().remove(self)
 		game.removeTickEvent(nombreTick)
 		game.removeVisual(game.getObjectsIn(position).find({ objeto => objeto.tipo() == tipo }))
 	}
@@ -45,7 +50,7 @@ class Recolector{
 		aldeanos.liberar(tipo)
 		game.removeVisual(barra)
 		tipo.remover()
-		escenario.tickEnCurso().remove(nombreTick)
+		escenario.tickEnCurso().remove(self)
 		game.removeTickEvent(nombreTick)
 		game.removeVisual(game.getObjectsIn(position).find({ objeto => objeto.tipo() == tipo }))
 	}
