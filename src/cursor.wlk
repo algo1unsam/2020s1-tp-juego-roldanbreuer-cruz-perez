@@ -21,7 +21,11 @@ object cursor {
 							game.at(37,18),game.at(37,17),game.at(37,16),game.at(37,15),game.at(37,14),game.at(37,13),game.at(37,12),game.at(37,11),game.at(37,10),game.at(37,9),game.at(37,8),game.at(37,7),game.at(37,6),game.at(37,5),game.at(37,4),game.at(31,3),game.at(31,2),game.at(31,1),game.at(31,0)]
 	var property position = game.center()
 	var property tipo = "Cursor"
-	
+	method validarPosicionesLibresMercado(){ //aca valida las posiciones libres p/construccion del mercado
+		var posicionesCercanas=0
+		posicionesCercanas=game.getObjectsIn(self.position().up(1)).size() + game.getObjectsIn(self.position().down(1)).size() +game.getObjectsIn(self.position().left(1)).size()+ game.getObjectsIn(self.position().right(1)).size()
+		return posicionesCercanas<4
+	}
 	method seleccion() {
 		if (seleccionInicio.size() == 0){
 			self.accesoAlLugar(self.position())

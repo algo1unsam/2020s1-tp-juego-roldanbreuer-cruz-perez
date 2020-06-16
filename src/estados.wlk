@@ -332,11 +332,14 @@ object inMenuConst{
 	method a(){			
 		recursos.disponible( casaG.costoAlimento(), mercado.costoMadera(), mercado.costoPiedra())
 		cursor.accesoAlLugar()
+		if(cursor.validarPosicionesLibresMercado(cursor.position())){ // validacion de posiciones que rodean a la construccion esten libres
 		game.addVisualIn(new Constructor(tipo = new Construir(accion= mercado, position= cursor.position()), position = cursor.position()), cursor.position())
 		game.getObjectsIn(cursor.position()).last().iniciar()
 		recursos.consumir( mercado.costoAlimento(), mercado.costoMadera(), mercado.costoPiedra())
 		self.cerrar()
 		escenario.estado(inGame)
+		}
+		
 	}
 	method s(){			
 		recursos.disponible( granja.costoAlimento(), granja.costoMadera(), granja.costoPiedra())
