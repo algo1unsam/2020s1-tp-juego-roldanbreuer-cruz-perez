@@ -265,6 +265,7 @@ object inPostSeleccion{
 	method d(){	}
 	method f(){	}
 	method t(){ }
+	method mover(posicionNueva, position){ }
 }
 
 
@@ -367,5 +368,5 @@ object inMenuConst{
 	}
 	method f(){	}
 	method t(){ }
-	
+	method mover(posicionNueva, position){  }
 }
