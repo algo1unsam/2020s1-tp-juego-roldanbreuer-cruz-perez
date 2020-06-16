@@ -421,7 +421,7 @@ object granja{
 	var property costoMadera = 500
 	var property costoPiedra = 50
 	var property tiempoNecesario = 300
-	var property aldeanosNecesarios = 1 
+	var property aldeanosNecesarios = 2 
 	
 	method image() = "assets/granjaAnimales.png"
 	
@@ -445,7 +445,7 @@ object plantacion{
 	var property costoMadera = 800
 	var property costoPiedra = 150
 	var property tiempoNecesario = 600
-	var property aldeanosNecesarios = 1 
+	var property aldeanosNecesarios = 2 
 	
 	method image() = "assets/plantacion.png"
 	
