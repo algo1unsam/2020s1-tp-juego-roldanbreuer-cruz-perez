@@ -24,9 +24,7 @@ object timer{
 			acumuladorTiempo=0
 		}
 		if(acumuladorTiempo%5==0){   //// --- Mercado
-			alimento.modificar(1*recursos.mercadosConstruidos())
-			madera.modificar(1*recursos.mercadosConstruidos())
-			piedra.modificar(1*recursos.mercadosConstruidos())
+		dispararEvento.entregarRecursosMercado()
 		}
 	}
 }

@@ -391,20 +391,23 @@ object mercado{
 	var property costoMadera = 300
 	var property costoPiedra = 300
 	var property tiempoNecesario = 300
-	var property aldeanosNecesarios = 1 
+	var property aldeanosNecesarios = 2 
 	
 	method image() = "assets/market70.png"
 	
 	method usarAldeano(){
-		aldeanos.aldeanoConstructor(aldeanos.aldeanoConstructor() + 1)
+		aldeanos.aldeanoConstructor(aldeanos.aldeanoConstructor() + 2)
 	}
 	
 	method dejarAldeano(){
-		aldeanos.aldeanoConstructor(aldeanos.aldeanoConstructor() - 1)
+		aldeanos.aldeanoConstructor(aldeanos.aldeanoConstructor() - 2)
 	}
 	
 	method activar(){
-		recursos.mercadosConstruidos(recursos.mercadosConstruidos() + 1)
+		if(recursos.mercadosConstruidos()<=3){
+			recursos.mercadosConstruidos(recursos.mercadosConstruidos() + 1)
+		}
+		
 	}
 	
 }

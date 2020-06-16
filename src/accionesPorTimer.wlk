@@ -50,5 +50,10 @@ object dispararEvento{
 		
 			 
 	}
+	method entregarRecursosMercado(){
+		alimento.modificar(1*recursos.mercadosConstruidos())
+		madera.modificar(1*recursos.mercadosConstruidos())
+		piedra.modificar(1*recursos.mercadosConstruidos())
+	}
 	
 }
