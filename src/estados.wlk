@@ -330,7 +330,8 @@ object inMenuConst{
 		escenario.estado(inGame)
 	}
 	method r(){ }
-	method a(){			
+	method a(){	
+		const mercado = new MercadoVacio()		
 		recursos.disponible( casaG.costoAlimento(), mercado.costoMadera(), mercado.costoPiedra())
 		cursor.accesoAlLugar()
 		if(cursor.validarCuatroPosicionesLibres()){ // validacion de posiciones que rodean a la construccion esten libres
@@ -342,7 +343,8 @@ object inMenuConst{
 		}
 		
 	}
-	method s(){			
+	method s(){	
+		const granja = new GranjaVacio()		
 		recursos.disponible( granja.costoAlimento(), granja.costoMadera(), granja.costoPiedra())
 		cursor.accesoAlLugar()
 		if(cursor.validarCuatroPosicionesLibres()){ //validacion
@@ -354,7 +356,8 @@ object inMenuConst{
 		}
 		
 	}
-	method d(){			
+	method d(){		
+		const plantacion =new PlantacionVacio()	
 		recursos.disponible( plantacion.costoAlimento(), plantacion.costoMadera(), plantacion.costoPiedra())
 		cursor.accesoAlLugar()
 		if(cursor.validarCuatroPosicionesLibres()){ //validacion

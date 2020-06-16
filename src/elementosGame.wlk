@@ -386,7 +386,7 @@ object almacenB{
 	}
 	
 }
-object mercado{
+class Mercado{
 	var property costoAlimento = 0
 	var property costoMadera = 300
 	var property costoPiedra = 300
@@ -407,20 +407,23 @@ object mercado{
 		if(recursos.mercadosConstruidos()<=3){
 			recursos.mercadosConstruidos(recursos.mercadosConstruidos() + 1)
 		}
-		
 	}
+	method completarEspacios()
 	
 }
-/*class MercadoVacio{
+
+class MercadoVacio inherits Mercado{
 	var property position
 	var property tipo = "mercado"
-	method image() = "assets/vacio35.png"
-}*/
-class Vacio{
-	var property position
-	method image() = "assets/vacio35.png"
+	override method image() = "assets/vacio35.png"
+	override method completarEspacios(){
+		game.addVisualIn(new MercadoVacio(), position.up(1))
+		game.addVisualIn(new MercadoVacio(), position.up(1).right(1))
+		game.addVisualIn(new MercadoVacio(), position.right(1))
+	}
 }
-object granja{
+
+class Granja{
 	var property costoAlimento = 0
 	var property costoMadera = 500
 	var property costoPiedra = 50
@@ -438,13 +441,18 @@ object granja{
 	}
 	
 	method activar(){}
-	
+	method completarEspacios()
 }
-/*class GranjaVacio{
+class GranjaVacio inherits Granja{
 	var property position
-	method image() = "assets/vacio35.png"
-}*/
-object plantacion{
+	override method image() = "assets/vacio35.png"
+	override method completarEspacios(){
+		game.addVisualIn(new GranjaVacio(), position.up(1))
+		game.addVisualIn(new GranjaVacio(), position.up(1).right(1))
+		game.addVisualIn(new GranjaVacio(), position.right(1))
+	}
+}
+class Plantacion{
 	var property costoAlimento = 0
 	var property costoMadera = 800
 	var property costoPiedra = 150
@@ -462,12 +470,18 @@ object plantacion{
 	}
 	
 	method activar(){}
+	method completarEspacios()
 	
 }
-/*class PlantacionVacio{
+class PlantacionVacio inherits Plantacion{
 	var property position
-	method image() = "assets/vacio35.png"
-}*/
+	override method image() = "assets/vacio35.png"
+	override method completarEspacios(){
+		game.addVisualIn(new MercadoVacio(), position.up(1))
+		game.addVisualIn(new MercadoVacio(), position.up(1).right(1))
+		game.addVisualIn(new MercadoVacio(), position.right(1))
+	}
+}
 
 
 
