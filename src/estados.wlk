@@ -252,7 +252,7 @@ object inGame inherits Estados{
 		inMenuConst.aparecer()
 		escenario.estado(inMenuConst)
 	}
-	// override method q(){ dispararEvento.killRandom() }
+	// override method q(){ dispararEvento.killRandom() } 
 	override method s(){ 
 		escenario.estado(inSeleccion)
 		cursor.seleccion()
