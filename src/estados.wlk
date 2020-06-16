@@ -370,70 +370,50 @@ object inMenuConst inherits Estados{
 		escenario.estado(inGame)
 	}	
 	override method q(){ 		
-		recursos.disponible( almacenB.costoAlimento(), almacenB.costoMadera(), almacenB.costoPiedra())
-		cursor.accesoAlLugar()
-		game.addVisualIn(new Constructor(tipo = new Construir(accion= almacenB, position= cursor.position()), position = cursor.position()), cursor.position())
-		game.getObjectsIn(cursor.position()).last().iniciar()
-		recursos.consumir( almacenB.costoAlimento(), almacenB.costoMadera(), almacenB.costoPiedra())
-		self.cerrar()
-		escenario.estado(inGame)
+		self.construir(almacenB)
 	}
 	override method w(){ 		
-		recursos.disponible( casaC.costoAlimento(), casaC.costoMadera(), casaC.costoPiedra())
-		cursor.accesoAlLugar()
-		game.addVisualIn(new Constructor(tipo = new Construir(accion= casaC, position= cursor.position()), position = cursor.position()), cursor.position())
-		game.getObjectsIn(cursor.position()).last().iniciar()
-		recursos.consumir( casaC.costoAlimento(), casaC.costoMadera(), casaC.costoPiedra())
-		self.cerrar()
-		escenario.estado(inGame)
+		self.construir(casaC)
 	}
 	override method e(){ 		
-		recursos.disponible( casaG.costoAlimento(), casaG.costoMadera(), casaG.costoPiedra())
-		cursor.accesoAlLugar()
-		game.addVisualIn(new Constructor(tipo = new Construir(accion= casaG, position= cursor.position()), position = cursor.position()), cursor.position())
-		game.getObjectsIn(cursor.position()).last().iniciar()
-		recursos.consumir( casaG.costoAlimento(), casaG.costoMadera(), casaG.costoPiedra())
-		self.cerrar()
-		escenario.estado(inGame)
+		self.construir(casaG)
 	}
 
 	override method a(){			
 		const mercado = new MercadoVacio()		
-		recursos.disponible( casaG.costoAlimento(), mercado.costoMadera(), mercado.costoPiedra())
-		cursor.accesoAlLugar()
-		if(cursor.validarCuatroPosicionesLibres()){ // validacion de posiciones que rodean a la construccion esten libres
-		game.addVisualIn(new ConstruccionGrande(tipo = new Construir(accion= mercado, position= cursor.position()), position = cursor.position()), cursor.position())
-		game.getObjectsIn(cursor.position()).last().iniciar()
-		recursos.consumir( mercado.costoAlimento(), mercado.costoMadera(), mercado.costoPiedra())
-		self.cerrar()
-		escenario.estado(inGame)
-		}
+		self.construirGrande(mercado)
 		
 	}
 	override method s(){		
 		const granja = new GranjaVacio()		
-		recursos.disponible( granja.costoAlimento(), granja.costoMadera(), granja.costoPiedra())
-		cursor.accesoAlLugar()
-		if(cursor.validarCuatroPosicionesLibres()){ //validacion
-		game.addVisualIn(new ConstruccionGrande(tipo = new Construir(accion= granja, position= cursor.position()), position = cursor.position()), cursor.position())
-		game.getObjectsIn(cursor.position()).last().iniciar()
-		recursos.consumir( granja.costoAlimento(), granja.costoMadera(), granja.costoPiedra())
-		self.cerrar()
-		escenario.estado(inGame)	
-		}
+		self.construirGrande(granja)
 		
 	}
 	override method d(){	
-		const plantacion =new PlantacionVacio()	
-		recursos.disponible( plantacion.costoAlimento(), plantacion.costoMadera(), plantacion.costoPiedra())
-		cursor.accesoAlLugar()
-		if(cursor.validarCuatroPosicionesLibres()){ //validacion
-		game.addVisualIn(new ConstruccionGrande(tipo = new Construir(accion= plantacion, position= cursor.position()), position = cursor.position()), cursor.position())
-		game.getObjectsIn(cursor.position()).last().iniciar()
-		recursos.consumir( plantacion.costoAlimento(), plantacion.costoMadera(), plantacion.costoPiedra())
-		self.cerrar()
-		escenario.estado(inGame)	
-		}
+		const plantacion =new PlantacionVacio()		
+		self.construirGrande(plantacion)
 		
+	}
+	
+	method construir(edificio){
+		recursos.disponible( edificio.costoAlimento(), edificio.costoMadera(), edificio.costoPiedra())
+		cursor.accesoAlLugar()
+		game.addVisualIn(new Constructor(tipo = new Construir(accion= edificio, position= cursor.position()), position = cursor.position()), cursor.position())
+		game.getObjectsIn(cursor.position()).last().iniciar()
+		recursos.consumir( edificio.costoAlimento(), edificio.costoMadera(), edificio.costoPiedra())
+		self.cerrar()
+		escenario.estado(inGame)
+	}
+	
+	method construirGrande(edificio){
+		recursos.disponible( edificio.costoAlimento(), edificio.costoMadera(), edificio.costoPiedra())
+		cursor.accesoAlLugar()
+		if(cursor.validarCuatroPosicionesLibres()){ // validacion de posiciones que rodean a la construccion esten libres
+			game.addVisualIn(new ConstruccionGrande(tipo = new Construir(accion= edificio, position= cursor.position()), position = cursor.position()), cursor.position())
+			game.getObjectsIn(cursor.position()).last().iniciar()
+			recursos.consumir( edificio.costoAlimento(), edificio.costoMadera(), edificio.costoPiedra())
+			self.cerrar()
+			escenario.estado(inGame)
+		}
 	}
 }
