@@ -1,12 +1,17 @@
-import elementosGame.*
 import wollok.game.*
 import cursor.*
+import elementosGame.*
+import elementosHud.*
+import timer.*
 import menu.*
 import construcciones.*
+import accionesPorTimer.*
 
 object escenario{
-	var property estado = inGame
+	var property estado = inPortada
 	var property tickEnCurso = []
+	
+	
 }
 
 object recursos{
@@ -26,6 +31,14 @@ object recursos{
 		alimento.modificar(-alim)
 		piedra.modificar(-pied)
 		madera.modificar(-mad)
+	}
+	
+	method reiniciar(){
+		cantAlimento = 25
+		cantMadera = 50
+		cantPiedra = 50
+		cantAlmacen = 100
+		mercadosConstruidos = 0
 	}
 	/*method recursosHud(){
 		hud.unidad(self.tipo(),self.posicionHud(),self.cantAlimento())
@@ -63,9 +76,9 @@ object almacen{
 
 object aldeanos{
 	//--- Aldeanos Inicializacion
-	var property aldeanos = 6
-	var property poblacion = 6
-	var property aldeanoDisponible = 6
+	var property aldeanos = 5
+	var property poblacion = 5
+	var property aldeanoDisponible = 5
 	var property aldeanoTalador = 0
 	var property aldeanoMinero = 0
 	var property aldeanoConstructor = 0
@@ -88,6 +101,19 @@ object aldeanos{
 		if(aldeanoDisponible == 0){
 			centralErrores.error("No hay aldeanos disponibles.")
 		}
+	}
+	
+	method reiniciar(){
+		aldeanos = 5
+		poblacion = 5
+		aldeanoDisponible = 5
+		aldeanoTalador = 0
+		aldeanoMinero = 0
+		aldeanoConstructor = 0
+		aldeanoGranjero = 0
+		aldeanoAgricultor = 0
+		aldeanoPescador = 0
+		aldeanoCazador = 0
 	}
 	
 	method liberar(tipo){
@@ -137,33 +163,101 @@ object inicializar{
 		piedras.area().forEach({ objeto => game.addVisualIn(new Piedras(), objeto) })
 	}
 	
+	method inicializar(){
+		escenario.estado(inGame)
+		game.removeTickEvent("PressStart")
+		game.clear()
+		keyboard.up().onPressDo { cursor.mover(cursor.position().up(1)) }
+		keyboard.down().onPressDo { cursor.mover(cursor.position().down(1)) }
+		keyboard.left().onPressDo { cursor.mover(cursor.position().left(1)) }
+		keyboard.right().onPressDo { cursor.mover(cursor.position().right(1)) }
+		keyboard.backspace().onPressDo { escenario.estado().bksp() }
+		keyboard.q().onPressDo { escenario.estado().q() }
+		keyboard.p().onPressDo { escenario.estado().p() }
+		keyboard.w().onPressDo { escenario.estado().w() }
+		keyboard.e().onPressDo { escenario.estado().e() }
+		keyboard.r().onPressDo { escenario.estado().r() }
+		keyboard.t().onPressDo { escenario.estado().t() }
+		keyboard.a().onPressDo { escenario.estado().a() }
+		keyboard.s().onPressDo { escenario.estado().s() }
+		keyboard.d().onPressDo { escenario.estado().d() }
+		keyboard.f().onPressDo { escenario.estado().f() }
+		keyboard.c().onPressDo { escenario.estado().c() }
+		keyboard.enter().onPressDo { escenario.estado().enter() }
+		game.addVisual(cursor)
+		game.addVisual(hud)	
+		self.poblarMapa()
+		cargarHud.instanciarYCargarHud()
+		timer.inicio()
+	}
+	
+	method terminarJuego(){
+		game.clear()
+		recursos.reiniciar()
+		aldeanos.reiniciar()
+		timer.reiniciar()
+		escenario.estado(inPortada)
+		keyboard.enter().onPressDo { escenario.estado().enter() }
+		game.addVisualIn(centralErrores, game.at(31,0))
+		game.errorReporter(centralErrores)
+		self.pantallaInicio()
+	}
+	
+	method pantallaInicio(){
+		game.addVisualIn(fondoPantallaInicial, game.at(0,0))
+		game.addVisualIn(pressStart, game.at(13,3))
+		game.onTick(500, "PressStart", {=> pressStart.titilar() })
+	}
+	
+	
 }
 
-// TODO: Herencia de OBJETOS para las teclas.
-object inGame{
+class Estados{
+	
 	
 	method aparecer(){ }
 	method cerrar(){ }
 	method accion(){ }
-	method mover(posicionNueva, position){ cursor.position(posicionNueva) }
+	method mover(posicionNueva, position){ }
 	method bksp(){ }
-	method enter(){ self.t() }
-	method c(){ 
-		inMenuConst.aparecer()
-		escenario.estado(inMenuConst)
-	}
+	method enter(){ }
+	method c(){ }
 	method q(){ }
 	method w(){ }
 	method e(){ }
 	method r(){ }
 	method a(){	}
-	method s(){ 
+	method s(){ }
+	method d(){	}
+	method f(){	}
+	method t(){ }
+	method p(){ }
+	
+	
+}
+
+object inPortada inherits Estados{
+	override method enter(){ inicializar.inicializar() }
+}
+
+object inGameOver inherits Estados{
+	override method enter(){ inicializar.terminarJuego() }
+}
+
+object inGame inherits Estados{
+	
+	override method mover(posicionNueva, position){ cursor.position(posicionNueva) }
+	override method enter(){ self.t() }
+	override method c(){ 
+		inMenuConst.aparecer()
+		escenario.estado(inMenuConst)
+	}
+	// override method q(){ dispararEvento.killRandom() }
+	override method s(){ 
 		escenario.estado(inSeleccion)
 		cursor.seleccion()
 	}
-	method d(){	}
-	method f(){	}
-	method t(){
+	override method t(){
 		aldeanos.disponible()
 		if(game.getObjectsIn(cursor.position()).any({ objeto => objeto.tipo() == barraobj })){
 			const objetivo = game.getObjectsIn(cursor.position()).find({ objeto => objeto.trabajable() })
@@ -176,61 +270,48 @@ object inGame{
 			}
 		}
 	}
+	override method p(){
+		escenario.estado(inPausa)
+		game.addVisualIn(fondoCartel, game.at(12,9))
+		game.addVisualIn(pausa, game.at(13,10))
+		timer.pausa()
+		escenario.tickEnCurso().forEach({ tick => tick.pausar() })
+	}
 	
 }
 
-object inSeleccion{
+object inSeleccion inherits Estados{
 	
-	method aparecer(){ }
-	method cerrar(){ }
-	method accion(){ }
-	method mover(posicionNueva, position){ 
+	override method mover(posicionNueva, position){ 
 					cursor.position(posicionNueva)
 					cursor.seleccionInicio().add(position)
-					game.addVisualIn(new Seleccion(), position) }
-	method bksp(){ }
-	method c(){ }
-	method enter(){ 
+					game.addVisualIn(new Seleccion(), position) 
+	}
+	override method enter(){ 
 		/// ------------- Interaccion con menu TO DO
 		cursor.seleccion()
 		escenario.estado(inPostSeleccion)
 		inPostSeleccion.aparecer()
 	}
-	method q(){ }
-	method w(){ }
-	method e(){ }
-	method r(){ }
-	method a(){	}
-	method s(){	}
-	method d(){	}
-	method f(){	}
-	method t(){ }
 }
 
-object inPausa{
+object inPausa inherits Estados{
 	
-	method aparecer(){ }
-	method cerrar(){ }
-	method accion(){ }
-	method mover(posicionNueva, position){  }
-	method bksp(){ }
-	method c(){ }
-	method q(){ }
-	method w(){ }
-	method e(){ }
-	method r(){ }
-	method a(){	}
-	method s(){	}
-	method d(){	}
-	method f(){	}
-	method t(){ }
+	override method p(){
+		escenario.estado(inGame)
+		game.removeVisual(fondoCartel)
+		game.removeVisual(pausa)
+		timer.inicio()
+		escenario.tickEnCurso().forEach({ tick => tick.unpausar() })
+	}
+
 }
 
 
 
-object inPostSeleccion{
+object inPostSeleccion inherits Estados{
 	
-	method aparecer(){
+	override method aparecer(){
 		game.addVisualIn(fondoMenu, game.at(12,5))
 		game.addVisualIn(tituloAcciones, game.at(13,13))
 		game.addVisualIn(botonTalar, game.at(13,11))
@@ -240,7 +321,7 @@ object inPostSeleccion{
 		game.addVisualIn(botonSalir, game.at(20,6))
 	}
 	
-	method cerrar(){
+	override method cerrar(){
 		game.removeVisual(fondoMenu)
 		game.removeVisual(tituloAcciones)
 		game.removeVisual(botonTalar)
@@ -249,29 +330,17 @@ object inPostSeleccion{
 		game.removeVisual(botonCancelar)
 		game.removeVisual(botonSalir)
 	}
-	method bksp(){ 
+	override method bksp(){ 
 		self.cerrar()
 		cursor.seleccionInicio().forEach({ posicion => game.getObjectsIn(posicion).find({ objeto => game.removeVisual(objeto.tipo() == "Seleccion" )}) })
 		escenario.estado(inGame)
 	}	
-	method accion(){ }
-	method c(){ }
-	method q(){ }
-	method w(){ }
-	method e(){ }
-	method r(){ }
-	method a(){	}
-	method s(){	}
-	method d(){	}
-	method f(){	}
-	method t(){ }
-	method mover(posicionNueva, position){ }
 }
 
 
-object inMenuConst{
+object inMenuConst inherits Estados{
 	
-	method aparecer(){
+	override method aparecer(){
 		game.addVisualIn(fondoMenu, game.at(12,5))
 		game.addVisualIn(tituloConstrucciones, game.at(13,13))
 		game.addVisualIn(botonAlmacen, game.at(13,10))
@@ -284,7 +353,7 @@ object inMenuConst{
 		game.addVisualIn(botonSalir, game.at(20,6))
 	}
 	
-	method cerrar(){
+	override method cerrar(){
 		game.removeVisual(fondoMenu)
 		game.removeVisual(tituloConstrucciones)
 		game.removeVisual(botonAlmacen)
@@ -296,13 +365,11 @@ object inMenuConst{
 		game.removeVisual(botonCancelar)
 		game.removeVisual(botonSalir)
 	}
-	method bksp(){
+	override method bksp(){
 		self.cerrar()
 		escenario.estado(inGame)
 	}	
-	method accion(){ }
-	method c(){ }
-	method q(){ 		
+	override method q(){ 		
 		recursos.disponible( almacenB.costoAlimento(), almacenB.costoMadera(), almacenB.costoPiedra())
 		cursor.accesoAlLugar()
 		game.addVisualIn(new Constructor(tipo = new Construir(accion= almacenB, position= cursor.position()), position = cursor.position()), cursor.position())
@@ -311,7 +378,7 @@ object inMenuConst{
 		self.cerrar()
 		escenario.estado(inGame)
 	}
-	method w(){ 		
+	override method w(){ 		
 		recursos.disponible( casaC.costoAlimento(), casaC.costoMadera(), casaC.costoPiedra())
 		cursor.accesoAlLugar()
 		game.addVisualIn(new Constructor(tipo = new Construir(accion= casaC, position= cursor.position()), position = cursor.position()), cursor.position())
@@ -320,7 +387,7 @@ object inMenuConst{
 		self.cerrar()
 		escenario.estado(inGame)
 	}
-	method e(){ 		
+	override method e(){ 		
 		recursos.disponible( casaG.costoAlimento(), casaG.costoMadera(), casaG.costoPiedra())
 		cursor.accesoAlLugar()
 		game.addVisualIn(new Constructor(tipo = new Construir(accion= casaG, position= cursor.position()), position = cursor.position()), cursor.position())
@@ -329,8 +396,7 @@ object inMenuConst{
 		self.cerrar()
 		escenario.estado(inGame)
 	}
-	method r(){ }
-	method a(){			
+	override method a(){			
 		recursos.disponible( casaG.costoAlimento(), mercado.costoMadera(), mercado.costoPiedra())
 		cursor.accesoAlLugar()
 		if(cursor.validarCuatroPosicionesLibres()){ // validacion de posiciones que rodean a la construccion esten libres
@@ -342,7 +408,7 @@ object inMenuConst{
 		}
 		
 	}
-	method s(){			
+	override method s(){			
 		recursos.disponible( granja.costoAlimento(), granja.costoMadera(), granja.costoPiedra())
 		cursor.accesoAlLugar()
 		if(cursor.validarCuatroPosicionesLibres()){ //validacion
@@ -354,7 +420,7 @@ object inMenuConst{
 		}
 		
 	}
-	method d(){			
+	override method d(){			
 		recursos.disponible( plantacion.costoAlimento(), plantacion.costoMadera(), plantacion.costoPiedra())
 		cursor.accesoAlLugar()
 		if(cursor.validarCuatroPosicionesLibres()){ //validacion
@@ -366,7 +432,4 @@ object inMenuConst{
 		}
 		
 	}
-	method f(){	}
-	method t(){ }
-	method mover(posicionNueva, position){  }
 }

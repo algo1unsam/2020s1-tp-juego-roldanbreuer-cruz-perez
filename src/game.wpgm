@@ -4,7 +4,6 @@ import elementosGame.*
 import elementosHud.*
 import estados.*
 import timer.*
-import elementosHud.*
 
 //aqui solo configuracion de teclas y game
 //solo para comodidad del desarrollo del juego
@@ -14,27 +13,10 @@ program game {
 	game.boardGround("assets/Mapa.png")
 	game.cellSize(35)
 	game.title("Aldeanos")
-	game.addVisual(cursor)
-	game.addVisual(hud)	
-	keyboard.up().onPressDo { cursor.mover(cursor.position().up(1)) }
-	keyboard.down().onPressDo { cursor.mover(cursor.position().down(1)) }
-	keyboard.left().onPressDo { cursor.mover(cursor.position().left(1)) }
-	keyboard.right().onPressDo { cursor.mover(cursor.position().right(1)) }
-	keyboard.backspace().onPressDo { escenario.estado().bksp() }
-	keyboard.q().onPressDo { escenario.estado().q() }
-	keyboard.w().onPressDo { escenario.estado().w() }
-	keyboard.e().onPressDo { escenario.estado().e() }
-	keyboard.r().onPressDo { escenario.estado().r() }
-	keyboard.t().onPressDo { escenario.estado().t() }
-	keyboard.a().onPressDo { escenario.estado().a() }
-	keyboard.s().onPressDo { escenario.estado().s() }
-	keyboard.d().onPressDo { escenario.estado().d() }
-	keyboard.f().onPressDo { escenario.estado().f() }
-	keyboard.c().onPressDo { escenario.estado().c() }
-	inicializar.poblarMapa()
-	cargarHud.instanciarYCargarHud()
-	timer.inicio()
 	game.addVisualIn(centralErrores, game.at(31,0))
 	game.errorReporter(centralErrores)
+	keyboard.enter().onPressDo { escenario.estado().enter() }
+	inicializar.pantallaInicio()
 	game.start()
+	
 }

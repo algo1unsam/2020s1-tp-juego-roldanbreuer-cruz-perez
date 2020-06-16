@@ -26,11 +26,11 @@ class Recolector{
 		game.onTick((tipo.accion().tiempoNecesario()/5)*1000, nombreTick, {=> barra.suma() })
 	}
 	
-	method pausa(){
+	method pausar(){
 		game.removeTickEvent(nombreTick)
 	}
 	
-	method unpausa(){
+	method unpausar(){
 		game.onTick((tipo.accion().tiempoNecesario()/5)*1000, nombreTick, {=> barra.suma() })
 	}
 	

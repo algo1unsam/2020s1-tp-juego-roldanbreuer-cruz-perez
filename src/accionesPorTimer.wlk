@@ -42,7 +42,9 @@ object dispararEvento{
 		
 		if(aldeanos.aldeanos() == 0){
 				game.clear()
-				game.addVisualIn(fondoMenu, game.at(12,5))
+				keyboard.enter().onPressDo { escenario.estado().enter() }
+				escenario.estado(inGameOver)
+				game.addVisualIn(fondoCartel, game.at(12,9))
 				game.addVisualIn(gameover, game.at(13,10))
 		}
 		

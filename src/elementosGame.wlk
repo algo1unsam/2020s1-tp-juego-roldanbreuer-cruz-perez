@@ -7,6 +7,27 @@ import accionesRecoleccion.*
 //en este archivo solo se van a encontrar los elementos que interactuen con los aldeanos(arboledas
 //casas, pesca etc..)
 
+object fondoPantallaInicial{
+	method image() = "assets/PantallaInicial.png"
+}
+
+object fondoCartel{
+	method image() = "assets/fondoCartel.png"
+}
+
+object pressStart{
+	var cambio = 0
+	
+	method image() = if (cambio.even()) "assets/pressStart.png" else "assets/vacio35.png"
+	method titilar(){
+		cambio += 1
+	}
+	
+}
+
+object pausa{
+	method image() = "assets/pausa.png"
+}
 
 object centralErrores{
 	var property tipo = "Errores"
