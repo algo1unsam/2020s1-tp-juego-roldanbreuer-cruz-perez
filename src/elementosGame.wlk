@@ -411,9 +411,13 @@ object mercado{
 	}
 	
 }
-class MercadoVacio{
+/*class MercadoVacio{
 	var property position
 	var property tipo = "mercado"
+	method image() = "assets/vacio35.png"
+}*/
+class Vacio{
+	var property position
 	method image() = "assets/vacio35.png"
 }
 object granja{
@@ -436,10 +440,10 @@ object granja{
 	method activar(){}
 	
 }
-class GranjaVacio{
+/*class GranjaVacio{
 	var property position
 	method image() = "assets/vacio35.png"
-}
+}*/
 object plantacion{
 	var property costoAlimento = 0
 	var property costoMadera = 800
@@ -460,10 +464,10 @@ object plantacion{
 	method activar(){}
 	
 }
-class PlantacionVacio{
+/*class PlantacionVacio{
 	var property position
 	method image() = "assets/vacio35.png"
-}
+}*/
 
 
 

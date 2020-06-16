@@ -333,7 +333,7 @@ object inMenuConst{
 		recursos.disponible( casaG.costoAlimento(), mercado.costoMadera(), mercado.costoPiedra())
 		cursor.accesoAlLugar()
 		if(cursor.validarCuatroPosicionesLibres()){ // validacion de posiciones que rodean a la construccion esten libres
-		game.addVisualIn(new Constructor(tipo = new Construir(accion= mercado, position= cursor.position()), position = cursor.position()), cursor.position())
+		game.addVisualIn(new ConstruccionGrande(tipo = new Construir(accion= mercado, position= cursor.position()), position = cursor.position()), cursor.position())
 		game.getObjectsIn(cursor.position()).last().iniciar()
 		recursos.consumir( mercado.costoAlimento(), mercado.costoMadera(), mercado.costoPiedra())
 		self.cerrar()
@@ -345,7 +345,7 @@ object inMenuConst{
 		recursos.disponible( granja.costoAlimento(), granja.costoMadera(), granja.costoPiedra())
 		cursor.accesoAlLugar()
 		if(cursor.validarCuatroPosicionesLibres()){ //validacion
-		game.addVisualIn(new Constructor(tipo = new Construir(accion= granja, position= cursor.position()), position = cursor.position()), cursor.position())
+		game.addVisualIn(new ConstruccionGrande(tipo = new Construir(accion= granja, position= cursor.position()), position = cursor.position()), cursor.position())
 		game.getObjectsIn(cursor.position()).last().iniciar()
 		recursos.consumir( granja.costoAlimento(), granja.costoMadera(), granja.costoPiedra())
 		self.cerrar()
@@ -357,7 +357,7 @@ object inMenuConst{
 		recursos.disponible( plantacion.costoAlimento(), plantacion.costoMadera(), plantacion.costoPiedra())
 		cursor.accesoAlLugar()
 		if(cursor.validarCuatroPosicionesLibres()){ //validacion
-		game.addVisualIn(new Constructor(tipo = new Construir(accion= plantacion, position= cursor.position()), position = cursor.position()), cursor.position())
+		game.addVisualIn(new ConstruccionGrande(tipo = new Construir(accion= plantacion, position= cursor.position()), position = cursor.position()), cursor.position())
 		game.getObjectsIn(cursor.position()).last().iniciar()
 		recursos.consumir( plantacion.costoAlimento(), plantacion.costoMadera(), plantacion.costoPiedra())
 		self.cerrar()

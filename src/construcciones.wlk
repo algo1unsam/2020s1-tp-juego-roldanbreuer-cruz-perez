@@ -52,5 +52,22 @@ class Constructor{
 		game.removeTickEvent(nombreTick)
 		game.removeVisual(self)
 	}
-	
+}
+class ConstruccionGrande inherits Constructor{
+	override method iniciar(){
+		aldeanos.requerir(tipo)
+		game.addVisualIn(tipo, position)
+		game.addVisualIn(new Vacio(), position.up(1))
+		game.addVisualIn(new Vacio(), position.up(1).right(1))
+		game.addVisualIn(new Vacio(),position.right(1))
+		if(barra == null){
+			barra = new BarraConstruccion(albanil = self, position = position)
+			game.addVisualIn(barra, position)
+		}else{
+			barra = game.getObjectsIn(position).find({ objeto => objeto.tipo() == barraobj })
+		}
+		nombreTick = "Constructor"+position.toString()
+		escenario.tickEnCurso().add(self)
+		game.onTick((tipo.accion().tiempoNecesario()/5)*1000, nombreTick, {=> barra.suma() })
+	}
 }
