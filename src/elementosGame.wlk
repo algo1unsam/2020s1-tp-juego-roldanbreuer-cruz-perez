@@ -176,6 +176,8 @@ object talada{
 	}
 	
 	method trabajar(origen, posicion){
+		const sonido = game.sound("assets/talar.ogg")
+		sonido.play()
 		game.addVisualIn(new Recolector(tipo = origen, position = posicion), posicion)
 		game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == origen }).iniciar()
 	}

@@ -133,7 +133,7 @@ object inicializar{
 	
 }
 
-
+// TODO: Herencia de OBJETOS para las teclas.
 object inGame{
 	
 	method aparecer(){ }
