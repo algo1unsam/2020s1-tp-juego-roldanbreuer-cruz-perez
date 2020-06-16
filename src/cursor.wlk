@@ -24,7 +24,7 @@ object cursor {
 	
 	method validarCuatroPosicionesLibres(){ //aca valida las posiciones libres p/construccion del mercado
 		var posicionesCercanas=0
-		posicionesCercanas=game.getObjectsIn(self.position()).size()+ game.getObjectsIn(self.position().up(1)).size()  + game.getObjectsIn(self.position().right(1)).size() + game.getObjectsIn(self.position().right(2)).size()
+		posicionesCercanas=game.getObjectsIn(self.position()).size()+ game.getObjectsIn(self.position().up(1)).size()  + game.getObjectsIn(self.position().right(1)).size() + game.getObjectsIn(self.position().up(1).right(1)).size()
 		return posicionesCercanas==1
 	}
 	method seleccion() {
