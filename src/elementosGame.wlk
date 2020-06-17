@@ -416,7 +416,6 @@ class Mercado{
 	var property costoPiedra = 300
 	var property tiempoNecesario = 300
 	var property aldeanosNecesarios = 2 
-	
 	method image() = "assets/market70.png"
 	
 	method usarAldeano(){
@@ -437,20 +436,10 @@ class Mercado{
 		game.addVisualIn(new MercadoVacio(), cursor.position().up(1).right(1))
 		game.addVisualIn(new MercadoVacio(), cursor.position().right(1))
 	}
-		
-
-	
 }
 
 class MercadoVacio inherits Mercado{
-	var property position
-	var property tipo = "mercado"
-	override method image() = "assets/arbol1.png"
-	/*override method completarEspacios(){
-		game.addVisualIn(new MercadoVacio(), position.up(1))
-		game.addVisualIn(new MercadoVacio(), position.up(1).right(1))
-		game.addVisualIn(new MercadoVacio(), position.right(1))
-	}*/
+	override method image() = "assets/vacio35.png"
 }
 
 class Granja{
@@ -472,16 +461,16 @@ class Granja{
 	
 	method activar(){}
 	
+	 method completarEspacios(){
+		game.addVisualIn(new GranjaVacio(), cursor.position().up(1))
+		game.addVisualIn(new GranjaVacio(), cursor.position().up(1).right(1))
+		game.addVisualIn(new GranjaVacio(), cursor.position().right(1))
+	}	
 }
 class GranjaVacio inherits Granja{
-	var property position
-	override method image() = "assets/vacio35.png"
-	 method completarEspacios(){
-		game.addVisualIn(new GranjaVacio(), position.up(1))
-		game.addVisualIn(new GranjaVacio(), position.up(1).right(1))
-		game.addVisualIn(new GranjaVacio(), position.right(1))
-	}
+	override method image() = "assets/vacio35.png"	
 }
+
 class Plantacion{
 	var property costoAlimento = 0
 	var property costoMadera = 800
@@ -500,22 +489,17 @@ class Plantacion{
 	}
 	
 	method activar(){}
-	method completarEspacios()
+	
+	method completarEspacios(){
+		game.addVisualIn(new PlantacionVacio(), cursor.position().up(1))
+		game.addVisualIn(new PlantacionVacio(), cursor.position().up(1).right(1))
+		game.addVisualIn(new PlantacionVacio(), cursor.position().right(1))
+	}	
 	
 }
 class PlantacionVacio inherits Plantacion{
-	var property position
 	override method image() = "assets/vacio35.png"
-	override method completarEspacios(){
-		game.addVisualIn(new MercadoVacio(), position.up(1))
-		game.addVisualIn(new MercadoVacio(), position.up(1).right(1))
-		game.addVisualIn(new MercadoVacio(), position.right(1))
-	}
 }
-
-
-
-
 // -------------                    -------------------------------------------------------------------------------////
 
 object gameover{

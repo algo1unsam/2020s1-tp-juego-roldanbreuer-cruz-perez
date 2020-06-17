@@ -16,9 +16,9 @@ object escenario{
 
 object recursos{
 	//--- Recursos Inicializacion
-	var property cantAlimento = 250
-	var property cantMadera = 500
-	var property cantPiedra = 500
+	var property cantAlimento = 25
+	var property cantMadera = 100
+	var property cantPiedra = 100
 	var property cantAlmacen = 100
 	var property mercadosConstruidos = 0
 	//var property tipo="numerosHUD"
@@ -398,13 +398,16 @@ object inMenuConst inherits Estados{
 	}
 	
 	method construir(edificio){
-		recursos.disponible( edificio.costoAlimento(), edificio.costoMadera(), edificio.costoPiedra())
+		if(cursor.validarPosicion()){
+		recursos.disponible( edificio.costoAlimento(), edificio.costoMadera(), edificio.costoPiedra()) 
 		cursor.accesoAlLugar()
 		game.addVisualIn(new Constructor(tipo = new Construir(accion= edificio, position = cursor.position()), position = cursor.position()), cursor.position())
 		game.getObjectsIn(cursor.position()).last().iniciar()
 		recursos.consumir( edificio.costoAlimento(), edificio.costoMadera(), edificio.costoPiedra())
 		self.cerrar()
 		escenario.estado(inGame)
+		}
+		
 	}
 	
 	method construirGrande(edificio){

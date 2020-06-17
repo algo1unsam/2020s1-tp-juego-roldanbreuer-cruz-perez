@@ -22,6 +22,9 @@ object cursor {
 	var property position = game.center()
 	var property tipo = "Cursor"
 	
+	method validarPosicion(){
+		return game.getObjectsIn(self.position()).size()== 0
+	}
 	method validarCuatroPosicionesLibres(){
 		return game.getObjectsIn(self.position()).size() == 1 and 
                game.getObjectsIn(self.position().up(1)).size() == 0 and
