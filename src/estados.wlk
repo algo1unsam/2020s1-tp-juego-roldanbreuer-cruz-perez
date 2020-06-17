@@ -379,9 +379,11 @@ object inMenuConst inherits Estados{
 		self.construir(casaG)
 	}
 
-	override method a(){			
-		const mercado = new MercadoVacio()		
+	override method a(){		
+		const mercado = new Mercado()
+		const mercadoVacio =new MercadoVacio()		
 		self.construirGrande(mercado)
+		
 		
 	}
 	override method s(){		
@@ -398,7 +400,7 @@ object inMenuConst inherits Estados{
 	method construir(edificio){
 		recursos.disponible( edificio.costoAlimento(), edificio.costoMadera(), edificio.costoPiedra())
 		cursor.accesoAlLugar()
-		game.addVisualIn(new Constructor(tipo = new Construir(accion= edificio, position= cursor.position()), position = cursor.position()), cursor.position())
+		game.addVisualIn(new Constructor(tipo = new Construir(accion= edificio, position = cursor.position()), position = cursor.position()), cursor.position())
 		game.getObjectsIn(cursor.position()).last().iniciar()
 		recursos.consumir( edificio.costoAlimento(), edificio.costoMadera(), edificio.costoPiedra())
 		self.cerrar()
@@ -409,7 +411,8 @@ object inMenuConst inherits Estados{
 		recursos.disponible( edificio.costoAlimento(), edificio.costoMadera(), edificio.costoPiedra())
 		cursor.accesoAlLugar()
 		if(cursor.validarCuatroPosicionesLibres()){ // validacion de posiciones que rodean a la construccion esten libres
-			game.addVisualIn(new ConstruccionGrande(tipo = new Construir(accion= edificio, position= cursor.position()), position = cursor.position()), cursor.position())
+			edificio.completarEspacios()
+			game.addVisualIn(new ConstruccionGrande(tipo = new Construir(accion= edificio, position = cursor.position()), position = cursor.position()), cursor.position())
 			game.getObjectsIn(cursor.position()).last().iniciar()
 			recursos.consumir( edificio.costoAlimento(), edificio.costoMadera(), edificio.costoPiedra())
 			self.cerrar()

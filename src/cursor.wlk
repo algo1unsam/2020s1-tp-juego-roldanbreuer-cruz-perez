@@ -35,6 +35,7 @@ object cursor {
 	}
 	
 	
+	
 	method seleccion() {
 		if (seleccionInicio.size() == 0){
 			self.accesoAlLugar(self.position())

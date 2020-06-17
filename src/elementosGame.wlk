@@ -432,7 +432,11 @@ class Mercado{
 			recursos.mercadosConstruidos(recursos.mercadosConstruidos() + 1)
 		}
 	}
-	method completarEspacios()
+	method completarEspacios(){
+		game.addVisualIn(new MercadoVacio(), cursor.position().up(1))
+		game.addVisualIn(new MercadoVacio(), cursor.position().up(1).right(1))
+		game.addVisualIn(new MercadoVacio(), cursor.position().right(1))
+	}
 		
 
 	
@@ -441,12 +445,12 @@ class Mercado{
 class MercadoVacio inherits Mercado{
 	var property position
 	var property tipo = "mercado"
-	override method image() = "assets/vacio35.png"
-	override method completarEspacios(){
+	override method image() = "assets/arbol1.png"
+	/*override method completarEspacios(){
 		game.addVisualIn(new MercadoVacio(), position.up(1))
 		game.addVisualIn(new MercadoVacio(), position.up(1).right(1))
 		game.addVisualIn(new MercadoVacio(), position.right(1))
-	}
+	}*/
 }
 
 class Granja{
