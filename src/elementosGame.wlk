@@ -433,6 +433,8 @@ class Mercado{
 		}
 	}
 	method completarEspacios()
+		
+
 	
 }
 
@@ -465,12 +467,12 @@ class Granja{
 	}
 	
 	method activar(){}
-	method completarEspacios()
+	
 }
 class GranjaVacio inherits Granja{
 	var property position
 	override method image() = "assets/vacio35.png"
-	override method completarEspacios(){
+	 method completarEspacios(){
 		game.addVisualIn(new GranjaVacio(), position.up(1))
 		game.addVisualIn(new GranjaVacio(), position.up(1).right(1))
 		game.addVisualIn(new GranjaVacio(), position.right(1))

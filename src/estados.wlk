@@ -16,9 +16,9 @@ object escenario{
 
 object recursos{
 	//--- Recursos Inicializacion
-	var property cantAlimento = 25
-	var property cantMadera = 50
-	var property cantPiedra = 50
+	var property cantAlimento = 250
+	var property cantMadera = 500
+	var property cantPiedra = 500
 	var property cantAlmacen = 100
 	var property mercadosConstruidos = 0
 	//var property tipo="numerosHUD"

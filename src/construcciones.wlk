@@ -55,9 +55,9 @@ class Constructor{
 	
 }
 class ConstruccionGrande inherits Constructor{
-	override method finalizar(){
-		super()
+	override method iniciar(){
 		tipo.accion().completarEspacios()
+		super()
 	}
 	/*override method iniciar(){
 		aldeanos.requerir(tipo)

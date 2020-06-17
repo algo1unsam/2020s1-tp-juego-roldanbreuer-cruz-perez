@@ -22,11 +22,19 @@ object cursor {
 	var property position = game.center()
 	var property tipo = "Cursor"
 	
-	method validarCuatroPosicionesLibres(){ //aca valida las posiciones libres p/construccion del mercado
-		var posicionesCercanas=0
-		posicionesCercanas=game.getObjectsIn(self.position()).size()+ game.getObjectsIn(self.position().up(1)).size()  + game.getObjectsIn(self.position().right(1)).size() + game.getObjectsIn(self.position().up(1).right(1)).size()
-		return posicionesCercanas==1
+	method validarCuatroPosicionesLibres(){
+		return game.getObjectsIn(self.position()).size() == 1 and 
+               game.getObjectsIn(self.position().up(1)).size() == 0 and
+               game.getObjectsIn(self.position().right(1)).size() == 0 and
+               game.getObjectsIn(self.position().right(1).up(1)).size() == 0
+                
+		//aca valida las posiciones libres p/construccion del mercado
+		//var posicionesCercanas=0
+		//posicionesCercanas=game.getObjectsIn(self.position()).size()+ game.getObjectsIn(self.position().up(1)).size()  + game.getObjectsIn(self.position().right(1)).size() + game.getObjectsIn(self.position().up(1).right(1)).size()
+		//return game.getObjectsIn(self.position()).size()==1 and game.getObjectsIn(self.position().up(1)).size()==0 and game.getObjectsIn(self.position().right(1)).size() ==0 and game.getObjectsIn(self.position().up(1).right(1)).size()
 	}
+	
+	
 	method seleccion() {
 		if (seleccionInicio.size() == 0){
 			self.accesoAlLugar(self.position())
