@@ -16,10 +16,10 @@ object escenario{
 
 object recursos{
 	//--- Recursos Inicializacion
-	var property cantAlimento = 25
-	var property cantMadera = 100
-	var property cantPiedra = 100
-	var property cantAlmacen = 100
+	var property cantAlimento = 2500
+	var property cantMadera = 2500
+	var property cantPiedra = 2500	
+	var property cantAlmacen = 51000
 	var property mercadosConstruidos = 0
 	//var property tipo="numerosHUD"
 	//var property posicionHud=game.at(17,19)
@@ -188,6 +188,8 @@ object inicializar{
 		game.addVisual(hud)	
 		self.poblarMapa()
 		cargarHud.instanciarYCargarHud()
+		game.addVisualIn(centralErrores, game.at(31,0))
+		game.errorReporter(centralErrores)
 		timer.inicio()
 	}
 	
@@ -260,7 +262,7 @@ object inGame inherits Estados{
 	override method t(){
 		aldeanos.disponible()
 		if(game.getObjectsIn(cursor.position()).any({ objeto => objeto.tipo() == barraobj })){
-			const objetivo = game.getObjectsIn(cursor.position()).find({ objeto => objeto.trabajable() })
+			const objetivo = game.getObjectsIn(cursor.position()).findOrElse({ objeto => objeto.trabajable() }, { centralErrores.error("Ya se esta trabajando.") })
 			objetivo.accion().continuar(objetivo, cursor.position())
 		}else{
 			if(game.getObjectsIn(cursor.position()).any({ objeto => objeto.trabajable() })){
@@ -380,19 +382,18 @@ object inMenuConst inherits Estados{
 	}
 
 	override method a(){		
-		const mercado = new Mercado()
-		const mercadoVacio =new MercadoVacio()		
-		self.construirGrande(mercado)
-		
-		
+		if(recursos.mercadosConstruidos()<3){
+			const mercado = new Mercado()
+			self.construirGrande(mercado)
+		}
 	}
 	override method s(){		
-		const granja = new GranjaVacio()		
+		const granja = new Granja()		
 		self.construirGrande(granja)
 		
 	}
 	override method d(){	
-		const plantacion =new PlantacionVacio()		
+		const plantacion =new Plantacion()		
 		self.construirGrande(plantacion)
 		
 	}

@@ -13,8 +13,6 @@ program game {
 	game.boardGround("assets/Mapa.png")
 	game.cellSize(35)
 	game.title("Aldeanos")
-	game.addVisualIn(centralErrores, game.at(31,0))
-	game.errorReporter(centralErrores)
 	keyboard.enter().onPressDo { escenario.estado().enter() }
 	inicializar.pantallaInicio()
 	game.start()

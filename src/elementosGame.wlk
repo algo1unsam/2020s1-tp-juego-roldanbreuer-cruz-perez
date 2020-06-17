@@ -79,6 +79,8 @@ class BarraRecoleccion{
 	var property progreso = 1
 	var property recolector
 	
+	method trabajable() { return false }
+	
 	method suma(){
 		progreso += 1
 		recolector.recolectar()
@@ -328,6 +330,7 @@ class Agricultor{
 // -------------   CONSTRUCCIONES   -------------------------------------------------------------------------------////
 
 class Construir{
+	var property tipo = null
 	var property position
 	var property accion
 
@@ -411,6 +414,7 @@ object almacenB{
 	
 }
 class Mercado{
+	var property tipo = null
 	var property costoAlimento = 0
 	var property costoMadera = 300
 	var property costoPiedra = 300
@@ -427,7 +431,7 @@ class Mercado{
 	}
 	
 	method activar(){
-		if(recursos.mercadosConstruidos()<=3){
+		if(recursos.mercadosConstruidos()<3){
 			recursos.mercadosConstruidos(recursos.mercadosConstruidos() + 1)
 		}
 	}
@@ -443,6 +447,7 @@ class MercadoVacio inherits Mercado{
 }
 
 class Granja{
+	var property tipo = null
 	var property costoAlimento = 0
 	var property costoMadera = 500
 	var property costoPiedra = 50
@@ -472,6 +477,7 @@ class GranjaVacio inherits Granja{
 }
 
 class Plantacion{
+	var property tipo = null
 	var property costoAlimento = 0
 	var property costoMadera = 800
 	var property costoPiedra = 150

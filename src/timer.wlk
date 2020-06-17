@@ -32,7 +32,7 @@ object timer{
 			acumuladorTiempo=0
 		}
 		if(acumuladorTiempo%5==0){   //// --- Mercado
-		dispararEvento.entregarRecursosMercado()
+			dispararEvento.entregarRecursosMercado()
 		}
 	}
 }

@@ -23,7 +23,7 @@ object cursor {
 	var property tipo = "Cursor"
 	
 	method validarPosicion(){
-		return game.getObjectsIn(self.position()).size()== 0
+		return game.getObjectsIn(self.position()).size()== 1
 	}
 	method validarCuatroPosicionesLibres(){
 		return game.getObjectsIn(self.position()).size() == 1 and 

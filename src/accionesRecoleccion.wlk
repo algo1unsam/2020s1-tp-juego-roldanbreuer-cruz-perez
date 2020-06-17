@@ -9,6 +9,8 @@ class Recolector{
 	var property barra = null
 	var nombreTick = null
 	
+	method trabajable() { return false }
+	
 	method image(){
 		return tipo.accion().image()
 	}
@@ -23,6 +25,7 @@ class Recolector{
 		}
 		nombreTick = "Recolector"+position.toString()
 		escenario.tickEnCurso().add(self)
+		tipo.trabajable(false)
 		game.onTick((tipo.accion().tiempoNecesario()/5)*1000, nombreTick, {=> barra.suma() })
 	}
 	
@@ -41,6 +44,7 @@ class Recolector{
 	
 	method detener(){
 		aldeanos.liberar(tipo)
+		tipo.trabajable(true)
 		escenario.tickEnCurso().remove(self)
 		game.removeTickEvent(nombreTick)
 		game.removeVisual(game.getObjectsIn(position).find({ objeto => objeto.tipo() == tipo }))

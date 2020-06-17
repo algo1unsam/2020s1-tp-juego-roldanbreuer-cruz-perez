@@ -21,7 +21,7 @@ class Constructor{
 		}
 		nombreTick = "Constructor"+position.toString()
 		escenario.tickEnCurso().add(self)
-		game.onTick((tipo.accion().tiempoNecesario()/5)*1000, nombreTick, {=> barra.suma() })
+		game.onTick((tipo.accion().tiempoNecesario()/5)*10, nombreTick, {=> barra.suma() })
 	}
 	
 	method pausar(){
@@ -60,7 +60,7 @@ class ConstruccionGrande inherits Constructor{
 		tipo.accion().completarEspacios()
 	}
 	override method finalizar(){
-		tipo.accion().completarEspacios()
+		//tipo.accion().completarEspacios()
 		super()
 		
 	}
