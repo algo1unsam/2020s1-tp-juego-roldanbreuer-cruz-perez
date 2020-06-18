@@ -2,19 +2,73 @@ import wollok.game.*
 import accionesPorTimer.*
 import accionesRecoleccion.*
 import construcciones.*
+import estados.*
+import elementosGame.*
+import cursor.*
 
 
 
 
-/* 
-describe "testeando un poco los valores de acumuladores a medida que aumenta el tiempo"{
-	fixture{
-		
+describe "testeando un poco los valores de acumuladores"{
+	test "construir una casa chica y que se modifiquen los recursos iniciales" {
+	inMenuConst.construir(casaC)
+	assert.equals(50,recursos.cantMadera())
 	}
-	test "testX" {
-
-	assert.that(true)
-
+	test "talar un arbol y que se incremente el acumulador madera"{
+	madera.modificar(100)
+	assert.equals(150,madera.consulta())
+	}
+	test "minar una roca y que se incremente el acumulador"{
+	piedra.modificar(100)
+	assert.equals(150,piedra.consulta())
+	}
+	test "modificar alimento y que se incremente el acumulador"{
+	alimento.modificar(100)
+	assert.equals(125,alimento.consulta())
+	}
 }
+
+describe"consumiendo recursos y viendo como se modifican los acumuladores"{
+ test "consumir recursos y ver como decrementan los acumuladores"{
+ 	recursos.consumir(10,10,10)
+ 	assert.equals(15,alimento.consulta())
+ 	assert.equals(40,madera.consulta())
+ 	assert.equals(40,piedra.consulta())
+ }
 }
-*/
+
+describe "testeando como varia la entrega de recursos segun la cantidad de mercados"{
+	test "modificar recursos mercado construyendo un mercado"{
+		recursos.mercadosConstruidos(1)
+		dispararEvento.entregarRecursosMercado()
+		assert.equals(51,madera.consulta())
+	}
+	test "modificar recursos mercado construyendo dos mercado"{
+		recursos.mercadosConstruidos(2)
+		dispararEvento.entregarRecursosMercado()
+		assert.equals(52,madera.consulta())
+	}
+	test "modificar recursos mercado construyendo tres mercados"{
+		recursos.mercadosConstruidos(3)
+		dispararEvento.entregarRecursosMercado()
+		assert.equals(53,madera.consulta())
+	}
+	
+	}
+describe "testeando la accion de nacimiento con los recursos correctos e incorrectos"{
+	test "nacimientos en condiciones correctas(poblacion>aldeanos y sobran 100 de alimentos)"{
+		alimento.modificar(500)
+		aldeanos.aldeanos(5)
+		aldeanos.poblacion(6)
+		dispararEvento.Nacimiento()
+		//inMenuConst.construir(casaC)
+		//casaC.activar(cursor.position())
+		assert.equals(6,aldeanos.aldeanos())
+		}
+	test "no cumple las condiciones pedidas (poblacion igual a cantidad aldeanos) por lo tanto no nace aldeano"{
+		alimento.modificar(500)
+		aldeanos.poblacion(5)
+		assert.equals(5,aldeanos.aldeanos())
+	}	
+	}
+

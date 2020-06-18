@@ -5,10 +5,9 @@ import estados.*
 import elementosGame.*
 
 object dispararEvento{
-	
 	method Alimentar(){
-		const alimentoNecesario = aldeanos.aldeanos() * 5
-		const alimentoRestante = recursos.cantAlimento() - alimentoNecesario
+		const  alimentoNecesario = aldeanos.aldeanos() * 5
+		const  alimentoRestante = recursos.cantAlimento() - alimentoNecesario
 		if(alimentoRestante < 0){
 			recursos.cantAlimento(0)
 			const cantidadDeMuertes = alimentoRestante.abs().div(5)
@@ -21,13 +20,13 @@ object dispararEvento{
 	}
 	
 	method Nacimiento(){
-		const alimentoNecesario = aldeanos.aldeanos() * 5
-		const alimentoRestante = recursos.cantAlimento() - alimentoNecesario
+		const  alimentoNecesario = aldeanos.aldeanos() * 5
+		const  alimentoRestante = recursos.cantAlimento() - alimentoNecesario
 		if(alimentoRestante >= 100 and aldeanos.aldeanos() < aldeanos.poblacion()){
 			aldeanos.aldeanoDisponible(aldeanos.aldeanoDisponible() + 1)
 			aldeanos.aldeanos(aldeanos.aldeanos() + 1)
 			alimento.modificar(-50)
-			game.say(centralErrores, "Ha nacido un nuevo Aldeano")
+			//game.say(centralErrores, "Ha nacido un nuevo Aldeano")
 		}
 	}
 	
