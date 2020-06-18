@@ -1,0 +1,19 @@
+import wollok.game.*
+import accionesPorTimer.*
+import accionesRecoleccion.*
+import construcciones.*
+import
+
+
+
+
+describe "testeando un poco los valores de acumuladores a medida que aumenta el tiempo"{
+	fixture{
+		
+	}
+	test "testX" {
+
+	assert.that(true)
+
+}
+}

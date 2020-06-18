@@ -15,9 +15,9 @@ La interface es mayormente intuitiva.
 # Teclas del Juego:
 
 - Direccionales: Movimiento del Cursor
-- T: Presionandola sobre Arboles, Piedras, Costa del agua, Platacion, Granja o Construcciones pausadaspara Talar, Minar, Pescar, Recolescar o Reanudar construccion respectivamente 
+- T: Presionandola sobre Arboles, Piedras, Costa del agua, Platacion, Granja o Construcciones pausadas para Talar, Minar, Pescar, Recolectar o Reanudar construccion respectivamente 
 - W: Detiene la tarea que esta debajo del cursor
-- M: Menu de opcioes
+- M: Menu de opciones
 - C: Menu de Construcciones, debe abrirse en un lugar descampado.
 
 # Informacion de Construcciones:
