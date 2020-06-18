@@ -35,24 +35,14 @@ object cursor {
                 
 	}
 	
-
-	method seleccion() {
-		self.accesoAlLugar(self.position())
+	method limpiarSeleccion(){
+		seleccionInicio.forEach({ posicion => game.removeVisual(game.getObjectsIn(posicion).find({ objeto => objeto.tipo() == "Seleccion" })) })
 	}
+	
 	
 	method mover(posicionNueva){
 		if(!limites.contains(posicionNueva)){
 			escenario.estado().mover(posicionNueva, position)
-		}
-	}
-	
-	method accesoAlLugar(){
-		// -- Se revisa si se tiene acceso a la posicion para poder realizar acciones
-		if(game.getObjectsIn(self.position().up(1)).size() > 0 and
-			game.getObjectsIn(self.position().down(1)).size() > 0 and
-			game.getObjectsIn(self.position().left(1)).size() > 0 and 
-			game.getObjectsIn(self.position().right(1)).size() > 0){
-			centralErrores.error("No se tiene acceso a esta posicion.")
 		}
 	}
 	

@@ -111,7 +111,7 @@ object aldeanos{
 			}else{
 				if(game.getObjectsIn(posicion).any({ objeto => objeto.trabajable() })){
 					const objetivo = game.getObjectsIn(posicion).find({ objeto => objeto.trabajable() })
-					cursor.accesoAlLugar()
+					cursor.accesoAlLugar(posicion)
 					objetivo.accion().trabajar(objetivo, posicion)
 				}
 			}
@@ -316,7 +316,7 @@ object inGame inherits Estados{
 	}
 	
 	override method s(){ 
-		cursor.seleccion()
+		cursor.accesoAlLugar(cursor.position())
 		escenario.estado(inSeleccion)
 	}
 	
@@ -390,13 +390,13 @@ object inPostSeleccion inherits Estados{
 	}
 	override method bksp(){ 
 		self.cerrar()
-		cursor.seleccionInicio().forEach({ posicion => game.removeVisual(game.getObjectsIn(posicion).find({ objeto => objeto.tipo() == "Seleccion" })) })
+		cursor.limpiarSeleccion()
 		cursor.seleccionInicio().clear()
 		escenario.estado(inGame)
 	}	
 	override method t(){
 		self.cerrar()
-		cursor.seleccionInicio().forEach({ posicion => game.removeVisual(game.getObjectsIn(posicion).find({ objeto => objeto.tipo() == "Seleccion" })) })
+		cursor.limpiarSeleccion()
 		cursor.seleccionInicio().forEach({ posicion => aldeanos.trabajar(posicion) })
 		cursor.seleccionInicio().clear()
 		escenario.estado(inGame)
@@ -404,7 +404,7 @@ object inPostSeleccion inherits Estados{
 	
 	override method w(){
 		self.cerrar()
-		cursor.seleccionInicio().forEach({ posicion => game.removeVisual(game.getObjectsIn(posicion).find({ objeto => objeto.tipo() == "Seleccion" })) })
+		cursor.limpiarSeleccion()
 		cursor.seleccionInicio().forEach({ posicion => game.getObjectsIn(posicion).findOrElse({ objeto => objeto.detenible() }, { cursor }).detener() })
 		cursor.seleccionInicio().clear()
 		escenario.estado(inGame)
@@ -473,7 +473,7 @@ object inMenuConst inherits Estados{
 		aldeanos.disponible(edificio.aldeanosNecesarios())
 		if(cursor.validarPosicion()){
 			recursos.disponible( edificio.costoAlimento(), edificio.costoMadera(), edificio.costoPiedra()) 
-			cursor.accesoAlLugar()
+			cursor.accesoAlLugar(cursor.position())
 			game.addVisualIn(new Constructor(tipo = new Construir(accion= edificio, position = cursor.position()), position = cursor.position()), cursor.position())
 			game.getObjectsIn(cursor.position()).last().iniciar()
 			recursos.consumir( edificio.costoAlimento(), edificio.costoMadera(), edificio.costoPiedra())
@@ -486,7 +486,7 @@ object inMenuConst inherits Estados{
 	method construirGrande(edificio){
 		aldeanos.disponible(edificio.aldeanosNecesarios())
 		recursos.disponible( edificio.costoAlimento(), edificio.costoMadera(), edificio.costoPiedra())
-		cursor.accesoAlLugar()
+		cursor.accesoAlLugar(cursor.position())
 		if(cursor.validarCuatroPosicionesLibres()){ // validacion de posiciones que rodean a la construccion esten libres
 			edificio.completarEspacios()
 			game.addVisualIn(new ConstruccionGrande(tipo = new Construir(accion= edificio, position = cursor.position()), position = cursor.position()), cursor.position())
