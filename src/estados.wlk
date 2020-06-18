@@ -345,6 +345,7 @@ object inSeleccion inherits Estados{
 	
 	override method mover(posicionNueva, position){ 
 		cursor.accesoAlLugar(posicionNueva)
+		cursor.previoSeleccionado(posicionNueva)
 		cursor.seleccionInicio().add(position)
 		game.addVisualIn(new Seleccion(), position)
 		cursor.position(posicionNueva)

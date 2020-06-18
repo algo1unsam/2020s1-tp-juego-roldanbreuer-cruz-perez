@@ -46,6 +46,12 @@ object cursor {
 		}
 	}
 	
+	method previoSeleccionado(posicion){
+		if(game.getObjectsIn(posicion).any({ obj => obj.tipo() == "Seleccion" })){
+			centralErrores.error("Ese lugar ya esta seleccionado.")
+		}
+	}
+	
 	method accesoAlLugar(posicion){
 		// -- Se revisa si se tiene acceso a la posicion para poder realizar acciones
 		if(game.getObjectsIn(posicion.up(1)).size() > 0 and
