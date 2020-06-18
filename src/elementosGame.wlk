@@ -2,7 +2,7 @@ import wollok.game.*
 import cursor.*
 import estados.*
 import accionesRecoleccion.*
-//import menu.*
+import construcciones.*
 
 //en este archivo solo se van a encontrar los elementos que interactuen con los aldeanos(arboledas
 //casas, pesca etc..)
@@ -52,6 +52,9 @@ class BarraConstruccion{
 	var property tipo = barraobj
 	var property progreso = 1
 	var property albanil
+	var property detenible = false
+	
+	method trabajable() { return false }
 	
 	method suma(){
 		progreso += 1
@@ -78,6 +81,7 @@ class BarraRecoleccion{
 	var property tipo = barraobj
 	var property progreso = 1
 	var property recolector
+	var property detenible = false
 	
 	method trabajable() { return false }
 	
@@ -125,43 +129,49 @@ object fondoMenu{
 	method image() = "assets/menu.png"
 }
 
-object botonTalar{
+class Botonera{
+	
+	var property tipo = "boton"
+	
+}
+
+object botonTalar inherits Botonera{
 	method image() = "assets/botonTalar.png"
 }
-object botonMinar{
+object botonMinar inherits Botonera{
 	method image() = "assets/botonMinar.png"
 }
-object botonDetener{
+object botonDetener inherits Botonera{
 	method image() = "assets/botonDetener.png"
 }
-object botonCancelar{
+object botonCancelar inherits Botonera{
 	method image() = "assets/botonCancelarFlat.png"
 }
-object botonSalir{
+object botonSalir inherits Botonera{
 	method image() = "assets/botonSalir.png"
 }
-object tituloAcciones{
+object tituloAcciones inherits Botonera{
 	method image() = "assets/menuTituloAcciones.png"
 }
-object tituloConstrucciones{
+object tituloConstrucciones inherits Botonera{
 	method image() = "assets/menuTituloConstrucciones.png"
 }
-object botonAlmacen{
+object botonAlmacen inherits Botonera{
 	method image() = "assets/botonAlmacen.png"
 }
-object botonCasaC{
+object botonCasaC inherits Botonera{
 	method image() = "assets/botonCasaC.png"
 }
-object botonCasaG{
+object botonCasaG inherits Botonera{
 	method image() = "assets/botonCasaG.png"
 }
-object botonGranja{
+object botonGranja inherits Botonera{
 	method image() = "assets/botonGranja.png"
 }
-object botonMercado{
+object botonMercado inherits Botonera{
 	method image() = "assets/botonMercado.png"
 }
-object botonPlantacion{
+object botonPlantacion inherits Botonera{
 	method image() = "assets/botonPlantacion.png"
 }
 
@@ -183,6 +193,8 @@ class Arboleda{
 	var property position 
 	var property tipo = arbol
 	var property trabajable = true
+	var property detenible = false
+	
 	
 	method remover(){
 		game.removeVisual(self)
@@ -212,11 +224,12 @@ object talada{
 	}
 	
 	method continuar(origen, posicion){
+		const sonido = game.sound("assets/talar.ogg")
+		sonido.play()
 		game.addVisualIn(new Recolector(tipo = origen, position = posicion, barra = game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == barraobj })), posicion)
 		game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == origen }).iniciar()
 	}
 	
-	method sound() = "assets/talar.ogg"
 	method image() = "assets/talando.png"
 }
 
@@ -232,6 +245,7 @@ class Piedras{
 	var property position 
 	var property tipo = roca
 	var property trabajable = true
+	var property detenible = false
 	
 	method remover(){
 		game.removeVisual(self)
@@ -254,23 +268,34 @@ object minado{
 	}
 	
 	method trabajar(origen, posicion){
+		const sonido = game.sound("assets/minar.ogg")
+		sonido.play()
 		game.addVisualIn(new Recolector(tipo = origen, position = posicion), posicion)
 		game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == origen }).iniciar()
 	}
 	
 	method continuar(origen, posicion){
+		const sonido = game.sound("assets/minar.ogg")
+		sonido.play()
 		game.addVisualIn(new Recolector(tipo = origen, position = posicion, barra = game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == barraobj })), posicion)
 		game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == origen }).iniciar()
 	}
 	
-	
-	method sound()="assets/minar.ogg"
 	method image() = "assets/minado.png"
 }
 
-// -------------   PECES
+// -------------   Alimentos
+
 object pez{
 	var property recurso = 25
+	var property tipoRecurso = alimento
+}
+object animales{
+	var property recurso = 50
+	var property tipoRecurso = alimento
+}
+object frutos{
+	var property recurso = 150
 	var property tipoRecurso = alimento
 }
 
@@ -279,6 +304,7 @@ class Lago{
 	var property position 
 	var property tipo = pez
 	var property trabajable = true
+	var property detenible = false
 	
 	method remover(){
 		
@@ -287,18 +313,13 @@ class Lago{
 	method image()= "assets/vacio35.png"
 }
 
-object pesca{
+class TipoAlimento{
 	var property aldeanosNecesarios = 1
 	var property tiempoNecesario = 100
-	var property tipoObjetivo = pez
 	
-	method usarAldeano(){
-		aldeanos.aldeanoPescador(aldeanos.aldeanoPescador() + 1)
-	}
+	method usarAldeano()
 	
-	method dejarAldeano(){
-		aldeanos.aldeanoPescador(aldeanos.aldeanoPescador() - 1)
-	}
+	method dejarAldeano()
 	
 	method trabajar(origen, posicion){
 		game.addVisualIn(new Recolector(tipo = origen, position = posicion), posicion)
@@ -311,21 +332,68 @@ object pesca{
 	}
 	
 	
+	
+}
+
+object pesca inherits TipoAlimento{
+	var property tipoObjetivo = pez
 	method image() = "assets/pesca.png"
+	
+	override method trabajar(origen, posicion){
+		super(origen, posicion)
+		const sonido = game.sound("assets/reel.mp3")
+		sonido.play()
+	}
+	
+	override method usarAldeano(){
+		aldeanos.aldeanoPescador(aldeanos.aldeanoPescador() + 1)
+	}
+	
+	override method dejarAldeano(){
+		aldeanos.aldeanoPescador(aldeanos.aldeanoPescador() - 1)
+	}
+
 }
 
-
-
-
-
-class Granjero{
-	var property position
+object granjear inherits TipoAlimento{
+	var property tipoObjetivo = animales
 	method image() = "assets/vaca35.png"
+	
+	override method trabajar(origen, posicion){
+		super(origen, posicion)
+		const sonido = game.sound("assets/vaca.mp3")
+		sonido.play()
+	}
+	
+	override method usarAldeano(){
+		aldeanos.aldeanoGranjero(aldeanos.aldeanoGranjero() + 1)
+	}
+	
+	override method dejarAldeano(){
+		aldeanos.aldeanoGranjero(aldeanos.aldeanoGranjero() - 1)
+	}
 }
-class Agricultor{
-	var property position
+
+object agricultor inherits TipoAlimento{
+	var property tipoObjetivo = frutos
 	method image() = "assets/recoleccion.png"
+	
+	override method trabajar(origen, posicion){
+		super(origen, posicion)
+		const sonido = game.sound("assets/frutos.mp3")
+		sonido.play()
+	}
+	
+	override method usarAldeano(){
+		aldeanos.aldeanoAgricultor(aldeanos.aldeanoAgricultor() + 1)
+	}
+	
+	override method dejarAldeano(){
+		aldeanos.aldeanoAgricultor(aldeanos.aldeanoAgricultor() - 1)
+	}
 }
+
+
 
 // -------------   CONSTRUCCIONES   -------------------------------------------------------------------------------////
 
@@ -333,6 +401,8 @@ class Construir{
 	var property tipo = null
 	var property position
 	var property accion
+	var property trabajable = true
+	var property detenible = false
 
 	method image() = accion.image()
 }
@@ -343,164 +413,172 @@ class Construir2{
 	method image() = "assets/construir.png"
 }
 
-object casaC{
+class Construccion_Objetos{
+	method costoAlimento()
+	method costoMadera()
+	method costoPiedra()
+	method tiempoNecesario()
+	method aldeanosNecesarios()
+	method image()
+	method activar(posicion)
+	
+	method usarAldeano(){
+		aldeanos.aldeanoConstructor(aldeanos.aldeanoConstructor() + self.aldeanosNecesarios())
+	}
+	
+	method dejarAldeano(){
+		aldeanos.aldeanoConstructor(aldeanos.aldeanoConstructor() - self.aldeanosNecesarios())
+	}
+	
+	method continuar(origen, posicion){
+		origen.trabajable(false)
+		aldeanos.disponible(self.aldeanosNecesarios())
+		game.addVisualIn(new Constructor(tipo = new Construir(accion= self, position = cursor.position()), position = posicion), posicion)
+		game.getObjectsIn(cursor.position()).last().iniciar()
+	}
+	
+	method completarEspacios(){}
+	
+}
+
+object casaC inherits Construccion_Objetos{
 	var property costoAlimento = 0
 	var property costoMadera = 100
 	var property costoPiedra = 0
 	var property tiempoNecesario = 20
 	var property aldeanosNecesarios = 1 
 	
-	method image() = "assets/casa1-35.png"
-	
-	method usarAldeano(){
-		aldeanos.aldeanoConstructor(aldeanos.aldeanoConstructor() + 1)
-	}
-	
-	method dejarAldeano(){
-		aldeanos.aldeanoConstructor(aldeanos.aldeanoConstructor() - 1)
-	}
-	
-	method activar(){
+	override method image() = "assets/casa1-35.png"
+
+	override method activar(posicion){
 		aldeanos.poblacion(aldeanos.poblacion() + 1)
 	}
-	method completarEspacios(){}
+	
 }
 
-object casaG{
+object casaG inherits Construccion_Objetos{
 	var property costoAlimento = 0
 	var property costoMadera = 200
 	var property costoPiedra = 100
 	var property tiempoNecesario = 50
 	var property aldeanosNecesarios = 1 
 	
-	method image() = "assets/casa2-35.png"
-	
-	method usarAldeano(){
-		aldeanos.aldeanoConstructor(aldeanos.aldeanoConstructor() + 1)
-	}
-	
-	method dejarAldeano(){
-		aldeanos.aldeanoConstructor(aldeanos.aldeanoConstructor() - 1)
-	}
-	
-	method activar(){
+	override method image() = "assets/casa2-35.png"
+		
+	override method activar(posicion){
 		aldeanos.poblacion(aldeanos.poblacion() + 3)
 	}
-	method completarEspacios(){}
 	
 }
-object almacenB{
+object almacenB inherits Construccion_Objetos{
 	var property costoAlimento = 0
 	var property costoMadera = 0
 	var property costoPiedra = 50
 	var property tiempoNecesario = 10
 	var property aldeanosNecesarios = 1 
 	
-	method image() = "assets/almacen35.png"
+	override method image() = "assets/almacen35.png"
 	
-	method usarAldeano(){
-		aldeanos.aldeanoConstructor(aldeanos.aldeanoConstructor() + 1)
-	}
-	
-	method dejarAldeano(){
-		aldeanos.aldeanoConstructor(aldeanos.aldeanoConstructor() - 1)
-	}
-	
-	method activar(){
+	override method activar(posicion){
 		recursos.cantAlmacen(recursos.cantAlmacen() + 50)
 	}
 	
-	method completarEspacios(){}
 	
 }
-class Mercado{
+class Mercado inherits Construccion_Objetos{
 	var property tipo = null
+	var property trabajable = false
 	var property costoAlimento = 0
 	var property costoMadera = 300
 	var property costoPiedra = 300
 	var property tiempoNecesario = 300
 	var property aldeanosNecesarios = 2 
-	method image() = "assets/market70.png"
+	override method image() = "assets/market70.png"
 	
-	method usarAldeano(){
-		aldeanos.aldeanoConstructor(aldeanos.aldeanoConstructor() + 2)
-	}
-	
-	method dejarAldeano(){
-		aldeanos.aldeanoConstructor(aldeanos.aldeanoConstructor() - 2)
-	}
-	
-	method activar(){
+	override method activar(posicion){
 		if(recursos.mercadosConstruidos()<3){
 			recursos.mercadosConstruidos(recursos.mercadosConstruidos() + 1)
 		}
 	}
-	method completarEspacios(){
+	override method completarEspacios(){
 		game.addVisualIn(new MercadoVacio(), cursor.position().up(1))
 		game.addVisualIn(new MercadoVacio(), cursor.position().up(1).right(1))
 		game.addVisualIn(new MercadoVacio(), cursor.position().right(1))
 	}
+	
 }
 
 class MercadoVacio inherits Mercado{
 	override method image() = "assets/vacio35.png"
 }
 
-class Granja{
-	var property tipo = null
+class Granja inherits Construccion_Objetos{
+	
+	var property accion = granjear
+	var property tipo = animales
+	var property trabajable = false
+	var property detenible = false
+	
+	var property position 
+
 	var property costoAlimento = 0
 	var property costoMadera = 500
 	var property costoPiedra = 50
 	var property tiempoNecesario = 300
 	var property aldeanosNecesarios = 2 
 	
-	method image() = "assets/granjaAnimales.png"
+	override method image() = "assets/granjaAnimales.png"
 	
-	method usarAldeano(){
-		aldeanos.aldeanoConstructor(aldeanos.aldeanoConstructor() + 1)
+	override method activar(posicion){
+		game.getObjectsIn(posicion).find({ objeto => objeto.tipo() == animales }).trabajable(true)
+		game.getObjectsIn(posicion.up(1)).find({ objeto => objeto.tipo() == animales }).trabajable(true)
+		game.getObjectsIn(posicion.up(1).right(1)).find({ objeto => objeto.tipo() == animales }).trabajable(true)
+		game.getObjectsIn(posicion.right(1)).find({ objeto => objeto.tipo() == animales }).trabajable(true)
 	}
 	
-	method dejarAldeano(){
-		aldeanos.aldeanoConstructor(aldeanos.aldeanoConstructor() - 1)
-	}
-	
-	method activar(){}
-	
-	 method completarEspacios(){
+	override method completarEspacios(){
+		game.addVisualIn(new GranjaVacio(), cursor.position())
 		game.addVisualIn(new GranjaVacio(), cursor.position().up(1))
 		game.addVisualIn(new GranjaVacio(), cursor.position().up(1).right(1))
 		game.addVisualIn(new GranjaVacio(), cursor.position().right(1))
 	}	
+	
 }
 class GranjaVacio inherits Granja{
 	override method image() = "assets/vacio35.png"	
 }
 
-class Plantacion{
-	var property tipo = null
+class Plantacion inherits Construccion_Objetos{
+	
+	var property accion = agricultor
+	var property tipo = frutos
+	var property trabajable = false
+	var property detenible = false
+	
+	var property position 
+
 	var property costoAlimento = 0
 	var property costoMadera = 800
 	var property costoPiedra = 150
 	var property tiempoNecesario = 600
 	var property aldeanosNecesarios = 2 
 	
-	method image() = "assets/plantacion.png"
+	override method image() = "assets/plantacion.png"
 	
-	method usarAldeano(){
-		aldeanos.aldeanoConstructor(aldeanos.aldeanoConstructor() + 1)
+	override method activar(posicion){
+		game.getObjectsIn(posicion).find({ objeto => objeto.tipo() == frutos }).trabajable(true)
+		game.getObjectsIn(posicion.up(1)).find({ objeto => objeto.tipo() == frutos }).trabajable(true)
+		game.getObjectsIn(posicion.up(1).right(1)).find({ objeto => objeto.tipo() == frutos }).trabajable(true)
+		game.getObjectsIn(posicion.right(1)).find({ objeto => objeto.tipo() == frutos }).trabajable(true)
 	}
 	
-	method dejarAldeano(){
-		aldeanos.aldeanoConstructor(aldeanos.aldeanoConstructor() - 1)
-	}
-	
-	method activar(){}
-	
-	method completarEspacios(){
+	override method completarEspacios(){
+		game.addVisualIn(new PlantacionVacio(), cursor.position())
 		game.addVisualIn(new PlantacionVacio(), cursor.position().up(1))
 		game.addVisualIn(new PlantacionVacio(), cursor.position().up(1).right(1))
 		game.addVisualIn(new PlantacionVacio(), cursor.position().right(1))
-	}	
+	}
+		
 	
 }
 class PlantacionVacio inherits Plantacion{

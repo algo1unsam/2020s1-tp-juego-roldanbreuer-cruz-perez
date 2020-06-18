@@ -16,5 +16,4 @@ program game {
 	keyboard.enter().onPressDo { escenario.estado().enter() }
 	inicializar.pantallaInicio()
 	game.start()
-	
 }

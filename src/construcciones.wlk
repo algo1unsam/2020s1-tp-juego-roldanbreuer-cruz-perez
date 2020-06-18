@@ -8,6 +8,10 @@ class Constructor{
 	var property barra = null
 	var nombreTick = null
 	
+	var property detenible = true
+	
+	method trabajable() { return false }
+	
 	method image() = "assets/construir.png"
 	
 	method iniciar(){
@@ -21,7 +25,10 @@ class Constructor{
 		}
 		nombreTick = "Constructor"+position.toString()
 		escenario.tickEnCurso().add(self)
-		game.onTick((tipo.accion().tiempoNecesario()/5)*10, nombreTick, {=> barra.suma() })
+		game.onTick((tipo.accion().tiempoNecesario()/5)*1000, nombreTick, {=> barra.suma() })
+		tipo.trabajable(false)
+		const sonido = game.sound("assets/martillo.mp3")
+		sonido.play()
 	}
 	
 	method pausar(){
@@ -39,6 +46,7 @@ class Constructor{
 	
 	method detener(){
 		aldeanos.liberar(tipo)
+		tipo.trabajable(true)
 		escenario.tickEnCurso().remove(self)
 		game.removeTickEvent(nombreTick)
 		game.removeVisual(self)
@@ -46,7 +54,7 @@ class Constructor{
 		
 	method finalizar(){
 		aldeanos.liberar(tipo)
-		tipo.accion().activar()
+		tipo.accion().activar(position)
 		game.removeVisual(barra)
 		escenario.tickEnCurso().remove(self)
 		game.removeTickEvent(nombreTick)
@@ -58,11 +66,6 @@ class ConstruccionGrande inherits Constructor{
 	override method iniciar(){
 		super()
 		tipo.accion().completarEspacios()
-	}
-	override method finalizar(){
-		//tipo.accion().completarEspacios()
-		super()
-		
 	}
 
 }

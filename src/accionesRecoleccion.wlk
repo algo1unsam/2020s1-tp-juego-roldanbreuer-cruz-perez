@@ -9,6 +9,8 @@ class Recolector{
 	var property barra = null
 	var nombreTick = null
 	
+	var property detenible = true
+	
 	method trabajable() { return false }
 	
 	method image(){

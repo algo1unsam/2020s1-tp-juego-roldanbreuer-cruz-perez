@@ -10,16 +10,25 @@ import accionesPorTimer.*
 object escenario{
 	var property estado = inPortada
 	var property tickEnCurso = []
+	const property musica = game.sound("assets/music.ogg")
 	
+	method subirVolumen(){
+		musica.resume()
+		
+	}
+	
+	method bajarVolumen(){
+		musica.pause()
+	}
 	
 }
 
 object recursos{
 	//--- Recursos Inicializacion
-	var property cantAlimento = 2500
-	var property cantMadera = 2500
-	var property cantPiedra = 2500	
-	var property cantAlmacen = 51000
+	var property cantAlimento = 25
+	var property cantMadera = 50
+	var property cantPiedra = 50
+	var property cantAlmacen = 100
 	var property mercadosConstruidos = 0
 	//var property tipo="numerosHUD"
 	//var property posicionHud=game.at(17,19)
@@ -97,8 +106,8 @@ object aldeanos{
 		}
 	}
 	
-	method disponible(){
-		if(aldeanoDisponible == 0){
+	method disponible(valor){
+		if(aldeanoDisponible < valor){
 			centralErrores.error("No hay aldeanos disponibles.")
 		}
 	}
@@ -183,6 +192,8 @@ object inicializar{
 		keyboard.d().onPressDo { escenario.estado().d() }
 		keyboard.f().onPressDo { escenario.estado().f() }
 		keyboard.c().onPressDo { escenario.estado().c() }
+		keyboard.plusKey().onPressDo { escenario.estado().plusKey() }
+		keyboard.minusKey().onPressDo { escenario.estado().minusKey() }
 		keyboard.enter().onPressDo { escenario.estado().enter() }
 		game.addVisual(cursor)
 		game.addVisual(hud)	
@@ -190,6 +201,9 @@ object inicializar{
 		cargarHud.instanciarYCargarHud()
 		game.addVisualIn(centralErrores, game.at(31,0))
 		game.errorReporter(centralErrores)
+		escenario.musica().shouldLoop(true)
+		escenario.musica().volume(0.5)
+		escenario.musica().play()
 		timer.inicio()
 	}
 	
@@ -234,6 +248,12 @@ class Estados{
 	method f(){	}
 	method t(){ }
 	method p(){ }
+	method plusKey(){
+		escenario.subirVolumen()
+	}
+	method minusKey(){
+		escenario.bajarVolumen()
+	}
 	
 	
 }
@@ -259,8 +279,11 @@ object inGame inherits Estados{
 		escenario.estado(inSeleccion)
 		cursor.seleccion()
 	}
+	override method w(){ 
+		game.getObjectsIn(cursor.position()).findOrElse({ objeto => objeto.detenible() }, { cursor }).detener()
+	}
 	override method t(){
-		aldeanos.disponible()
+		aldeanos.disponible(1)
 		if(game.getObjectsIn(cursor.position()).any({ objeto => objeto.tipo() == barraobj })){
 			const objetivo = game.getObjectsIn(cursor.position()).findOrElse({ objeto => objeto.trabajable() }, { centralErrores.error("Ya se esta trabajando.") })
 			objetivo.accion().continuar(objetivo, cursor.position())
@@ -399,19 +422,21 @@ object inMenuConst inherits Estados{
 	}
 	
 	method construir(edificio){
+		aldeanos.disponible(edificio.aldeanosNecesarios())
 		if(cursor.validarPosicion()){
-		recursos.disponible( edificio.costoAlimento(), edificio.costoMadera(), edificio.costoPiedra()) 
-		cursor.accesoAlLugar()
-		game.addVisualIn(new Constructor(tipo = new Construir(accion= edificio, position = cursor.position()), position = cursor.position()), cursor.position())
-		game.getObjectsIn(cursor.position()).last().iniciar()
-		recursos.consumir( edificio.costoAlimento(), edificio.costoMadera(), edificio.costoPiedra())
-		self.cerrar()
-		escenario.estado(inGame)
+			recursos.disponible( edificio.costoAlimento(), edificio.costoMadera(), edificio.costoPiedra()) 
+			cursor.accesoAlLugar()
+			game.addVisualIn(new Constructor(tipo = new Construir(accion= edificio, position = cursor.position()), position = cursor.position()), cursor.position())
+			game.getObjectsIn(cursor.position()).last().iniciar()
+			recursos.consumir( edificio.costoAlimento(), edificio.costoMadera(), edificio.costoPiedra())
+			self.cerrar()
+			escenario.estado(inGame)
 		}
 		
 	}
 	
 	method construirGrande(edificio){
+		aldeanos.disponible(edificio.aldeanosNecesarios())
 		recursos.disponible( edificio.costoAlimento(), edificio.costoMadera(), edificio.costoPiedra())
 		cursor.accesoAlLugar()
 		if(cursor.validarCuatroPosicionesLibres()){ // validacion de posiciones que rodean a la construccion esten libres
