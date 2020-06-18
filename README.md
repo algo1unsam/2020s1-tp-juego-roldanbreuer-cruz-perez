@@ -18,7 +18,18 @@ La interface es mayormente intuitiva.
 - T: Presionandola sobre Arboles, Piedras, Costa del agua, Platacion, Granja o Construcciones pausadas para Talar, Minar, Pescar, Recolectar o Reanudar construccion respectivamente 
 - W: Detiene la tarea que esta debajo del cursor
 - M: Menu de opciones
-- C: Menu de Construcciones, debe abrirse en un lugar descampado.
+- C: Menu de Construcciones, Nota: Solo se puede contruir en lugares libres
+- P: Pausa el juego
+- -: Quita la Musica
+- +: Reanuda la Musica
+
+# Recursos:
+
+- Arboles: cada 12s dan 10 de Madera. 50 Madera total en 60s y desaparece
+- Piedra: cada 24s dan 15 de Piedra. 75 Piedra total en 120s y desaparece
+- Lago: cada 20s dan 5 de Alimento. 50 Alimento total en 100s, reutilizable.
+- Granja: cada 30s dan 50 de Alimento. 250 Alimento total en 150s, reutilizable.
+- Plantacion: cada 30s dan 150 de Alimento. 750 Alimento total en 150s, reutilizable.
 
 # Informacion de Construcciones:
 

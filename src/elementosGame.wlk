@@ -291,11 +291,11 @@ object pez{
 	var property tipoRecurso = alimento
 }
 object animales{
-	var property recurso = 50
+	var property recurso = 250
 	var property tipoRecurso = alimento
 }
 object frutos{
-	var property recurso = 150
+	var property recurso = 750
 	var property tipoRecurso = alimento
 }
 
@@ -357,6 +357,9 @@ object pesca inherits TipoAlimento{
 
 object granjear inherits TipoAlimento{
 	var property tipoObjetivo = animales
+	
+	override method tiempoNecesario() = 150
+	
 	method image() = "assets/vaca35.png"
 	
 	override method trabajar(origen, posicion){
@@ -376,6 +379,9 @@ object granjear inherits TipoAlimento{
 
 object agricultor inherits TipoAlimento{
 	var property tipoObjetivo = frutos
+	
+	override method tiempoNecesario() = 150
+	
 	method image() = "assets/recoleccion.png"
 	
 	override method trabajar(origen, posicion){
