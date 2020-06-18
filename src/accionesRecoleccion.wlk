@@ -54,6 +54,7 @@ class Recolector{
 	
 	method finalizar(){
 		aldeanos.liberar(tipo)
+		tipo.trabajable(true)
 		game.removeVisual(barra)
 		tipo.remover()
 		escenario.tickEnCurso().remove(self)

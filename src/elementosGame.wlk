@@ -433,7 +433,7 @@ class Construccion_Objetos{
 	method continuar(origen, posicion){
 		origen.trabajable(false)
 		aldeanos.disponible(self.aldeanosNecesarios())
-		game.addVisualIn(new Constructor(tipo = new Construir(accion= self, position = cursor.position()), position = posicion), posicion)
+		game.addVisualIn(new Constructor(tipo = new Construir(accion= self, position = cursor.position()), position = posicion, barra = game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == barraobj })), posicion)
 		game.getObjectsIn(cursor.position()).last().iniciar()
 	}
 	
@@ -481,6 +481,7 @@ object almacenB inherits Construccion_Objetos{
 	
 	override method activar(posicion){
 		recursos.cantAlmacen(recursos.cantAlmacen() + 50)
+		game.addVisualIn(new BarraAlmacen(position = posicion), posicion)
 	}
 	
 	

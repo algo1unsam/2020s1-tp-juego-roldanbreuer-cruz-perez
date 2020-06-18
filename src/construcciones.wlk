@@ -24,7 +24,7 @@ class Constructor{
 			barra = game.getObjectsIn(position).find({ objeto => objeto.tipo() == barraobj })
 		}
 		nombreTick = "Constructor"+position.toString()
-		escenario.tickEnCurso().add(self)
+		escenario.tickEnCurso().add(game.getObjectsIn(position).find({ objeto => objeto.detenible() }))
 		game.onTick((tipo.accion().tiempoNecesario()/5)*1000, nombreTick, {=> barra.suma() })
 		tipo.trabajable(false)
 		const sonido = game.sound("assets/martillo.mp3")
@@ -47,18 +47,18 @@ class Constructor{
 	method detener(){
 		aldeanos.liberar(tipo)
 		tipo.trabajable(true)
-		escenario.tickEnCurso().remove(self)
+		escenario.tickEnCurso().remove(game.getObjectsIn(position).find({ objeto => objeto.detenible() }))
 		game.removeTickEvent(nombreTick)
-		game.removeVisual(self)
+		game.removeVisual(game.getObjectsIn(position).find({ objeto => objeto.detenible() }))
 	}
 		
 	method finalizar(){
 		aldeanos.liberar(tipo)
 		tipo.accion().activar(position)
 		game.removeVisual(barra)
-		escenario.tickEnCurso().remove(self)
+		escenario.tickEnCurso().remove(game.getObjectsIn(position).find({ objeto => objeto.detenible() }))
 		game.removeTickEvent(nombreTick)
-		game.removeVisual(self)
+		game.removeVisual(game.getObjectsIn(position).find({ objeto => objeto.detenible() }))
 	}
 	
 }
