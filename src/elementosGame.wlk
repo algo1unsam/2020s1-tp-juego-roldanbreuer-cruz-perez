@@ -133,6 +133,8 @@ class Botonera{
 	
 	var property tipo = "boton"
 	
+	method detenible() { return false }
+	
 }
 
 object mAyuda inherits Botonera{

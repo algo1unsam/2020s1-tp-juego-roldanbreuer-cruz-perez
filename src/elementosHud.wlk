@@ -165,7 +165,7 @@ class CentenaMiles inherits Centena{
 		return cientos.imagen(valor)
 	}
 	}
-// ACA VOY A EMPEZAR A HEREDAR DE ESTAS TRES CLASES PADRES PARA TODOS LOS ELEMENTOS DEL HUD
+// ACA VOY A EMPEZAR A HEREDAR DE ESTAS TRES CLASES PADRES PARA Todos LOS ELEMENTOS DEL HUD
 //recordar setear origen y position al instanciar los objetos
 class AlmacenUnidad inherits Unidad{}
 class AlmacenDecena inherits Decena{}

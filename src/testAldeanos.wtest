@@ -38,6 +38,11 @@ describe"consumiendo recursos y viendo como se modifican los acumuladores"{
 }
 
 describe "testeando como varia la entrega de recursos segun la cantidad de mercados"{
+	test "modificar recursos sin mercado construyendo?"{
+		recursos.mercadosConstruidos(0)
+		dispararEvento.entregarRecursosMercado()
+		assert.equals(50,madera.consulta())
+	}
 	test "modificar recursos mercado construyendo un mercado"{
 		recursos.mercadosConstruidos(1)
 		dispararEvento.entregarRecursosMercado()
@@ -54,21 +59,28 @@ describe "testeando como varia la entrega de recursos segun la cantidad de merca
 		assert.equals(53,madera.consulta())
 	}
 	
-	}
+}
+
 describe "testeando la accion de nacimiento con los recursos correctos e incorrectos"{
 	test "nacimientos en condiciones correctas(poblacion>aldeanos y sobran 100 de alimentos)"{
 		alimento.modificar(500)
-		aldeanos.aldeanos(5)
-		aldeanos.poblacion(6)
+		casaC.activar(cursor.position())
+		game.addVisualIn(centralErrores, game.at(31,0))
 		dispararEvento.Nacimiento()
-		//inMenuConst.construir(casaC)
-		//casaC.activar(cursor.position())
 		assert.equals(6,aldeanos.aldeanos())
 		}
-	test "no cumple las condiciones pedidas (poblacion igual a cantidad aldeanos) por lo tanto no nace aldeano"{
-		alimento.modificar(500)
-		aldeanos.poblacion(5)
+	test "no cumple las condiciones pedidas por poblacion igual a cantidad aldeanos, por lo tanto, no nace aldeano"{
+		alimento.modificar(500)		
+		game.addVisualIn(centralErrores, game.at(31,0))
+		dispararEvento.Nacimiento()
 		assert.equals(5,aldeanos.aldeanos())
 	}	
-	}
+	test "no cumple las condiciones pedidas por alimento insuficiente, por lo tanto, no nace aldeano"{
+		alimento.modificar(50)		
+		casaC.activar(cursor.position())
+		game.addVisualIn(centralErrores, game.at(31,0))
+		dispararEvento.Nacimiento()
+		assert.equals(5,aldeanos.aldeanos())
+	}	
+}
 

@@ -57,12 +57,12 @@ La interface es mayormente intuitiva.
 ### Granja
 - Costo: 500 Madera, 50 Piedra
 - Tiempo 300s (5 min)
-- Tiene 4 espacios para recolectar, cada espacio otorga 50 de comida por recoleccion. Tarda 150s el ciclo completo
+- Sus 4 espacios se pueden trabajar.
 - Ocupa 4 espacios y pide 2 aldeanos para costruir.
 
 ### Plantacion
 - Costo: 800 Madera, 150 Piedra
 - Tiempo: 100s (10 min)
-- Tiene 4 espacios para recolectar, cada espacio otorga 150 de comida por recoleccion. Tarda 150s el ciclo completo
+- Sus 4 espacios se pueden trabajar.
 - Ocupa 4 espacios y pide 2 aldeanos para costruir.
 

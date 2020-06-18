@@ -12,12 +12,12 @@ object escenario{
 	const property musica = game.sound("assets/music.ogg")
 	
 	method subirVolumen(){
-		musica.resume()
+		if(musica.played()) musica.resume()
 		
 	}
 	
 	method bajarVolumen(){
-		musica.pause()
+		if(musica.played()) musica.pause()
 	}
 	
 }
@@ -209,7 +209,7 @@ object inicializar{
 		game.errorReporter(centralErrores)
 		escenario.musica().shouldLoop(true)
 		escenario.musica().volume(0.5)
-		escenario.musica().play()
+		if(not escenario.musica().played()) escenario.musica().play()
 		timer.inicio()
 	}
 	
@@ -270,7 +270,11 @@ object inPortada inherits Estados{
 }
 
 object inGameOver inherits Estados{
-	override method enter(){ inicializar.terminarJuego() }
+	override method enter(){
+		keyboard.plusKey().onPressDo { escenario.estado().plusKey() }
+		keyboard.minusKey().onPressDo { escenario.estado().minusKey() } 
+		inicializar.terminarJuego()
+	}
 }
 
 object inMenu inherits Estados{
@@ -340,8 +344,9 @@ object inGame inherits Estados{
 object inSeleccion inherits Estados{
 	
 	override method mover(posicionNueva, position){ 
+		cursor.accesoAlLugar(posicionNueva)
 		cursor.seleccionInicio().add(position)
-		game.addVisualIn(new Seleccion(), position) 
+		game.addVisualIn(new Seleccion(), position)
 		cursor.position(posicionNueva)
 	}
 	override method enter(){ 

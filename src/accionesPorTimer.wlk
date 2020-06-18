@@ -26,7 +26,7 @@ object dispararEvento{
 			aldeanos.aldeanoDisponible(aldeanos.aldeanoDisponible() + 1)
 			aldeanos.aldeanos(aldeanos.aldeanos() + 1)
 			alimento.modificar(-50)
-			//game.say(centralErrores, "Ha nacido un nuevo Aldeano")
+			game.say(centralErrores, "Ha nacido un nuevo Aldeano")
 		}
 	}
 	
@@ -41,6 +41,8 @@ object dispararEvento{
 		
 		if(aldeanos.aldeanos() == 0){
 				game.clear()
+				keyboard.plusKey().onPressDo { escenario.estado().plusKey() }
+				keyboard.minusKey().onPressDo { escenario.estado().minusKey() }
 				keyboard.enter().onPressDo { escenario.estado().enter() }
 				escenario.estado(inGameOver)
 				game.addVisualIn(fondoCartel, game.at(12,9))

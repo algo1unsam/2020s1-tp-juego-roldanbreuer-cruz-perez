@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><projectDescription>
-	<name>empty-game</name>
-	<comment/>
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>aldeanos-game</name>
+	<comment></comment>
 	<projects>
 	</projects>
 	<buildSpec>
@@ -31,4 +32,4 @@
 		<nature>org.eclipse.xtext.ui.shared.xtextNature</nature>
 		<nature>org.uqbar.project.wollok.wollokNature</nature>
 	</natures>
-</projectDescription> 
+</projectDescription>
