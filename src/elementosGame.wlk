@@ -135,11 +135,18 @@ class Botonera{
 	
 }
 
+object mAyuda inherits Botonera{
+	method image() = "assets/mAyuda.png"
+}
+
 object botonTalar inherits Botonera{
 	method image() = "assets/botonTalar.png"
 }
 object botonMinar inherits Botonera{
 	method image() = "assets/botonMinar.png"
+}
+object botonTrabajar inherits Botonera{
+	method image() = "assets/botonTrabajar.png"
 }
 object botonDetener inherits Botonera{
 	method image() = "assets/botonDetener.png"
@@ -149,6 +156,12 @@ object botonCancelar inherits Botonera{
 }
 object botonSalir inherits Botonera{
 	method image() = "assets/botonSalir.png"
+}
+object titulo inherits Botonera{
+	method image() = "assets/menuTitulo.png"
+}
+object ayuda inherits Botonera{
+	method image() = "assets/ayuda.png"
 }
 object tituloAcciones inherits Botonera{
 	method image() = "assets/menuTituloAcciones.png"
@@ -220,14 +233,14 @@ object talada{
 		const sonido = game.sound("assets/talar.ogg")
 		sonido.play()
 		game.addVisualIn(new Recolector(tipo = origen, position = posicion), posicion)
-		game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == origen }).iniciar()
+		game.getObjectsIn(posicion).find({ objeto => objeto.tipo() == origen }).iniciar()
 	}
 	
 	method continuar(origen, posicion){
 		const sonido = game.sound("assets/talar.ogg")
 		sonido.play()
-		game.addVisualIn(new Recolector(tipo = origen, position = posicion, barra = game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == barraobj })), posicion)
-		game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == origen }).iniciar()
+		game.addVisualIn(new Recolector(tipo = origen, position = posicion, barra = game.getObjectsIn(posicion).find({ objeto => objeto.tipo() == barraobj })), posicion)
+		game.getObjectsIn(posicion).find({ objeto => objeto.tipo() == origen }).iniciar()
 	}
 	
 	method image() = "assets/talando.png"
@@ -271,14 +284,14 @@ object minado{
 		const sonido = game.sound("assets/minar.ogg")
 		sonido.play()
 		game.addVisualIn(new Recolector(tipo = origen, position = posicion), posicion)
-		game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == origen }).iniciar()
+		game.getObjectsIn(posicion).find({ objeto => objeto.tipo() == origen }).iniciar()
 	}
 	
 	method continuar(origen, posicion){
 		const sonido = game.sound("assets/minar.ogg")
 		sonido.play()
-		game.addVisualIn(new Recolector(tipo = origen, position = posicion, barra = game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == barraobj })), posicion)
-		game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == origen }).iniciar()
+		game.addVisualIn(new Recolector(tipo = origen, position = posicion, barra = game.getObjectsIn(posicion).find({ objeto => objeto.tipo() == barraobj })), posicion)
+		game.getObjectsIn(posicion).find({ objeto => objeto.tipo() == origen }).iniciar()
 	}
 	
 	method image() = "assets/minado.png"
@@ -323,12 +336,12 @@ class TipoAlimento{
 	
 	method trabajar(origen, posicion){
 		game.addVisualIn(new Recolector(tipo = origen, position = posicion), posicion)
-		game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == origen }).iniciar()
+		game.getObjectsIn(posicion).find({ objeto => objeto.tipo() == origen }).iniciar()
 	}
 	
 	method continuar(origen, posicion){
-		game.addVisualIn(new Recolector(tipo = origen, position = posicion, barra = game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == barraobj })), posicion)
-		game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == origen }).iniciar()
+		game.addVisualIn(new Recolector(tipo = origen, position = posicion, barra = game.getObjectsIn(posicion).find({ objeto => objeto.tipo() == barraobj })), posicion)
+		game.getObjectsIn(posicion).find({ objeto => objeto.tipo() == origen }).iniciar()
 	}
 	
 	
@@ -439,8 +452,8 @@ class Construccion_Objetos{
 	method continuar(origen, posicion){
 		origen.trabajable(false)
 		aldeanos.disponible(self.aldeanosNecesarios())
-		game.addVisualIn(new Constructor(tipo = new Construir(accion= self, position = cursor.position()), position = posicion, barra = game.getObjectsIn(cursor.position()).find({ objeto => objeto.tipo() == barraobj })), posicion)
-		game.getObjectsIn(cursor.position()).last().iniciar()
+		game.addVisualIn(new Constructor(tipo = new Construir(accion= self, position = posicion), position = posicion, barra = game.getObjectsIn(posicion).find({ objeto => objeto.tipo() == barraobj })), posicion)
+		game.getObjectsIn(posicion).last().iniciar()
 	}
 	
 	method completarEspacios(){}

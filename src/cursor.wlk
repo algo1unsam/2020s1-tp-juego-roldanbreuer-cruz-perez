@@ -1,6 +1,5 @@
 import wollok.game.*
 import elementosGame.*
-//import menu.*
 import estados.*
 
 
@@ -9,6 +8,7 @@ class Seleccion{
 	var property position
 	var property tipo = "Seleccion"
 	method image() = "assets/cursor.png"	
+	method trabajable() = false
 }
 
 
@@ -33,23 +33,11 @@ object cursor {
                (game.getObjectsIn(self.position().right(1)).size() == 0 or ( game.getObjectsIn(self.position().right(1)).size()== 1 and game.getObjectsIn(self.position().right(1)).any({ obj => obj.tipo() == "boton" }))) and
                (game.getObjectsIn(self.position().right(1).up(1)).size() == 0 or ( game.getObjectsIn(self.position().right(1).up(1)).size()== 1 and game.getObjectsIn(self.position().right(1).up(1)).any({ obj => obj.tipo() == "boton" })))
                 
-		//aca valida las posiciones libres p/construccion del mercado
-		//var posicionesCercanas=0
-		//posicionesCercanas=game.getObjectsIn(self.position()).size()+ game.getObjectsIn(self.position().up(1)).size()  + game.getObjectsIn(self.position().right(1)).size() + game.getObjectsIn(self.position().up(1).right(1)).size()
-		//return game.getObjectsIn(self.position()).size()==1 and game.getObjectsIn(self.position().up(1)).size()==0 and game.getObjectsIn(self.position().right(1)).size() ==0 and game.getObjectsIn(self.position().up(1).right(1)).size()
 	}
 	
-	
-	
+
 	method seleccion() {
-		if (seleccionInicio.size() == 0){
-			self.accesoAlLugar(self.position())
-			seleccionInicio.add(self.position())
-			game.addVisualIn(new Seleccion(), position)
-		}else{
-//			menu.seleccionado(seleccionInicio.copy())
-			seleccionInicio.clear()
-		}
+		self.accesoAlLugar(self.position())
 	}
 	
 	method mover(posicionNueva){

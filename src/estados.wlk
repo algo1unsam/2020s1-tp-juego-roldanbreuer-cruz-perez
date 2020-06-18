@@ -3,7 +3,6 @@ import cursor.*
 import elementosGame.*
 import elementosHud.*
 import timer.*
-import menu.*
 import construcciones.*
 import accionesPorTimer.*
 
@@ -30,8 +29,7 @@ object recursos{
 	var property cantPiedra = 50
 	var property cantAlmacen = 100
 	var property mercadosConstruidos = 0
-	//var property tipo="numerosHUD"
-	//var property posicionHud=game.at(17,19)
+	
 	method disponible(alimento, madera, piedra){
 		if(cantAlimento < alimento or cantMadera < madera or cantPiedra < piedra) centralErrores.error("No hay recursos disponibles")
 	}
@@ -49,12 +47,6 @@ object recursos{
 		cantAlmacen = 100
 		mercadosConstruidos = 0
 	}
-	/*method recursosHud(){
-		hud.unidad(self.tipo(),self.posicionHud(),self.cantAlimento())
-		hud.decena(self.tipo(),self.posicionHud(),self.cantAlimento())
-		hud.centena(self.tipo(),self.posicionHud(),self.cantAlimento())
-		hud.miles((self.tipo(),self.posicionHud(),self.cantAlimento()))
-	}*/
 }
 
 // ---- Modificadores de recurso
@@ -95,8 +87,7 @@ object aldeanos{
 	var property aldeanoAgricultor = 0
 	var property aldeanoPescador = 0
 	var property aldeanoCazador = 0
-	//var property position = game.at(2,3)
-	//-- Manejadores de trabajos
+	
 	method requerir(tipo){
 		if(tipo.accion().aldeanosNecesarios() <= aldeanoDisponible){
 			aldeanoDisponible -= tipo.accion().aldeanosNecesarios()
@@ -109,6 +100,21 @@ object aldeanos{
 	method disponible(valor){
 		if(aldeanoDisponible < valor){
 			centralErrores.error("No hay aldeanos disponibles.")
+		}
+	}
+	
+	method trabajar(posicion){
+		if(aldeanoDisponible > 0){
+			if(game.getObjectsIn(posicion).any({ objeto => objeto.tipo() == barraobj })){
+				const objetivo = game.getObjectsIn(posicion).findOrElse({ objeto => objeto.trabajable() }, { centralErrores.error("Ya se esta trabajando.") })
+				objetivo.accion().continuar(objetivo, posicion)
+			}else{
+				if(game.getObjectsIn(posicion).any({ objeto => objeto.trabajable() })){
+					const objetivo = game.getObjectsIn(posicion).find({ objeto => objeto.trabajable() })
+					cursor.accesoAlLugar()
+					objetivo.accion().trabajar(objetivo, posicion)
+				}
+			}
 		}
 	}
 	
@@ -129,9 +135,7 @@ object aldeanos{
 		aldeanoDisponible += tipo.accion().aldeanosNecesarios()
 		tipo.accion().dejarAldeano()
 	}
-	/*method aldeanoDisponibleHud(){
-		hud.unidad(position,aldeanoDisponible)
-	}*/
+	
 }
 class Aldeano{
 	method consulta()=aldeanos.aldeanos()
@@ -192,11 +196,13 @@ object inicializar{
 		keyboard.d().onPressDo { escenario.estado().d() }
 		keyboard.f().onPressDo { escenario.estado().f() }
 		keyboard.c().onPressDo { escenario.estado().c() }
+		keyboard.m().onPressDo { escenario.estado().m() }
 		keyboard.plusKey().onPressDo { escenario.estado().plusKey() }
 		keyboard.minusKey().onPressDo { escenario.estado().minusKey() }
 		keyboard.enter().onPressDo { escenario.estado().enter() }
 		game.addVisual(cursor)
 		game.addVisual(hud)	
+		game.addVisualIn(mAyuda, game.at(30,19))
 		self.poblarMapa()
 		cargarHud.instanciarYCargarHud()
 		game.addVisualIn(centralErrores, game.at(31,0))
@@ -241,6 +247,7 @@ class Estados{
 	method q(){ }
 	method w(){ }
 	method e(){ }
+	method m(){ }
 	method r(){ }
 	method a(){	}
 	method s(){ }
@@ -266,6 +273,35 @@ object inGameOver inherits Estados{
 	override method enter(){ inicializar.terminarJuego() }
 }
 
+object inMenu inherits Estados{
+	
+	override method aparecer(){
+		game.addVisualIn(fondoMenu, game.at(12,5))
+		game.addVisualIn(titulo, game.at(13,13))
+		game.addVisualIn(ayuda, game.at(13,7))
+		game.addVisualIn(botonCancelar, game.at(13,6))
+		game.addVisualIn(botonSalir, game.at(20,6))
+	}
+	
+	override method cerrar(){
+		game.removeVisual(fondoMenu)
+		game.removeVisual(titulo)
+		game.removeVisual(ayuda)
+		game.removeVisual(botonCancelar)
+		game.removeVisual(botonSalir)
+	}
+	
+	override method bksp(){
+		self.cerrar()
+		escenario.estado(inGame)
+	}
+	
+	override method minusKey(){
+		game.stop()
+	}
+		
+}
+
 object inGame inherits Estados{
 	
 	override method mover(posicionNueva, position){ cursor.position(posicionNueva) }
@@ -274,26 +310,22 @@ object inGame inherits Estados{
 		inMenuConst.aparecer()
 		escenario.estado(inMenuConst)
 	}
-	// override method q(){ dispararEvento.killRandom() } 
+	
 	override method s(){ 
-		escenario.estado(inSeleccion)
 		cursor.seleccion()
+		escenario.estado(inSeleccion)
+	}
+	
+	override method m(){ 
+		inMenu.aparecer()
+		escenario.estado(inMenu)
 	}
 	override method w(){ 
 		game.getObjectsIn(cursor.position()).findOrElse({ objeto => objeto.detenible() }, { cursor }).detener()
 	}
 	override method t(){
 		aldeanos.disponible(1)
-		if(game.getObjectsIn(cursor.position()).any({ objeto => objeto.tipo() == barraobj })){
-			const objetivo = game.getObjectsIn(cursor.position()).findOrElse({ objeto => objeto.trabajable() }, { centralErrores.error("Ya se esta trabajando.") })
-			objetivo.accion().continuar(objetivo, cursor.position())
-		}else{
-			if(game.getObjectsIn(cursor.position()).any({ objeto => objeto.trabajable() })){
-				const objetivo = game.getObjectsIn(cursor.position()).find({ objeto => objeto.trabajable() })
-				cursor.accesoAlLugar()
-				objetivo.accion().trabajar(objetivo, cursor.position())
-			}
-		}
+		aldeanos.trabajar(cursor.position())
 	}
 	override method p(){
 		escenario.estado(inPausa)
@@ -308,13 +340,13 @@ object inGame inherits Estados{
 object inSeleccion inherits Estados{
 	
 	override method mover(posicionNueva, position){ 
-					cursor.position(posicionNueva)
-					cursor.seleccionInicio().add(position)
-					game.addVisualIn(new Seleccion(), position) 
+		cursor.seleccionInicio().add(position)
+		game.addVisualIn(new Seleccion(), position) 
+		cursor.position(posicionNueva)
 	}
 	override method enter(){ 
-		/// ------------- Interaccion con menu TO DO
-		cursor.seleccion()
+		cursor.seleccionInicio().add(cursor.position())
+		game.addVisualIn(new Seleccion(), cursor.position()) 
 		escenario.estado(inPostSeleccion)
 		inPostSeleccion.aparecer()
 	}
@@ -339,27 +371,40 @@ object inPostSeleccion inherits Estados{
 	override method aparecer(){
 		game.addVisualIn(fondoMenu, game.at(12,5))
 		game.addVisualIn(tituloAcciones, game.at(13,13))
-		game.addVisualIn(botonTalar, game.at(13,11))
-		game.addVisualIn(botonMinar, game.at(16,11))
-		game.addVisualIn(botonDetener, game.at(19,11))
+		game.addVisualIn(botonTrabajar, game.at(13,11))
+		game.addVisualIn(botonDetener, game.at(22,11))
 		game.addVisualIn(botonCancelar, game.at(13,6))
-		game.addVisualIn(botonSalir, game.at(20,6))
 	}
 	
 	override method cerrar(){
 		game.removeVisual(fondoMenu)
 		game.removeVisual(tituloAcciones)
-		game.removeVisual(botonTalar)
-		game.removeVisual(botonMinar)
+		game.removeVisual(botonTrabajar)
 		game.removeVisual(botonDetener)
 		game.removeVisual(botonCancelar)
-		game.removeVisual(botonSalir)
 	}
 	override method bksp(){ 
 		self.cerrar()
-		cursor.seleccionInicio().forEach({ posicion => game.getObjectsIn(posicion).find({ objeto => game.removeVisual(objeto.tipo() == "Seleccion" )}) })
+		cursor.seleccionInicio().forEach({ posicion => game.removeVisual(game.getObjectsIn(posicion).find({ objeto => objeto.tipo() == "Seleccion" })) })
+		cursor.seleccionInicio().clear()
 		escenario.estado(inGame)
 	}	
+	override method t(){
+		self.cerrar()
+		cursor.seleccionInicio().forEach({ posicion => game.removeVisual(game.getObjectsIn(posicion).find({ objeto => objeto.tipo() == "Seleccion" })) })
+		cursor.seleccionInicio().forEach({ posicion => aldeanos.trabajar(posicion) })
+		cursor.seleccionInicio().clear()
+		escenario.estado(inGame)
+	}
+	
+	override method w(){
+		self.cerrar()
+		cursor.seleccionInicio().forEach({ posicion => game.removeVisual(game.getObjectsIn(posicion).find({ objeto => objeto.tipo() == "Seleccion" })) })
+		cursor.seleccionInicio().forEach({ posicion => game.getObjectsIn(posicion).findOrElse({ objeto => objeto.detenible() }, { cursor }).detener() })
+		cursor.seleccionInicio().clear()
+		escenario.estado(inGame)
+	}
+	
 }
 
 
@@ -375,7 +420,6 @@ object inMenuConst inherits Estados{
 		game.addVisualIn(botonGranja, game.at(16,7))
 		game.addVisualIn(botonPlantacion, game.at(19,7))
 		game.addVisualIn(botonCancelar, game.at(13,6))
-		game.addVisualIn(botonSalir, game.at(20,6))
 	}
 	
 	override method cerrar(){
@@ -388,7 +432,6 @@ object inMenuConst inherits Estados{
 		game.removeVisual(botonGranja)
 		game.removeVisual(botonPlantacion)
 		game.removeVisual(botonCancelar)
-		game.removeVisual(botonSalir)
 	}
 	override method bksp(){
 		self.cerrar()

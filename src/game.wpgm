@@ -5,8 +5,7 @@ import elementosHud.*
 import estados.*
 import timer.*
 
-//aqui solo configuracion de teclas y game
-//solo para comodidad del desarrollo del juego
+
 program game {
 	game.height(20)
 	game.width(37)
